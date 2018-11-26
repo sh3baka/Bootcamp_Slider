@@ -1,0 +1,15 @@
+.classpath
+**/.~lock*
+*.log
+logs/**
+.project
+.settings/**
+target/**
+wbp-meta/**
+/target/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
