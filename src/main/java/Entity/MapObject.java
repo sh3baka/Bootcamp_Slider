@@ -10,7 +10,7 @@ public abstract class MapObject {
 
     // tile stuff
     protected TileMap.TileMap;
-    protected in tileSize;
+    protected int tileSize;
     protected double xmap;
     protected double ymap;
 
