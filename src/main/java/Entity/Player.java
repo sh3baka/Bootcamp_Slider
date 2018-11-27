@@ -209,7 +209,7 @@ public class Player extends MapObject {
 
         //update position
         getNextPosition();
-        //checkTileMapCollision();
+        checkTileMapCollision();
         setPosition(xtemp, ytemp);
 
         //set animation

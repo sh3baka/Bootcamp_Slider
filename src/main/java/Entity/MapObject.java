@@ -103,7 +103,7 @@ public abstract class MapObject {
 
     }
 
-    public void chechTileMapCollision() {
+    public void checkTileMapCollision() {
         currCol = (int) x / tileSize;
         currRow = (int) y / tileSize;
 
