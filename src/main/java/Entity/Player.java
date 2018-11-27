@@ -182,7 +182,7 @@ public class Player extends MapObject {
 
         //cannot move while attacking, except in air
         if(
-                (currentAction == SCRATCHING || currentAction == FIREBALL)) &&
+                (currentAction == SCRATCHING || currentAction == FIREBALL) &&
         !(jumping || falling)) {
             dx = 0;
         }
