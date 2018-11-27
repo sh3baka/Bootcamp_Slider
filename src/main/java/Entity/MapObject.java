@@ -2,6 +2,7 @@ package Entity;
 
 import Main.GamePanel;
 import TileMap.TileMap;
+
 import java.awt.Rectangle;
 import TileMap.Tile;
 import java.awt.*;
@@ -29,7 +30,7 @@ public abstract class MapObject {
     protected int cheight;
 
     // collision
-    protected int currRow;
+    protected int currtRow;
     protected int currCol;
     protected double xdest;
     protected double ydest;
@@ -102,9 +103,9 @@ public abstract class MapObject {
 
     }
 
-    public void checkTileMapCollision() {
-        currCol = (int)x / tileSize;
-        currRow = (int)y / tileSize;
+    public void chechTileMapCollision() {
+        currCol = (int) x / tileSize;
+        currRow = (int) y / tileSize;
 
         xdest = x + dx;
         ydest = y + dy;
@@ -134,7 +135,7 @@ public abstract class MapObject {
 
         calculateCorners(xdest,y);
         if (dx < 0) {
-            if(topLeft || bottomLeft) {
+            if (topLeft || topRight) {
                 dx = 0;
                 xtemp = currCol * tileSize + cwidth / 2;
             }
