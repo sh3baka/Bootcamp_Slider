@@ -84,6 +84,7 @@ public class Player extends MapObject {
                     )
             );
 
+            sprites = new ArrayList<BufferedImage[]>();
             for (int i = 0; i < 7; i++) {
 
                 BufferedImage[] bi =
@@ -116,6 +117,12 @@ public class Player extends MapObject {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        animation = new Animation();
+        currentAction = IDLE;
+        animation.setFrames(sprites.get(IDLE));
+        animation.setDelay(400);
+
     }
 
     public int getHealth() {

@@ -41,7 +41,8 @@ public class Level1State extends GameState {
         tileMap.draw(g);
 
         //draw player
-        player.draw(g);
+        player.draw(g
+        );
     }
     public void keyPressed(int k) {}
     public void keyReleased(int k) {}
