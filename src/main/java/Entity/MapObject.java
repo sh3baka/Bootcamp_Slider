@@ -30,7 +30,7 @@ public abstract class MapObject {
     protected int cheight;
 
     // collision
-    protected int currtRow;
+    protected int currRow;
     protected int currCol;
     protected double xdest;
     protected double ydest;
@@ -103,7 +103,7 @@ public abstract class MapObject {
 
     }
 
-    public void chechTileMapCollision() {
+    public void checkTileMapCollision() {
         currCol = (int) x / tileSize;
         currRow = (int) y / tileSize;
 
@@ -114,11 +114,12 @@ public abstract class MapObject {
         ytemp = y;
 
         calculateCorners(x, ydest);
-        if (dy<0) {
+        if (dy < 0) {
             if (topLeft || topRight) {
                 dy = 0;
-                ytemp = currRow*tileSize + cheight/2;
+                ytemp = currRow * tileSize + cheight / 2;
             }
+        }
             else {
                 ytemp += dy;
             }
@@ -135,7 +136,7 @@ public abstract class MapObject {
 
         calculateCorners(xdest,y);
         if (dx < 0) {
-            if (topLeft || topRight) {
+            if(topLeft || bottomLeft) {
                 dx = 0;
                 xtemp = currCol * tileSize + cwidth / 2;
             }
