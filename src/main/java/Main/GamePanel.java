@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private void init() {
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-        graphics = (Graphics2D) graphics;
+        graphics = (Graphics2D) image.getGraphics();
     }
 
     public void run() {
