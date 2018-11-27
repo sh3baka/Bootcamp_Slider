@@ -1,5 +1,7 @@
 package TileMap;
 
+import Main.GamePanel;
+
 import java.awt.*;
 import java.awt.image.*;
 
@@ -35,7 +37,34 @@ public class TileMap {
     private Tile[] [] tiles;
 
     //drawing
+    private int rowOffset;
+    private int colOffset;
+    private int numRowsToDraw;
+    private int numNumColsToDraw;
 
+    public  TileMap(int tileSize) {
+        this.tileSize = tileSize;
+        numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
+        numNumColsToDraw = GamePanel.WIDTH / tileSize + 2;
+        tween = 0.07;
+    }
 
+    public void loadTiles(String s) {
+
+        try{
+
+            tileset = ImageIO.read(
+                    getClass().getResourceAsStream(s)
+            );
+            numTilesAcross = tileset.getWidth() / tileSize; //from resources
+            tiles = new Tile[2] [numTilesAcross];
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadMap(String s) {}
 
 }
