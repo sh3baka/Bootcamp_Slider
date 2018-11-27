@@ -103,7 +103,7 @@ public abstract class MapObject {
 
     }
 
-    public void checkTileMapCollision() {
+    public void chechTileMapCollision() {
         currCol = (int) x / tileSize;
         currRow = (int) y / tileSize;
 
@@ -114,12 +114,11 @@ public abstract class MapObject {
         ytemp = y;
 
         calculateCorners(x, ydest);
-        if (dy < 0) {
+        if (dy<0) {
             if (topLeft || topRight) {
                 dy = 0;
-                ytemp = currRow * tileSize + cheight / 2;
+                ytemp = currRow * tileSize + cheight/2;
             }
-        }
             else {
                 ytemp += dy;
             }
@@ -128,7 +127,7 @@ public abstract class MapObject {
             if (bottomLeft || bottomRight) {
                 dy = 0;
                 falling = false;
-                ytemp = (currRow+1)*tileSize - cheight/2;
+                ytemp = (currRow + 1) * tileSize - cheight/2;
             } else {
                 ytemp += dy;
             }
@@ -136,7 +135,7 @@ public abstract class MapObject {
 
         calculateCorners(xdest,y);
         if (dx < 0) {
-            if(topLeft || bottomLeft) {
+            if (topLeft || topRight) {
                 dx = 0;
                 xtemp = currCol * tileSize + cwidth / 2;
             }
@@ -161,39 +160,40 @@ public abstract class MapObject {
             }
         }
 
-        public int getx() { return (int)x; }
-        public int gety() { return (int)y; }
-        public int getWidth() { return width; }
-        public int getHeight() { return height; }
-        public int getCWidth() { return cwidth; }
-        public int geCHeight() { return cheight; }
 
-        public void setPosition(double x, double y) {
-            this.x = x;
-            this.y = y;
         }
-        public void setVector(double dx, double dy) {
-            this.dx = dx;
-            this.dy = dy;
-        }
+    public int getx() { return (int)x; }
+    public int gety() { return (int)y; }
+    public int getWidth() { return width; }
+    public int getHeight() { return height; }
+    public int getCWidth() { return cwidth; }
+    public int geCHeight() { return cheight; }
 
-        public void setMapPosition() {
-            xmap = tileMap.getx();
-            ymap = tileMap.gety();
-        }
+    public void setPosition(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+    public void setVector(double dx, double dy) {
+        this.dx = dx;
+        this.dy = dy;
+    }
 
-        public void setLeft(boolean b) {left = b;}
-        public void setRight(boolean b) {right = b;}
-        public void setUp(boolean b) {up = b; }
-        public void setDown(boolean b) {down = b;}
-        public void setJumping(boolean b) {jumping = b;}
+    public void setMapPosition() {
+        xmap = tileMap.getx();
+        ymap = tileMap.gety();
+    }
 
-        public boolean notOnScreen() {
-            return x + xmap + width < 0 ||
-                    x + xmap - width > GamePanel.WIDTH ||
-                    y + ymap + height < 0 ||
-                    y + ymap - height > GamePanel.HEIGHT;
-        }
+    public void setLeft(boolean b) {left = b;}
+    public void setRight(boolean b) {right = b;}
+    public void setUp(boolean b) {up = b; }
+    public void setDown(boolean b) {down = b;}
+    public void setJumping(boolean b) {jumping = b;}
+
+    public boolean notOnScreen() {
+        return x + xmap + width < 0 ||
+                x + xmap - width > GamePanel.WIDTH ||
+                y + ymap + height < 0 ||
+                y + ymap - height > GamePanel.HEIGHT;
 
     }
 
