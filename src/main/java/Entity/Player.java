@@ -220,7 +220,8 @@ public class Player extends MapObject {
                 animation.setDelay(50);
                 width = 60;
             }
-        } else if (firing) {
+        }
+        else if (firing) {
             if (currentAction != FIREBALL) {
                 currentAction = FIREBALL;
                 animation.setFrames(sprites.get(FIREBALL));
@@ -228,26 +229,23 @@ public class Player extends MapObject {
                 width = 30;
             }
         }
-    else if(dy >0)
-
-    {
-        if (gliding) {
-            if (currentAction != GLIDING) {
-                currentAction = GLIDING;
-                animation.setFrames(sprites.get(GLIDING));
-                animation.setDelay(100);
-                width = 30;
+         else if(dy > 0) {
+            if (gliding) {
+                if (currentAction != GLIDING) {
+                    currentAction = GLIDING;
+                    animation.setFrames(sprites.get(GLIDING));
+                    animation.setDelay(100);
+                    width = 30;
+                }
             }
-        } else if (currentAction != FALLING) {
-            currentAction = FALLING;
-            animation.setFrames(sprites.get(FALLING));
-            animation.setDelay(100);
-            width = 30;
+            else if (currentAction != FALLING) {
+                 currentAction = FALLING;
+                 animation.setFrames(sprites.get(FALLING));
+                 animation.setDelay(100);
+                 width = 30;
         }
     }
-    else if(dy< 0)
-
-    {
+    else if(dy < 0) {
         if (currentAction != JUMPING) {
             currentAction = JUMPING;
             animation.setFrames(sprites.get(JUMPING));
@@ -255,9 +253,7 @@ public class Player extends MapObject {
             width = 30;
         }
     }
-    else if(left ||right)
-
-    {
+    else if(left ||right) {
         if (currentAction != WALKING) {
             currentAction = WALKING;
             animation.setFrames(sprites.get(WALKING));
@@ -265,27 +261,26 @@ public class Player extends MapObject {
             width = 30;
         }
     }
-    else
-
-    {
+    else {
         if (currentAction != IDLE) {
             currentAction = IDLE;
             animation.setFrames(sprites.get(IDLE));
             animation.setDelay(400);
             width = 30;
-        }
-    }
+            }
+         }
     animation.update();
 
     //set direction
-    if(currentAction !=SCRATCHING &&currentAction !=FIREBALL)
-            if(right)facingRight = true;
-             if(left)facingRight = false;
+    if(currentAction != SCRATCHING && currentAction != FIREBALL)
+            if(right) facingRight = true;
+             if(left) facingRight = false;
         }
 
-    }
 
-    public void draw(Graphics2D g){
+
+
+    public void draw(Graphics2D g) {
 
         setMapPosition();
 
@@ -315,5 +310,5 @@ public class Player extends MapObject {
 
             );
         }
-        }
+    }
 }
