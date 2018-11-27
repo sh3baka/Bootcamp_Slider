@@ -95,7 +95,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public void drawToScreen() {
         Graphics graphics1 = getGraphics();
-        graphics1.drawImage(image, 0, 0, null);
+        graphics1.drawImage(image, 0, 0,WIDTH * SCALE,HEIGHT * SCALE , null);
         graphics1.dispose();
     }
 }
