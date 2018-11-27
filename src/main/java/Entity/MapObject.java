@@ -9,7 +9,7 @@ import java.awt.*;
 public abstract class MapObject {
 
     // tile stuff
-    protected TileMap.tileMap;
+    protected TileMap tileMap;
     protected int tileSize;
     protected double xmap;
     protected double ymap;
