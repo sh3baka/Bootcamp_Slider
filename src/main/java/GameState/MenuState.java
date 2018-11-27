@@ -38,8 +38,6 @@ public class MenuState extends GameState {
 
             font  = new Font ("Arial", Font.PLAIN, 12);
 
-            )
-
         }
         catch(Exception e) {
             e.printStackTrace();
