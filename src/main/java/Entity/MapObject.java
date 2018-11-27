@@ -1,7 +1,7 @@
 package Entity;
 
 import Main.GamePanel;
-import TileMap.TimeMap;
+import TileMap.TileMap;
 import java.awt.Rectangle;
 import TileMap.Tile;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.*;
 public abstract class MapObject {
 
     // tile stuff
-    protected TileMap.TileMap;
+    protected TileMap.tileMap;
     protected int tileSize;
     protected double xmap;
     protected double ymap;
