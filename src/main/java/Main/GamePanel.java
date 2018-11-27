@@ -1,5 +1,7 @@
 package Main;
 
+import GameState.GameStateManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -19,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private BufferedImage image;
     private Graphics2D graphics;
+    private GameStateManager gsm;
 
     public GamePanel() {
         super();
@@ -41,16 +44,20 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     public void keyPressed(KeyEvent keyEvent) {
+        gsm.keyPressed(keyEvent.getKeyCode());
 
     }
 
     public void keyReleased(KeyEvent keyEvent) {
+        gsm.keyReleased(keyEvent.getKeyCode());
 
     }
 
     private void init() {
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         graphics = (Graphics2D) image.getGraphics();
+        running = true;
+        gsm = new GameStateManager();
     }
 
     public void run() {
@@ -79,9 +86,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     public void update() {
+        gsm.update();
     }
 
     public void draw() {
+        gsm.draw(graphics);
     }
 
     public void drawToScreen() {
