@@ -26,7 +26,6 @@ public class Background {
         );
             moveScale = ms;
     }
-                )
             catch (Exception e) {
                 e.printStackTrace();
         }
