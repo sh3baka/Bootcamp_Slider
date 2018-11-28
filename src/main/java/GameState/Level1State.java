@@ -4,6 +4,7 @@ import Entity.Player;
 import Main.GamePanel;
 import TileMap.TileMap;
 import TileMap.Background;
+import Entity.HUD;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -13,6 +14,8 @@ public class Level1State extends GameState {
     private TileMap tileMap;
     Player player;
     private Background bg;
+
+    private HUD hud;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -27,6 +30,8 @@ public class Level1State extends GameState {
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
         player = new Player(tileMap);
         player.setPosition(20,150);
+
+        hud = new HUD(player);
     }
     public void update() {
         player.update();
@@ -41,6 +46,9 @@ public class Level1State extends GameState {
         bg.draw(g);
         tileMap.draw(g);
         player.draw(g);
+
+        //draw hud
+        hud.draw(g);
     }
     public void keyPressed(int k) {
         if(k == KeyEvent.VK_LEFT) player.setLeft(true);
