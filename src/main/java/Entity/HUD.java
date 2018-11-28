@@ -30,9 +30,10 @@ public class HUD {
     }
     public void draw(Graphics2D g) {
 
-        g.drawImage(image, 0, 10, null);
+        g.drawImage(image, 0, 1, null);
         g.setFont(font);
-        //g.drawString();
+        g.setColor(Color.WHITE);
+        g.drawString(player.getHealth() + "/" + player.getMaxHealth(), 30, 25);
     }
 
 }
