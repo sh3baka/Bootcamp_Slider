@@ -1,6 +1,7 @@
 package GameState;
 
 import Entity.Player;
+import Main.GamePanel;
 import TileMap.TileMap;
 import TileMap.Background;
 
@@ -25,11 +26,15 @@ public class Level1State extends GameState {
         tileMap.setPosition(0,0);
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
         player = new Player(tileMap);
-        player.setPosition(200,50);
+        player.setPosition(20,150);
     }
     public void update() {
         player.update();
 
+        tileMap.setPosition(
+                GamePanel.WIDTH / 2 - player.getx(),
+                GamePanel.HEIGHT / 2 - player.gety()
+        );
 
     }
     public void draw(Graphics2D g) {
