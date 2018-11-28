@@ -5,7 +5,6 @@ import TileMap.TileMap;
 
 import java.awt.Rectangle;
 import TileMap.Tile;
-import java.awt.*;
 
 public abstract class MapObject {
 
@@ -44,7 +43,7 @@ public abstract class MapObject {
     // animation
     protected Animation animation;
     protected int currentAction;
-    protected int previouseAction;
+    protected int previousAction;
     protected boolean facingRight;
 
     // movement
