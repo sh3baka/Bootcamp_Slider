@@ -1,18 +1,25 @@
 package GameState;
 
+import Entity.Entety.Enemies.Slugger;
 import Entity.Player;
 import Main.GamePanel;
 import TileMap.TileMap;
 import TileMap.Background;
-
+import Entity.HUD;
+import Entity.Enemy;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import Entity.Enemy.*;
 
 public class Level1State extends GameState {
 
     private TileMap tileMap;
     Player player;
     private Background bg;
+
+    private HUD hud;
+    private ArrayList<Enemy> enemies;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -27,6 +34,15 @@ public class Level1State extends GameState {
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
         player = new Player(tileMap);
         player.setPosition(20,150);
+
+        enemies = new ArrayList<Enemy>();
+
+        Slugger s;
+        s = new Slugger(tileMap);
+        s.setPosition(100, 100);
+        enemies.add(s);
+
+        hud = new HUD(player);
     }
     public void update() {
         player.update();
@@ -36,11 +52,25 @@ public class Level1State extends GameState {
                 GamePanel.HEIGHT / 2 - player.gety()
         );
 
+        //update all enemies
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).update();
+        }
+
+
     }
     public void draw(Graphics2D g) {
         bg.draw(g);
         tileMap.draw(g);
         player.draw(g);
+
+        //draw hud
+        hud.draw(g);
+
+        //draw enemies
+        for (int i =0; i < enemies.size(); i++) {
+            enemies.get(i).draw(g);
+        }
     }
     public void keyPressed(int k) {
         if(k == KeyEvent.VK_LEFT) player.setLeft(true);
