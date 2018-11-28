@@ -30,7 +30,6 @@ public class Level1State extends GameState {
         tileMap = new TileMap(30);
         tileMap.loadTiles("/tiles_lvl1_v4.png");
         tileMap.loadMap("/TestMap.csv");
-        tileMap.setPosition(0,0);
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
         player = new Player(tileMap);
         player.setPosition(250,150);
@@ -41,6 +40,7 @@ public class Level1State extends GameState {
         s = new Slugger(tileMap);
         s.setPosition(100, 100);
         enemies.add(s);
+        player.setPosition(40,100);
 
         hud = new HUD(player);
     }
@@ -78,6 +78,7 @@ public class Level1State extends GameState {
         if(k == KeyEvent.VK_UP) player.setUp(true);
         if(k == KeyEvent.VK_DOWN) player.setDown(true);
         if(k == KeyEvent.VK_SPACE) player.setJumping(true);
+        if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
     }
     public void keyReleased(int k) {
         if(k == KeyEvent.VK_LEFT) player.setLeft(false);

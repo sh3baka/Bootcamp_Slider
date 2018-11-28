@@ -1,5 +1,6 @@
 package GameState;
 
+import Main.Game;
 import TileMap.Background;
 
 import java.awt.*;
@@ -27,7 +28,7 @@ public class MenuState extends GameState {
 
         try {
 
-            bg = new Background("/aaa.png", 1);
+            bg = new Background("/sample.png", 1);
             bg.setVector(0, 0);
 
             titleColor = new Color(128,0, 0);
@@ -56,7 +57,7 @@ public class MenuState extends GameState {
         //draw title
         g.setColor(titleColor);
         g.setFont(titleFont);
-        g.drawString("Dragon Tale", 80, 70);
+        g.drawString("Alien vs Predators", 30, 70);
 
         //draw menu options
         g.setFont(font);
@@ -98,6 +99,10 @@ public class MenuState extends GameState {
             if(currentChoice == options.length) {
                 currentChoice = 0;
             }
+        }
+
+        if (k == KeyEvent.VK_ESCAPE){
+            System.exit(0);
         }
     }
     public void keyReleased(int k) {}
