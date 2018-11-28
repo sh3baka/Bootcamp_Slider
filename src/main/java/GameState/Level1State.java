@@ -5,6 +5,7 @@ import Main.GamePanel;
 import TileMap.TileMap;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Level1State extends GameState {
 
@@ -21,7 +22,7 @@ public class Level1State extends GameState {
         tileMap.loadTiles("/tiles_lvl1_v2.png");
         tileMap.loadMap("/TestMap.csv");
         player = new Player(tileMap);
-        player.setPosition(100,100);
+        player.setPosition(200,50);
     }
     public void update() {
         player.update();
@@ -34,7 +35,17 @@ public class Level1State extends GameState {
         tileMap.draw(g);
         player.draw(g);
     }
-    public void keyPressed(int k) {}
-    public void keyReleased(int k) {}
+    public void keyPressed(int k) {
+        if(k == KeyEvent.VK_LEFT) player.setLeft(true);
+        if(k == KeyEvent.VK_RIGHT) player.setRight(true);
+        if(k == KeyEvent.VK_UP) player.setUp(true);
+        if(k == KeyEvent.VK_DOWN) player.setDown(true);
+    }
+    public void keyReleased(int k) {
+        if(k == KeyEvent.VK_LEFT) player.setLeft(false);
+        if(k == KeyEvent.VK_RIGHT) player.setRight(false);
+        if(k == KeyEvent.VK_UP) player.setUp(false);
+        if(k == KeyEvent.VK_DOWN) player.setDown(false);
+    }
 
 }
