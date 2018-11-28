@@ -29,7 +29,7 @@ public class Player extends MapObject {
     private int scratchDamage;
     private int scratchRange;
 
-    //glinding
+    //gliding
     private boolean gliding;
 
     // animations
