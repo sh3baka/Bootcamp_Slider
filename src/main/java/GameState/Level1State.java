@@ -11,8 +11,8 @@ import java.awt.event.KeyEvent;
 public class Level1State extends GameState {
 
     private TileMap tileMap;
-    private Background bg;
     Player player;
+    private Background bg;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -23,6 +23,8 @@ public class Level1State extends GameState {
         tileMap = new TileMap(30);
         tileMap.loadTiles("/tiles_lvl1_v2.png");
         tileMap.loadMap("/TestMap.csv");
+        tileMap.setPosition(0,0);
+        bg = new Background("/111.png", 0.1);
         player = new Player(tileMap);
         player.setPosition(200,50);
     }
@@ -30,13 +32,11 @@ public class Level1State extends GameState {
         player.update();
 
 
-        bg = new Background("/Backgrounds/bg1v2.png", 0.1);
-
     }
     public void draw(Graphics2D g) {
-        //draw bg
         bg.draw(g);
-        //draw tilemap
+//        g.setColor(Color.WHITE);
+//        g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
         tileMap.draw(g);
         player.draw(g);
     }

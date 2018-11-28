@@ -49,6 +49,9 @@ public class TileMap {
         tween = 0.07;
     }
 
+        public int getNumRows() { return numRows; }
+        public int getNumCols() { return numCols; }
+
     public void loadTiles(String s) {
 
         try{
