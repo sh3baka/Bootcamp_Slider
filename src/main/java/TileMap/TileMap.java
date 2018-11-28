@@ -189,9 +189,6 @@ public class TileMap {
                         (int)y + row * tileSize,
                         null
                 );
-
-
-
             }
 
 

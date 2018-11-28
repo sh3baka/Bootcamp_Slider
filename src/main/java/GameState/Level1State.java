@@ -1,7 +1,6 @@
 package GameState;
 
 import Entity.Player;
-import Main.GamePanel;
 import TileMap.TileMap;
 import TileMap.Background;
 
@@ -34,14 +33,8 @@ public class Level1State extends GameState {
 
     }
     public void draw(Graphics2D g) {
-
-        //draw bg
         bg.draw(g);
-
-        //draw map
         tileMap.draw(g);
-
-        //draw player
         player.draw(g);
     }
     public void keyPressed(int k) {
