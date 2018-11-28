@@ -39,7 +39,7 @@ public class Level1State extends GameState {
 
         Slugger s;
         s = new Slugger(tileMap);
-        s.setPosition(100, 00);
+        s.setPosition(100, 100);
         enemies.add(s);
 
         hud = new HUD(player);

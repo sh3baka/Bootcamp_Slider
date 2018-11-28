@@ -35,7 +35,7 @@ public class Slugger extends Enemy {
 
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Enemies/snailWalk1.png"
+                            "/Enemies/enemies_spritesheet.png"
                     )
             );
             sprites = new BufferedImage[1];
@@ -59,6 +59,7 @@ public class Slugger extends Enemy {
         animation.setDelay(300);
 
         right = true;
+        facingRight = true;
 
     }
 
@@ -105,13 +106,18 @@ public class Slugger extends Enemy {
         if (right && dx ==0) {
             right = false;
             left = true;
+            facingRight = false;
 
 
         }
         else if (left && dx == 0) {
             right = true;
             left = false;
+            facingRight = true;
         }
+
+        //update animation
+        animation.update();
     }
 
     public void draw(Graphics2D g) {
