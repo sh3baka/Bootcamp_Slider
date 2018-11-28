@@ -3,6 +3,7 @@ package GameState;
 import Entity.Player;
 import Main.GamePanel;
 import TileMap.TileMap;
+import TileMap.Background;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -10,6 +11,7 @@ import java.awt.event.KeyEvent;
 public class Level1State extends GameState {
 
     private TileMap tileMap;
+    private Background bg;
     Player player;
 
     public Level1State(GameStateManager gsm) {
@@ -28,10 +30,13 @@ public class Level1State extends GameState {
         player.update();
 
 
+        bg = new Background("/Backgrounds/bg1v2.png", 0.1);
+
     }
     public void draw(Graphics2D g) {
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+        //draw bg
+        bg.draw(g);
+        //draw tilemap
         tileMap.draw(g);
         player.draw(g);
     }
