@@ -101,6 +101,11 @@ public class TileMap {
             width = numCols * tileSize;
             height = numRows * tileSize;
 
+            xmin = GamePanel.WIDTH - width;
+            xmax = 0;
+            ymin = GamePanel.HEIGHT -height;
+            ymax = 0;
+
             String delims = ",";
             for(int row = 0; row < numRows; row++) {
                 String line = br.readLine();
@@ -130,11 +135,17 @@ public class TileMap {
         return tiles[r][c].getType();
 
     }
+    public void setTween(double d) { tween = d; }
 
     public void setPosition(double x, double y) {
 
+        System.out.println(this.x);
+        System.out.println((x - this.x) * tween);
+
         this.x += (x - this.x) * tween;
         this.y += (y - this.y) * tween;
+
+        System.out.println(this.x + "\n==========");
 
         fixBounds();
 
