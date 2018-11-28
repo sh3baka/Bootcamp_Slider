@@ -59,7 +59,7 @@ public class Level1State extends GameState {
 
 
     }
-    public void update() {}
+
     public void draw(Graphics2D g) {
         bg.draw(g);
         tileMap.draw(g);
