@@ -18,7 +18,7 @@ public class Level1State extends GameState {
         tileMap = new TileMap(30);
         tileMap.loadTiles("/Tiles/grass.png");
         //tileMap.loadTiles("/Tiles/box.png");
-        tileMap.loadMap("/TestMap");
+        tileMap.loadMap("/testMap");
 
     }
     public void update() {}
