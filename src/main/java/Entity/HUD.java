@@ -26,15 +26,13 @@ public class HUD {
         catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     public void draw(Graphics2D g) {
 
         g.drawImage(image, 0, 1, null);
         g.setFont(font);
         g.setColor(Color.WHITE);
-        g.drawString(player.getHealth() + "/" + player.getMaxHealth(), 30, 25);
-        g.drawString(Player.getScore(), 50, 50);
+        g.drawString(player.getHealth() + "/" + player.getMaxHealth(), 15, 27);
+        g.drawString("Score: " + Player.getScore(), 50, 50);
     }
-
 }

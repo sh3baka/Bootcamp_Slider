@@ -1,6 +1,5 @@
 package GameState;
 
-import Main.Game;
 import TileMap.Background;
 
 import java.awt.*;

@@ -20,7 +20,7 @@ public class Player extends MapObject {
     // animations
     private ArrayList<BufferedImage[]> sprites;
     private final int[] numFrames = {
-            2, 8, 1, 2, 4, 2, 5
+            2, 8, 1, 2
     };
 
     //animation actions
@@ -119,6 +119,22 @@ public class Player extends MapObject {
         this.score = score;
     }
 
+    public void setDead(){
+        dead = true;
+    }
+
+    public boolean isDead(){
+        return dead;
+    }
+
+    public void checkDead(Player p){
+        if (p.getHealth() == 0){
+            p.setDead();
+        }
+    }
+
+
+
     public void checkAttack(ArrayList<Enemy> enemies) {
 
         // loop through enemies
@@ -160,12 +176,13 @@ public class Player extends MapObject {
 //            }
 
             // check enemy collision
-            if(intersects(e)) {
+            if(intersects(e) && this.falling) {
+                e.dead = true;
+
+            } else if(intersects(e)){
                 hit(e.getDamage());
             }
-
         }
-
     }
 
     public void hit(int damage) {
