@@ -17,7 +17,6 @@ public class Level1State extends GameState {
     private TileMap tileMap;
     Player player;
     private Background bg;
-
     private HUD hud;
     private ArrayList<Enemy> enemies;
     private ArrayList<Coin> coins;
@@ -81,6 +80,7 @@ public class Level1State extends GameState {
     }
 
     public void update() {
+
         player.update();
 
         tileMap.setPosition(
@@ -105,7 +105,6 @@ public class Level1State extends GameState {
                 i--;
             }
         }
-
         //update coins
         for (int i =0; i < coins.size(); i++) {
             coins.get(i).update();
@@ -113,7 +112,6 @@ public class Level1State extends GameState {
                 coins.remove(i);
             }
         }
-
     }
 
     public void draw(Graphics2D g) {

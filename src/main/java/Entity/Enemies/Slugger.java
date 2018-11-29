@@ -45,8 +45,6 @@ public class Slugger extends Enemy {
                         height
                 );
             }
-
-
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -75,13 +73,11 @@ public class Slugger extends Enemy {
                 dx = maxSpeed;
             }
         }
-
         //falling
         if(falling) {
             dy += fallSpeed;
 
         }
-
     }
 
     public void update() {
@@ -105,8 +101,6 @@ public class Slugger extends Enemy {
             right = false;
             left = true;
             facingRight = true;
-
-
         }
         else if (left && dx == 0) {
             right = true;

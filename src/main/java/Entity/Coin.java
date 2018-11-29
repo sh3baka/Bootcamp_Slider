@@ -38,8 +38,6 @@ public class Coin extends Enemy {
                         height
                 );
             }
-
-
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -50,9 +48,6 @@ public class Coin extends Enemy {
         animation.setDelay(300);
     }
 
-
-
-
     public int getCoinScore() {
         return coinScore;
     }
@@ -60,8 +55,6 @@ public class Coin extends Enemy {
     public void setCoinScore(int coinScore) {
         this.coinScore = coinScore;
     }
-
-
 
     public void pickUp(){
 
@@ -75,7 +68,6 @@ public class Coin extends Enemy {
         if(falling) {
             dy += fallSpeed;
         }
-
     }
 
     public boolean isDead() { return dead; }

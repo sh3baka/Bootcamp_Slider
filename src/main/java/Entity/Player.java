@@ -160,12 +160,12 @@ public class Player extends MapObject {
 //            }
 
             // check enemy collision
-            if(intersects(e)) {
+            if(intersects(e) && this.falling) {
+                e.dead = true;
+            } else if(intersects(e)){
                 hit(e.getDamage());
             }
-
         }
-
     }
 
     public void hit(int damage) {
@@ -302,7 +302,6 @@ public class Player extends MapObject {
 
 
     }
-
 
     public void draw(Graphics2D g) {
 

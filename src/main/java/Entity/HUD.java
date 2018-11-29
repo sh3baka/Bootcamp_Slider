@@ -26,7 +26,6 @@ public class HUD {
         catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     public void draw(Graphics2D g) {
 
@@ -36,5 +35,4 @@ public class HUD {
         g.drawString(player.getHealth() + "/" + player.getMaxHealth(), 30, 25);
         g.drawString(Player.getScore(), 50, 50);
     }
-
 }
