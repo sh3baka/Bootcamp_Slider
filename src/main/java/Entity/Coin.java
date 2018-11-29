@@ -1,8 +1,6 @@
 package Entity;
 
-import Main.GamePanel;
 import TileMap.TileMap;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;

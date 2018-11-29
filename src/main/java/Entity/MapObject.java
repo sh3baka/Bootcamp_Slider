@@ -2,9 +2,7 @@ package Entity;
 
 import Main.GamePanel;
 import TileMap.TileMap;
-
 import java.awt.*;
-
 import TileMap.Tile;
 
 public abstract class MapObject {

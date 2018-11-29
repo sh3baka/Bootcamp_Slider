@@ -1,4 +1,5 @@
 package GameState;
+
 import Entity.Enemies.Slugger;
 import Entity.Coin;
 import Entity.Player;

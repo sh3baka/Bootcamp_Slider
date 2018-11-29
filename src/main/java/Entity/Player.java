@@ -17,14 +17,6 @@ public class Player extends MapObject {
     private long flinchTimer;
     public static int score = 0;
 
-    //scratch
-    private boolean scratching;
-    private int scratchDamage;
-    private int scratchRange;
-
-    //gliding
-    private boolean gliding;
-
     // animations
     private ArrayList<BufferedImage[]> sprites;
     private final int[] numFrames = {
@@ -60,9 +52,6 @@ public class Player extends MapObject {
         facingRight = true;
 
         health = maxHealth = 5;
-
-        scratchDamage = 8;
-        scratchRange = 40;
 
         //load sprites
         try {
@@ -129,16 +118,6 @@ public class Player extends MapObject {
     public void setScore(int score) {
         this.score = score;
     }
-
-    public void setScratching() {
-        scratching = true;
-    }
-
-    public void setGliding(boolean b) {
-        gliding = b;
-    }
-
-
 
     public void checkAttack(ArrayList<Enemy> enemies) {
 
@@ -242,8 +221,7 @@ public class Player extends MapObject {
         //falling
         if (falling) {
 
-            if (dy > 0 && gliding) dy += fallSpeed * 0.1;
-            else dy += fallSpeed;
+            dy += fallSpeed;
 
             if (dy > 0) jumping = false;
             if (dy < 0 && !jumping) dy += stopJumpSpeed;
@@ -269,23 +247,9 @@ public class Player extends MapObject {
         }
 
         //set animation
-        if (scratching) {
-            if (currentAction != SCRATCHING) {
-                currentAction = SCRATCHING;
-                animation.setFrames(sprites.get(SCRATCHING));
-                animation.setDelay(50);
-                width = 60;
-            }
-        }
-         else if(dy > 0) {
-            if (gliding) {
-                if (currentAction != GLIDING) {
-                    currentAction = GLIDING;
-                    animation.setFrames(sprites.get(GLIDING));
-                    animation.setDelay(100);
-                    width = 30;
-                }
-            } else if (currentAction != FALLING) {
+
+         if(dy > 0) {
+             if (currentAction != FALLING) {
                 currentAction = FALLING;
                 animation.setFrames(sprites.get(FALLING));
                 animation.setDelay(100);
