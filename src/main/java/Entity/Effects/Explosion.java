@@ -24,8 +24,8 @@ public class Explosion {
         this.x = x;
         this.y = y;
 
-        width = 44;
-        height = 30;
+        width = 33;
+        height = 20;
 
         try {
 
