@@ -19,10 +19,10 @@ public class Slugger extends Enemy {
 
         moveSpeed = 0.3;
         maxSpeed = 0.3;
-       // fallSpeed = 0.2;
-        maxFallSpeed = 10.0;
+        //fallSpeed = 0.2;
+        //maxFallSpeed = 10.0;
 
-        width = 75;
+        width = 54;
         height = 31;
         cwidth = 20;
         cheight = 20;
@@ -35,7 +35,7 @@ public class Slugger extends Enemy {
 
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Enemies/flyFly2.png"
+                            "/Enemies/snailWalk1.png"
                     )
             );
             sprites = new BufferedImage[1];
@@ -59,7 +59,7 @@ public class Slugger extends Enemy {
         animation.setDelay(300);
 
         right = true;
-        facingRight = false;
+        facingRight = true;
 
     }
 
@@ -122,7 +122,7 @@ public class Slugger extends Enemy {
 
     public void draw(Graphics2D g) {
 
-        if(notOnScreen()) return;
+        //if(notOnScreen()) return;
 
         setMapPosition();
         super.draw(g);

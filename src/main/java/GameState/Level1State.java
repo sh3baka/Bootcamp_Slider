@@ -30,8 +30,28 @@ public class Level1State extends GameState {
         tileMap = new TileMap(30);
         tileMap.loadTiles("/tiles_lvl1_v4.png");
         tileMap.loadMap("/TestMap.csv");
+        tileMap.setPosition(0,0);
+        tileMap.setTween(0.06);
+
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
+
         player = new Player(tileMap);
+        player.setPosition(40,100);
+
+        pupulateEnemies();
+
+//        enemies = new ArrayList<Enemy>();
+//
+//        Slugger s;
+//        s = new Slugger(tileMap);
+//        s.setPosition(100, 100);
+//        enemies.add(s);
+
+
+        hud = new HUD(player);
+    }
+
+    private void pupulateEnemies() {
 
         enemies = new ArrayList<Enemy>();
         coins = new ArrayList<Coin>();
@@ -43,13 +63,23 @@ public class Level1State extends GameState {
 
 
         Slugger s;
-        s = new Slugger(tileMap);
-        s.setPosition(100, 160);
-        enemies.add(s);
-        player.setPosition(40, 100);
+        Point[] points = new Point[] {
+                new Point(160,200),
+                new Point(260, 200),
+                new Point(460, 200)
+        };
+        for(int i = 0; i < points.length; i++) {
+            s = new Slugger(tileMap);
+            s.setPosition(points[i].x, points[i].y);
+            enemies.add(s);
+        }
 
-        hud = new HUD(player);
+        s = new Slugger(tileMap);
+        s.setPosition(860, 200);
+
+
     }
+
     public void update() {
         player.update();
 
@@ -61,9 +91,19 @@ public class Level1State extends GameState {
         //check coin collect
         player.checkCollect(coins);
 
+        //set background
+        bg.setPosition(tileMap.getx(), tileMap.gety());
+
+        //check player attack
+        player.checkAttack(enemies);
+
         //update all enemies
         for(int i = 0; i < enemies.size(); i++) {
             enemies.get(i).update();
+            if(enemies.get(i).isDead()) {
+                enemies.remove(i);
+                i--;
+            }
         }
 
         //update coins

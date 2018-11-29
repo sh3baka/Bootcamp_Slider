@@ -187,6 +187,7 @@ public abstract class MapObject {
     public void setJumping(boolean b) {jumping = b;}
 
     public boolean notOnScreen() {
+
         return x + xmap + width < 0 ||
                 x + xmap - width > GamePanel.WIDTH ||
                 y + ymap + height < 0 ||
@@ -194,6 +195,7 @@ public abstract class MapObject {
     }
 
     public void draw(java.awt.Graphics2D g) {
+
         if(facingRight) {
             g.drawImage(animation.getImage(),
                     (int)(x + xmap - width / 2),
