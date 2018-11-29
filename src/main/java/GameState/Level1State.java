@@ -1,5 +1,5 @@
 package GameState;
-import Entity.Entety.Enemies.Slugger;
+import Entity.Enemies.Slugger;
 import Entity.Coin;
 import Entity.Player;
 import Main.GamePanel;
@@ -39,14 +39,7 @@ public class Level1State extends GameState {
         player.setPosition(40,100);
 
         pupulateEnemies();
-
-//        enemies = new ArrayList<Enemy>();
-//
-//        Slugger s;
-//        s = new Slugger(tileMap);
-//        s.setPosition(100, 100);
-//        enemies.add(s);
-
+        populateCoins();
 
         hud = new HUD(player);
     }
@@ -54,13 +47,6 @@ public class Level1State extends GameState {
     private void pupulateEnemies() {
 
         enemies = new ArrayList<Enemy>();
-        coins = new ArrayList<Coin>();
-
-        Coin coin;
-        coin = new Coin(tileMap);
-        coin.setPosition(100, 100);
-        coins.add(coin);
-
 
         Slugger s;
         Point[] points = new Point[] {
@@ -73,11 +59,23 @@ public class Level1State extends GameState {
             s.setPosition(points[i].x, points[i].y);
             enemies.add(s);
         }
+    }
 
-        s = new Slugger(tileMap);
-        s.setPosition(860, 200);
+    private void populateCoins() {
 
+        coins = new ArrayList<Coin>();
 
+        Coin c;
+        Point[] coinPoints = new Point[] {
+                new Point(150,200),
+                new Point(250, 200),
+                new Point(450, 200)
+        };
+        for(int i = 0; i < coinPoints.length; i++) {
+            c = new Coin(tileMap);
+            c.setPosition(coinPoints[i].x, coinPoints[i].y);
+            coins.add(c);
+        }
     }
 
     public void update() {
