@@ -38,13 +38,13 @@ public class Level1State extends GameState {
         player = new Player(tileMap);
         player.setPosition(40,100);
 
-        pupulateEnemies();
+        populateEnemies();
         populateCoins();
 
         hud = new HUD(player);
     }
 
-    private void pupulateEnemies() {
+    private void populateEnemies() {
 
         enemies = new ArrayList<Enemy>();
 

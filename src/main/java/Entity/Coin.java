@@ -4,6 +4,7 @@ import Main.GamePanel;
 import TileMap.TileMap;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Coin extends Enemy {
@@ -76,7 +77,6 @@ public class Coin extends Enemy {
         //falling
         if(falling) {
             dy += fallSpeed;
-
         }
 
     }
@@ -90,5 +90,14 @@ public class Coin extends Enemy {
         setPosition(xtemp, ytemp);
 
         animation.update();
+    }
+
+    public void draw(Graphics2D g) {
+
+        //if(notOnScreen()) return;
+
+        setMapPosition();
+        super.draw(g);
+
     }
 }

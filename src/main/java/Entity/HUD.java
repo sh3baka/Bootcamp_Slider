@@ -38,7 +38,7 @@ public class HUD {
         g.setFont(font);
         g.setColor(Color.WHITE);
         g.drawString(player.getHealth() + "/" + player.getMaxHealth(), 30, 25);
-        g.drawString(gamePanel.getScore(), 50, 50);
+        g.drawString("Score: " + gamePanel.getScore(), 50, 50);
     }
 
 }
