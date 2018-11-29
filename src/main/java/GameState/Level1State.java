@@ -2,6 +2,7 @@ package GameState;
 
 import Entity.Characters.Enemy;
 import Entity.Characters.Player;
+import Entity.Characters.Shell;
 import Entity.Characters.Slugger;
 import Entity.Collectible.Coin;
 import Entity.Effects.Explosion;
@@ -21,9 +22,9 @@ public class Level1State extends GameState {
     private Background bg;
 
     private HUD hud;
-    private ArrayList<Enemy> enemies;
+    private ArrayList<Enemy> slugs;
     private ArrayList<Coin> coins;
-    private ArrayList<Explosion> explosions;
+    private ArrayList<Enemy> shells;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -35,7 +36,7 @@ public class Level1State extends GameState {
         tileMap.loadTiles("/tiles_lvl1_v4.png");
         tileMap.loadMap("/TestMap.csv");
         tileMap.setPosition(0, 0);
-        tileMap.setTween(0.01);
+        tileMap.setTween(0.07);
 
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
 
@@ -51,7 +52,8 @@ public class Level1State extends GameState {
 
     private void populateEnemies() {
 
-        enemies = new ArrayList<Enemy>();
+        slugs = new ArrayList<Enemy>();
+        shells = new ArrayList<Enemy>();
 
         Slugger s;
 
@@ -63,9 +65,8 @@ public class Level1State extends GameState {
         for (int i = 0; i < points.length; i++) {
             s = new Slugger(tileMap);
             s.setPosition(points[i].x, points[i].y);
-            enemies.add(s);
+            slugs.add(s);
 
-            explosions = new ArrayList<Explosion>();
         }
     }
 
@@ -111,28 +112,39 @@ public class Level1State extends GameState {
         //set background
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
-        //attack enemies
-        player.checkAttack(enemies);
+        //check attack slugs
+        player.checkAttack(slugs);
 
-        //check player attack
-        player.checkAttack(enemies);
+        //check attack shells
+        player.checkAttack(shells);
 
-        //update all enemies
-        for (int i = 0; i < enemies.size(); i++) {
-            Enemy e = enemies.get(i);
+        //update slugs
+        for (int i = 0; i < slugs.size(); i++) {
+            Enemy e = slugs.get(i);
             e.update();
-            if (e.isDead()) {
-                enemies.remove(i);
+            if (e.getHealth() == 1) {
+                slugs.remove(i);
                 i--;
-                explosions.add(
-                        new Explosion(e.getx(), e.gety()));
+                shells.add(
+                        new Shell(tileMap, e.getx(), e.gety()));
+            }
+        }
+
+        //update shells
+        for (int i = 0; i < shells.size(); i++) {
+            Enemy e = shells.get(i);
+            e.update();
+            if (e.getHealth() == 0) {
+                shells.remove(i);
+                i--;
+
             }
         }
 
         //update explosions
-        for (int i = 0; i < explosions.size(); i++) {
-            explosions.get(i).update();
-        }
+//        for (int i = 0; i < explosions.size(); i++) {
+//            explosions.get(i).update();
+//        }
 
         //update coins
         for (int i = 0; i < coins.size(); i++) {
@@ -157,17 +169,25 @@ public class Level1State extends GameState {
         hud.draw(g);
 
         //draw enemies
-        for (int i = 0; i < enemies.size(); i++) {
-            enemies.get(i).draw(g);
+
+        //slugs
+        for (int i = 0; i < slugs.size(); i++) {
+            slugs.get(i).draw(g);
+        }
+
+        //shells
+
+        for (int i = 0; i < shells.size(); i++) {
+            shells.get(i).draw(g);
         }
 
         //draw explosions
-        for (int i = 0; i < explosions.size(); i++) {
-            explosions.get(i).setMapPosition(
-                    (int) tileMap.getx(), (int) tileMap.gety()
-            );
-            explosions.get(i).draw(g);
-        }
+//        for (int i = 0; i < explosions.size(); i++) {
+//            explosions.get(i).setMapPosition(
+//                    (int) tileMap.getx(), (int) tileMap.gety()
+//            );
+//            explosions.get(i).draw(g);
+//        }
 
         //draw coins
         for (int i = 0; i < coins.size(); i++) {

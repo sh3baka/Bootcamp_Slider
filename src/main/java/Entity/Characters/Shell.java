@@ -1,31 +1,29 @@
-package Entity.Effects;
+package Entity.Characters;
+
+import Entity.Effects.Animation;
+import TileMap.TileMap;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Explosion {
+public class Shell extends Enemy {
 
-    private int x;
-    private int y;
-    private int xmap;
-    private int ymap;
-
-    private int width;
-    private int height;
-
-    private Animation animation;
     private BufferedImage[] sprites;
 
-    private boolean remove;
+    public Shell(TileMap tm, int x, int y) {
 
-    public Explosion(int x, int y) {
+        super(tm);
 
         this.x = x;
         this.y = y;
 
         width = 33;
         height = 20;
+        cwidth = 30;
+        cheight = 10;
+
+        health = 1;
 
         try {
 
@@ -34,7 +32,6 @@ public class Explosion {
                             "/Enemies/snailShell.png"
                     )
             );
-
             sprites = new BufferedImage[1];
             for (int i = 0; i < sprites.length; i++) {
                 sprites[i] = spritesheet.getSubimage(
@@ -44,41 +41,33 @@ public class Explosion {
                         height
                 );
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         animation = new Animation();
         animation.setFrames(sprites);
-        animation.setDelay(70);
-
+        animation.setDelay(30);
 
     }
 
     public void update() {
+
+        //update position
+        checkTileMapCollision();
+        setPosition(xtemp, ytemp);
+
+        //update animation
         animation.update();
-//        if (animation.hasPlayedOnce()) {
-//            remove = true;
-//        }
-    }
-
-    public boolean shoulRemove() {
-        return remove;
-    }
-
-    public void setMapPosition(int x, int y) {
-        xmap = x;
-        ymap = y;
     }
 
     public void draw(Graphics2D g) {
-        g.drawImage(
-                animation.getImage(),
-                x + xmap - width / 2,
-                y + ymap - height / 2,
-                null
-        );
+
+        //if(!notOnScreen()) return;
+
+        setMapPosition();
+        super.draw(g);
+
     }
+
 }

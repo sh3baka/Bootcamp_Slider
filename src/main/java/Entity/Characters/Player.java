@@ -28,6 +28,7 @@ public class Player extends MapObject {
     private boolean dead;
     private boolean flinching;
     private long flinchTimer;
+
     // animations
     private ArrayList<BufferedImage[]> sprites;
 
@@ -46,6 +47,7 @@ public class Player extends MapObject {
         stopSpeed = 0.4;
         fallSpeed = 0.15;
         jumpStart = -4.8;
+        killJumpStart = -7.7;
         stopJumpSpeed = 0.3;
         maxFallSpeed = 4.0;
 
@@ -61,7 +63,7 @@ public class Player extends MapObject {
                     )
             );
 
-            sprites = new ArrayList<BufferedImage[]>();
+            sprites = new ArrayList<>();
 
             for (int i = 0; i < 4; i++) {
 
@@ -133,15 +135,27 @@ public class Player extends MapObject {
             Enemy e = enemies.get(i);
 
             // check enemy collision
-            if (intersects(e) && this.falling) {
+            if(e instanceof Slugger) {
 
-                dy = jumpStart;
-                //falling = true;
+                if (intersects(e) && this.falling) {
 
-                e.dead = true;
+                    dy = killJumpStart;
 
-            }  else if (intersects(e)) {
-                hit(e.getDamage());
+                    e.health--;
+
+                } else if (intersects(e)) {
+                    hit(e.getDamage());
+                }
+
+            } else if(e instanceof Shell) {
+
+                if (intersects(e) && this.falling) {
+
+                    dy = killJumpStart;
+
+                    e.health--;
+
+                }
             }
         }
     }
