@@ -19,13 +19,13 @@ public class Slugger extends Enemy {
 
         moveSpeed = 0.3;
         maxSpeed = 0.3;
-        fallSpeed = 0.2;
+       // fallSpeed = 0.2;
         maxFallSpeed = 10.0;
 
-        width = 50;
-        height = 28;
-        cwidth = 50;
-        cheight = 28;
+        width = 75;
+        height = 31;
+        cwidth = 20;
+        cheight = 20;
 
         health = maxHealth = 2;
         damage = 1;
@@ -35,7 +35,7 @@ public class Slugger extends Enemy {
 
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Enemies/slimeWalk1.png"
+                            "/Enemies/flyFly2.png"
                     )
             );
             sprites = new BufferedImage[1];

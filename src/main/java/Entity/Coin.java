@@ -1,0 +1,94 @@
+package Entity;
+
+import Main.GamePanel;
+import TileMap.TileMap;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
+public class Coin extends Enemy {
+
+    private int coinScore = 100;
+    protected boolean dead;
+    GamePanel gamePanel = new GamePanel();
+    private BufferedImage[] sprites;
+
+    public Coin(TileMap tm){
+        super(tm);
+
+        fallSpeed = 0.2;
+        maxFallSpeed = 10.0;
+
+        width = 70;
+        height = 70;
+        cwidth = 20;
+        cheight = 20;
+
+        try {
+
+            BufferedImage spritesheet = ImageIO.read(
+                    getClass().getResourceAsStream(
+                            "/Items/coinGold.png"
+                    )
+            );
+            sprites = new BufferedImage[1];
+            for(int i = 0; i < sprites.length; i++) {
+                sprites[i] = spritesheet.getSubimage(
+                        i * width,
+                        0,
+                        width,
+                        height
+                );
+            }
+
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        animation = new Animation();
+        animation.setFrames(sprites);
+        animation.setDelay(300);
+    }
+
+
+
+
+    public int getCoinScore() {
+        return coinScore;
+    }
+
+    public void setCoinScore(int coinScore) {
+        this.coinScore = coinScore;
+    }
+
+
+
+    public void pickUp(){
+
+        gamePanel.score += getCoinScore();
+        System.out.printf("Score: " + gamePanel.score);
+    }
+
+    private void getNextPosition() {
+
+        //falling
+        if(falling) {
+            dy += fallSpeed;
+
+        }
+
+    }
+
+    public boolean isDead() { return dead; }
+
+    public void update(){
+        //update position
+        getNextPosition();
+        checkTileMapCollision();
+        setPosition(xtemp, ytemp);
+
+        animation.update();
+    }
+}

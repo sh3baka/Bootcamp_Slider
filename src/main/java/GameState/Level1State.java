@@ -1,6 +1,7 @@
 package GameState;
 
-import Entity.Entety.Enemies.Slugger;
+import Entity.Coin;
+import Entity.Enemies.Slugger;
 import Entity.Player;
 import Main.GamePanel;
 import TileMap.TileMap;
@@ -10,7 +11,6 @@ import Entity.Enemy;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import Entity.Enemy.*;
 
 public class Level1State extends GameState {
 
@@ -20,6 +20,7 @@ public class Level1State extends GameState {
 
     private HUD hud;
     private ArrayList<Enemy> enemies;
+    private ArrayList<Coin> coins;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -34,12 +35,19 @@ public class Level1State extends GameState {
         player = new Player(tileMap);
 
         enemies = new ArrayList<Enemy>();
+        coins = new ArrayList<Coin>();
+
+        Coin coin;
+        coin = new Coin(tileMap);
+        coin.setPosition(100, 100);
+        coins.add(coin);
+
 
         Slugger s;
         s = new Slugger(tileMap);
-        s.setPosition(100, 100);
+        s.setPosition(100, 160);
         enemies.add(s);
-        player.setPosition(40,100);
+        player.setPosition(40, 100);
 
         hud = new HUD(player);
     }
@@ -51,11 +59,21 @@ public class Level1State extends GameState {
                 GamePanel.HEIGHT / 2 - player.gety()
         );
 
+        //check coin collect
+        player.checkCollect(coins);
+
         //update all enemies
         for(int i = 0; i < enemies.size(); i++) {
             enemies.get(i).update();
         }
 
+        //update coins
+        for (int i =0; i < coins.size(); i++) {
+            coins.get(i).update();
+            if (coins.get(i).isDead()){
+                coins.remove(i);
+            }
+        }
 
     }
 
@@ -64,12 +82,18 @@ public class Level1State extends GameState {
         tileMap.draw(g);
         player.draw(g);
 
+
         //draw hud
         hud.draw(g);
 
         //draw enemies
         for (int i =0; i < enemies.size(); i++) {
             enemies.get(i).draw(g);
+        }
+
+        //draw coins
+        for (int i =0; i < coins.size(); i++) {
+            coins.get(i).draw(g);
         }
     }
     public void keyPressed(int k) {

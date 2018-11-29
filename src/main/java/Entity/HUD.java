@@ -1,5 +1,7 @@
 package Entity;
 
+import Main.GamePanel;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -10,6 +12,8 @@ public class HUD {
 
     private BufferedImage image;
     private Font font;
+
+    public GamePanel gamePanel = new GamePanel();
 
     public HUD(Player p) {
         player = p;
@@ -34,6 +38,7 @@ public class HUD {
         g.setFont(font);
         g.setColor(Color.WHITE);
         g.drawString(player.getHealth() + "/" + player.getMaxHealth(), 30, 25);
+        g.drawString(gamePanel.getScore(), 50, 50);
     }
 
 }
