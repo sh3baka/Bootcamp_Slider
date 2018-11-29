@@ -16,12 +16,6 @@ public class Player extends MapObject {
     private boolean flinching;
     private long flinchTimer;
 
-    //fireball
-    private boolean firing;
-    private int fireCost;
-    private int fireBallDamage;
-    //private ArrayList<FireBall> fireBalls;
-
     //scratch
     private boolean scratching;
     private int scratchDamage;
@@ -65,11 +59,6 @@ public class Player extends MapObject {
         facingRight = true;
 
         health = maxHealth = 5;
-
-        fireCost = 200;
-        fireBallDamage = 5;
-        //fireBalls = new ArrayList<FireBall>();
-
 
         scratchDamage = 8;
         scratchRange = 40;
@@ -130,10 +119,6 @@ public class Player extends MapObject {
 
     public int getMaxHealth() {
         return maxHealth;
-    }
-
-    public void setFiring() {
-        firing = true;
     }
 
     public void setScratching() {
@@ -210,14 +195,6 @@ public class Player extends MapObject {
                 animation.setFrames(sprites.get(SCRATCHING));
                 animation.setDelay(50);
                 width = 60;
-            }
-        }
-        else if (firing) {
-            if (currentAction != FIREBALL) {
-                currentAction = FIREBALL;
-                animation.setFrames(sprites.get(FIREBALL));
-                animation.setDelay(100);
-                width = 30;
             }
         }
          else if(dy > 0) {
