@@ -17,8 +17,8 @@ public class Coin extends Enemy {
         fallSpeed = 0.2;
         maxFallSpeed = 10.0;
 
-        width = 70;
-        height = 70;
+        width = 30;
+        height = 30;
         cwidth = 20;
         cheight = 20;
 
@@ -29,7 +29,7 @@ public class Coin extends Enemy {
                             "/Items/coinGold.png"
                     )
             );
-            sprites = new BufferedImage[1];
+            sprites = new BufferedImage[4];
             for(int i = 0; i < sprites.length; i++) {
                 sprites[i] = spritesheet.getSubimage(
                         i * width,

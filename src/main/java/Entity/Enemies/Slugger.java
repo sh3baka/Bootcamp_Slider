@@ -36,7 +36,7 @@ public class Slugger extends Enemy {
                             "/Enemies/snailWalk1.png"
                     )
             );
-            sprites = new BufferedImage[1];
+            sprites = new BufferedImage[4];
             for(int i = 0; i < sprites.length; i++) {
                 sprites[i] = spritesheet.getSubimage(
                         i * width,
