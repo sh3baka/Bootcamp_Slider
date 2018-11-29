@@ -1,5 +1,8 @@
-package Entity;
+package Entity.Collectible;
 
+import Entity.Effects.Animation;
+import Entity.Characters.Enemy;
+import Entity.Characters.Player;
 import TileMap.TileMap;
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -8,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class Coin extends Enemy {
 
     private int coinScore = 100;
-    protected boolean dead;
+    public boolean dead;
     private BufferedImage[] sprites;
 
     public Coin(TileMap tm){

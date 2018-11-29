@@ -1,5 +1,8 @@
-package Entity;
+package Entity.Characters;
 
+import Entity.Effects.Animation;
+import Entity.Collectible.Coin;
+import Entity.MapObject;
 import TileMap.*;
 
 import java.util.ArrayList;

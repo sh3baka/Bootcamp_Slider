@@ -1,11 +1,15 @@
 package GameState;
 
-import Entity.*;
-import Entity.Enemies.Slugger;
+import Entity.Effects.Explosion;
+import Entity.Characters.Slugger;
+import Entity.Collectible.Coin;
+import Entity.Characters.Player;
 import Main.GamePanel;
 import TileMap.TileMap;
 import TileMap.Background;
 
+import Entity.Hud.HUD;
+import Entity.Characters.Enemy;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;

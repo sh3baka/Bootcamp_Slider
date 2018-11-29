@@ -1,5 +1,6 @@
 package Entity;
 
+import Entity.Effects.Animation;
 import Main.GamePanel;
 import TileMap.TileMap;
 import java.awt.*;

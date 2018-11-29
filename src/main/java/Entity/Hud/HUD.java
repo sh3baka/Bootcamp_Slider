@@ -1,4 +1,6 @@
-package Entity;
+package Entity.Hud;
+
+import Entity.Characters.Player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
