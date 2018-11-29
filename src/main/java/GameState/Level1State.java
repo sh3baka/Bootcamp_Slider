@@ -1,23 +1,23 @@
 package GameState;
 
-import Entity.Effects.Explosion;
+import Entity.Characters.Enemy;
+import Entity.Characters.Player;
 import Entity.Characters.Slugger;
 import Entity.Collectible.Coin;
-import Entity.Characters.Player;
-import Main.GamePanel;
-import TileMap.TileMap;
-import TileMap.Background;
-
+import Entity.Effects.Explosion;
 import Entity.Hud.HUD;
-import Entity.Characters.Enemy;
+import Main.GamePanel;
+import TileMap.Background;
+import TileMap.TileMap;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Level1State extends GameState {
 
-    private TileMap tileMap;
     Player player;
+    private TileMap tileMap;
     private Background bg;
 
     private HUD hud;
@@ -34,13 +34,13 @@ public class Level1State extends GameState {
         tileMap = new TileMap(30);
         tileMap.loadTiles("/tiles_lvl1_v4.png");
         tileMap.loadMap("/TestMap.csv");
-        tileMap.setPosition(0,0);
+        tileMap.setPosition(0, 0);
         tileMap.setTween(0.06);
 
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
 
         player = new Player(tileMap);
-        player.setPosition(40,100);
+        player.setPosition(40, 100);
         player.setScore(0);
 
         populateEnemies();
@@ -55,12 +55,12 @@ public class Level1State extends GameState {
 
         Slugger s;
 
-        Point[] points = new Point[] {
-                new Point(160,200),
+        Point[] points = new Point[]{
+                new Point(160, 200),
                 new Point(260, 200),
                 new Point(460, 200)
         };
-        for(int i = 0; i < points.length; i++) {
+        for (int i = 0; i < points.length; i++) {
             s = new Slugger(tileMap);
             s.setPosition(points[i].x, points[i].y);
             enemies.add(s);
@@ -74,12 +74,12 @@ public class Level1State extends GameState {
         coins = new ArrayList<Coin>();
 
         Coin c;
-        Point[] coinPoints = new Point[] {
-                new Point(150,200),
+        Point[] coinPoints = new Point[]{
+                new Point(150, 200),
                 new Point(250, 200),
                 new Point(450, 200)
         };
-        for(int i = 0; i < coinPoints.length; i++) {
+        for (int i = 0; i < coinPoints.length; i++) {
             c = new Coin(tileMap);
             c.setPosition(coinPoints[i].x, coinPoints[i].y);
             coins.add(c);
@@ -109,10 +109,10 @@ public class Level1State extends GameState {
         player.checkAttack(enemies);
 
         //update all enemies
-        for(int i = 0; i < enemies.size(); i++) {
+        for (int i = 0; i < enemies.size(); i++) {
             Enemy e = enemies.get(i);
             e.update();
-            if(e.isDead()) {
+            if (e.isDead()) {
                 enemies.remove(i);
                 i--;
                 explosions.add(
@@ -126,14 +126,14 @@ public class Level1State extends GameState {
         }
 
         //update coins
-        for (int i =0; i < coins.size(); i++) {
+        for (int i = 0; i < coins.size(); i++) {
             coins.get(i).update();
-            if (coins.get(i).isDead()){
+            if (coins.get(i).isDead()) {
                 coins.remove(i);
             }
         }
 
-        if (player.isDead()){
+        if (player.isDead()) {
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
 
@@ -149,51 +149,53 @@ public class Level1State extends GameState {
         hud.draw(g);
 
         //draw enemies
-        for (int i =0; i < enemies.size(); i++) {
+        for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).draw(g);
         }
 
         //draw explosions
         for (int i = 0; i < explosions.size(); i++) {
             explosions.get(i).setMapPosition(
-                    (int)tileMap.getx(), (int)tileMap.gety()
+                    (int) tileMap.getx(), (int) tileMap.gety()
             );
             explosions.get(i).draw(g);
         }
 
         //draw coins
-        for (int i =0; i < coins.size(); i++) {
+        for (int i = 0; i < coins.size(); i++) {
             coins.get(i).draw(g);
         }
     }
+
     public void keyPressed(int k) {
 
         //arrows
-        if(k == KeyEvent.VK_LEFT) player.setLeft(true);
-        if(k == KeyEvent.VK_RIGHT) player.setRight(true);
-        if(k == KeyEvent.VK_UP) player.setUp(true);
-        if(k == KeyEvent.VK_DOWN) player.setDown(true);
+        if (k == KeyEvent.VK_LEFT) player.setLeft(true);
+        if (k == KeyEvent.VK_RIGHT) player.setRight(true);
+        if (k == KeyEvent.VK_UP) player.setUp(true);
+        if (k == KeyEvent.VK_DOWN) player.setDown(true);
         //wasd
-        if(k == KeyEvent.VK_A) player.setLeft(true);
-        if(k == KeyEvent.VK_D) player.setRight(true);
-        if(k == KeyEvent.VK_W) player.setUp(true);
-        if(k == KeyEvent.VK_S) player.setDown(true);
+        if (k == KeyEvent.VK_A) player.setLeft(true);
+        if (k == KeyEvent.VK_D) player.setRight(true);
+        if (k == KeyEvent.VK_W) player.setUp(true);
+        if (k == KeyEvent.VK_S) player.setDown(true);
         //
-        if(k == KeyEvent.VK_SPACE) player.setJumping(true);
-        if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
+        if (k == KeyEvent.VK_SPACE) player.setJumping(true);
+        if (k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
     }
+
     public void keyReleased(int k) {
-        if(k == KeyEvent.VK_LEFT) player.setLeft(false);
-        if(k == KeyEvent.VK_RIGHT) player.setRight(false);
-        if(k == KeyEvent.VK_UP) player.setUp(false);
-        if(k == KeyEvent.VK_DOWN) player.setDown(false);
+        if (k == KeyEvent.VK_LEFT) player.setLeft(false);
+        if (k == KeyEvent.VK_RIGHT) player.setRight(false);
+        if (k == KeyEvent.VK_UP) player.setUp(false);
+        if (k == KeyEvent.VK_DOWN) player.setDown(false);
         //wasd
-        if(k == KeyEvent.VK_A) player.setLeft(false);
-        if(k == KeyEvent.VK_D) player.setRight(false);
-        if(k == KeyEvent.VK_W) player.setUp(false);
-        if(k == KeyEvent.VK_S) player.setDown(false);
+        if (k == KeyEvent.VK_A) player.setLeft(false);
+        if (k == KeyEvent.VK_D) player.setRight(false);
+        if (k == KeyEvent.VK_W) player.setUp(false);
+        if (k == KeyEvent.VK_S) player.setDown(false);
         //
-        if(k == KeyEvent.VK_SPACE) player.setJumping(false);
+        if (k == KeyEvent.VK_SPACE) player.setJumping(false);
     }
 
 }

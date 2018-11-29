@@ -1,20 +1,21 @@
 package Entity.Collectible;
 
-import Entity.Effects.Animation;
 import Entity.Characters.Enemy;
 import Entity.Characters.Player;
+import Entity.Effects.Animation;
 import TileMap.TileMap;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Coin extends Enemy {
 
-    private int coinScore = 100;
     public boolean dead;
+    private int coinScore = 100;
     private BufferedImage[] sprites;
 
-    public Coin(TileMap tm){
+    public Coin(TileMap tm) {
         super(tm);
 
         fallSpeed = 0.2;
@@ -33,7 +34,7 @@ public class Coin extends Enemy {
                     )
             );
             sprites = new BufferedImage[4];
-            for(int i = 0; i < sprites.length; i++) {
+            for (int i = 0; i < sprites.length; i++) {
                 sprites[i] = spritesheet.getSubimage(
                         i * width,
                         0,
@@ -41,8 +42,7 @@ public class Coin extends Enemy {
                         height
                 );
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -59,7 +59,7 @@ public class Coin extends Enemy {
         this.coinScore = coinScore;
     }
 
-    public void pickUp(){
+    public void pickUp() {
 
         Player.score += getCoinScore();
 
@@ -68,14 +68,16 @@ public class Coin extends Enemy {
     private void getNextPosition() {
 
         //falling
-        if(falling) {
+        if (falling) {
             dy += fallSpeed;
         }
     }
 
-    public boolean isDead() { return dead; }
+    public boolean isDead() {
+        return dead;
+    }
 
-    public void update(){
+    public void update() {
         //update position
         getNextPosition();
         checkTileMapCollision();

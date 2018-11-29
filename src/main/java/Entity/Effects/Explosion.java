@@ -1,8 +1,8 @@
 package Entity.Effects;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Explosion {
 
@@ -46,8 +46,7 @@ public class Explosion {
             }
 
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -64,7 +63,11 @@ public class Explosion {
             remove = true;
         }
     }
-    public boolean shoulRemove() { return remove; }
+
+    public boolean shoulRemove() {
+        return remove;
+    }
+
     public void setMapPosition(int x, int y) {
         xmap = x;
         ymap = y;

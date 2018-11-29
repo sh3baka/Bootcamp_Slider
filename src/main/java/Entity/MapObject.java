@@ -2,9 +2,10 @@ package Entity;
 
 import Entity.Effects.Animation;
 import Main.GamePanel;
-import TileMap.TileMap;
-import java.awt.*;
 import TileMap.Tile;
+import TileMap.TileMap;
+
+import java.awt.*;
 
 public abstract class MapObject {
 
@@ -85,11 +86,11 @@ public abstract class MapObject {
     }
 
     public void calculateCorners(double x, double y) {
-        int leftTile = (int)(x - cwidth / 2) / tileSize;
-        int rightTile = (int)(x + cwidth / 2 - 1) / tileSize;
-        int topTile = (int)(y - cheight / 2) / tileSize;
-        int bottomTile = (int)(y + cheight / 2 - 1) / tileSize;
-        if(topTile < 0 || bottomTile >= tileMap.getNumRows() ||
+        int leftTile = (int) (x - cwidth / 2) / tileSize;
+        int rightTile = (int) (x + cwidth / 2 - 1) / tileSize;
+        int topTile = (int) (y - cheight / 2) / tileSize;
+        int bottomTile = (int) (y + cheight / 2 - 1) / tileSize;
+        if (topTile < 0 || bottomTile >= tileMap.getNumRows() ||
                 leftTile < 0 || rightTile >= tileMap.getNumCols()) {
             topLeft = topRight = bottomLeft = bottomRight = false;
             return;
@@ -152,23 +153,42 @@ public abstract class MapObject {
         }
 
         if (!falling) {
-            calculateCorners(x,ydest+1);
-            if(!bottomLeft && !bottomRight) {
+            calculateCorners(x, ydest + 1);
+            if (!bottomLeft && !bottomRight) {
                 falling = true;
             }
         }
     }
-    public int getx() { return (int)x; }
-    public int gety() { return (int)y; }
-    public int getWidth() { return width; }
-    public int getHeight() { return height; }
-    public int getCWidth() { return cwidth; }
-    public int geCHeight() { return cheight; }
+
+    public int getx() {
+        return (int) x;
+    }
+
+    public int gety() {
+        return (int) y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getCWidth() {
+        return cwidth;
+    }
+
+    public int geCHeight() {
+        return cheight;
+    }
 
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
     }
+
     public void setVector(double dx, double dy) {
         this.dx = dx;
         this.dy = dy;
@@ -179,11 +199,25 @@ public abstract class MapObject {
         ymap = tileMap.gety();
     }
 
-    public void setLeft(boolean b) {left = b;}
-    public void setRight(boolean b) {right = b;}
-    public void setUp(boolean b) {up = b; }
-    public void setDown(boolean b) {down = b;}
-    public void setJumping(boolean b) {jumping = b;}
+    public void setLeft(boolean b) {
+        left = b;
+    }
+
+    public void setRight(boolean b) {
+        right = b;
+    }
+
+    public void setUp(boolean b) {
+        up = b;
+    }
+
+    public void setDown(boolean b) {
+        down = b;
+    }
+
+    public void setJumping(boolean b) {
+        jumping = b;
+    }
 
     public boolean notOnScreen() {
 
@@ -195,18 +229,17 @@ public abstract class MapObject {
 
     public void draw(java.awt.Graphics2D g) {
 
-        if(facingRight) {
+        if (facingRight) {
             g.drawImage(animation.getImage(),
-                    (int)(x + xmap - width / 2),
-                    (int)(y + ymap - height / 2),
+                    (int) (x + xmap - width / 2),
+                    (int) (y + ymap - height / 2),
                     null
             );
-        }
-        else {
+        } else {
             g.drawImage(
                     animation.getImage(),
-                    (int)(x + xmap -width / 2 + width),
-                    (int)(y + ymap - height / 2),
+                    (int) (x + xmap - width / 2 + width),
+                    (int) (y + ymap - height / 2),
                     -width,
                     height,
                     null

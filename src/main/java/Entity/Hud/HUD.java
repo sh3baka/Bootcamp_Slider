@@ -2,9 +2,9 @@ package Entity.Hud;
 
 import Entity.Characters.Player;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
 
 public class HUD {
 
@@ -15,20 +15,20 @@ public class HUD {
 
     public HUD(Player p) {
         player = p;
-        try{
+        try {
             image = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/HUD/hud_heartFull.png"
 
                     )
             );
-            font = new Font("Arial", Font.PLAIN,14);
+            font = new Font("Arial", Font.PLAIN, 14);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public void draw(Graphics2D g) {
 
         g.drawImage(image, 0, 1, null);

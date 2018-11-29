@@ -1,30 +1,16 @@
 package Entity.Characters;
 
-import Entity.Effects.Animation;
 import Entity.Collectible.Coin;
+import Entity.Effects.Animation;
 import Entity.MapObject;
-import TileMap.*;
+import TileMap.TileMap;
 
-import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Player extends MapObject {
-
-    //player stuff
-    private int health;
-    private int maxHealth;
-    private boolean dead;
-    private boolean flinching;
-    private long flinchTimer;
-    public static int score = 0;
-
-    // animations
-    private ArrayList<BufferedImage[]> sprites;
-    private final int[] numFrames = {
-            2, 8, 1, 2
-    };
 
     //animation actions
     private static final int IDLE = 0;
@@ -34,6 +20,18 @@ public class Player extends MapObject {
     private static final int GLIDING = 4;
     private static final int FIREBALL = 5;
     private static final int SCRATCHING = 6; //res
+    public static int score = 0;
+    private final int[] numFrames = {
+            2, 8, 1, 2
+    };
+    //player stuff
+    private int health;
+    private int maxHealth;
+    private boolean dead;
+    private boolean flinching;
+    private long flinchTimer;
+    // animations
+    private ArrayList<BufferedImage[]> sprites;
 
     public Player(TileMap tm) {
 
@@ -106,6 +104,14 @@ public class Player extends MapObject {
 
     }
 
+    public static String getScore() {
+        return String.valueOf(score);
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public int getHealth() {
         return health;
     }
@@ -114,34 +120,25 @@ public class Player extends MapObject {
         return maxHealth;
     }
 
-    public static String getScore(){
-        return String.valueOf(score);
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public void setDead(){
+    public void setDead() {
         dead = true;
     }
 
-    public boolean isDead(){
+    public boolean isDead() {
         return dead;
     }
 
-    public void checkDead(Player p){
-        if (p.getHealth() == 0){
+    public void checkDead(Player p) {
+        if (p.getHealth() == 0) {
             p.setDead();
         }
     }
 
 
-
     public void checkAttack(ArrayList<Enemy> enemies) {
 
         // loop through enemies
-        for(int i = 0; i < enemies.size(); i++) {
+        for (int i = 0; i < enemies.size(); i++) {
 
             Enemy e = enemies.get(i);
 
@@ -179,10 +176,10 @@ public class Player extends MapObject {
 //            }
 
             // check enemy collision
-            if(intersects(e) && this.falling) {
+            if (intersects(e) && this.falling) {
                 e.dead = true;
 
-            } else if(intersects(e)){
+            } else if (intersects(e)) {
                 hit(e.getDamage());
             }
         }
@@ -190,10 +187,10 @@ public class Player extends MapObject {
 
     public void hit(int damage) {
 
-        if(flinching) return;
+        if (flinching) return;
         health -= damage;
-        if(health < 0) health = 0;
-        if(health == 0) dead = true;
+        if (health < 0) health = 0;
+        if (health == 0) dead = true;
         flinching = true;
         flinchTimer = System.nanoTime();
 
@@ -258,18 +255,18 @@ public class Player extends MapObject {
         setPosition(xtemp, ytemp);
 
         //check done flinching
-        if(flinching) {
+        if (flinching) {
             long elapsed =
                     (System.nanoTime() - flinchTimer) / 1000000;
-            if(elapsed > 1000) {
+            if (elapsed > 1000) {
                 flinching = false;
             }
         }
 
         //set animation
 
-         if(dy > 0) {
-             if (currentAction != FALLING) {
+        if (dy > 0) {
+            if (currentAction != FALLING) {
                 currentAction = FALLING;
                 animation.setFrames(sprites.get(FALLING));
                 animation.setDelay(100);

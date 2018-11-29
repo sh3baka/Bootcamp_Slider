@@ -7,11 +7,12 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Slugger extends Enemy {
+public class Slime extends Enemy {
+
 
     private BufferedImage[] sprites;
 
-    public Slugger(TileMap tm) {
+    public Slime(TileMap tm) {
 
         super(tm);
 
@@ -25,7 +26,7 @@ public class Slugger extends Enemy {
         cwidth = 30;
         cheight = 10;
 
-        health = maxHealth = 2;
+        health = maxHealth = 1;
         damage = 1;
 
         //load sprites
@@ -119,3 +120,5 @@ public class Slugger extends Enemy {
 
     }
 }
+
+
