@@ -86,6 +86,7 @@ public class Player extends MapObject {
             );
 
             sprites = new ArrayList<BufferedImage[]>();
+
             for (int i = 0; i < 7; i++) {
 
                 BufferedImage[] bi =

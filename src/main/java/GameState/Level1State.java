@@ -32,7 +32,6 @@ public class Level1State extends GameState {
         tileMap.loadMap("/TestMap.csv");
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
         player = new Player(tileMap);
-        player.setPosition(250,150);
 
         enemies = new ArrayList<Enemy>();
 
