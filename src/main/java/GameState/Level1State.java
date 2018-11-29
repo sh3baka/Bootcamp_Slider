@@ -33,7 +33,7 @@ public class Level1State extends GameState {
     public void init() {
         tileMap = new TileMap(30);
         tileMap.loadTiles("/tiles_lvl1_v4.png");
-        tileMap.loadMap("/MapTest3.csv");
+        tileMap.loadMap("/TestMap.csv");
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.01);
 
