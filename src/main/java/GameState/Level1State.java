@@ -1,13 +1,11 @@
 package GameState;
 
+import Entity.*;
 import Entity.Enemies.Slugger;
-import Entity.Coin;
-import Entity.Player;
 import Main.GamePanel;
 import TileMap.TileMap;
 import TileMap.Background;
-import Entity.HUD;
-import Entity.Enemy;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -20,6 +18,7 @@ public class Level1State extends GameState {
     private HUD hud;
     private ArrayList<Enemy> enemies;
     private ArrayList<Coin> coins;
+    private ArrayList<Explosion> explosions;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -50,6 +49,7 @@ public class Level1State extends GameState {
         enemies = new ArrayList<Enemy>();
 
         Slugger s;
+
         Point[] points = new Point[] {
                 new Point(160,200),
                 new Point(260, 200),
@@ -59,6 +59,8 @@ public class Level1State extends GameState {
             s = new Slugger(tileMap);
             s.setPosition(points[i].x, points[i].y);
             enemies.add(s);
+
+            explosions = new ArrayList<Explosion>();
         }
     }
 
@@ -102,10 +104,13 @@ public class Level1State extends GameState {
 
         //update all enemies
         for(int i = 0; i < enemies.size(); i++) {
-            enemies.get(i).update();
-            if(enemies.get(i).isDead()) {
+            Enemy e = enemies.get(i);
+            e.update();
+            if(e.isDead()) {
                 enemies.remove(i);
                 i--;
+                explosions.add(
+                        new Explosion(e.getx(), e.gety()));
             }
         }
         //update coins
