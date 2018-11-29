@@ -94,6 +94,9 @@ public class Level1State extends GameState {
         //set background
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
+        //attack enemies
+        player.checkAttack(enemies);
+
         //check player attack
         player.checkAttack(enemies);
 
