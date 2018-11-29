@@ -12,8 +12,6 @@ public class Player extends MapObject {
     //player stuff
     private int health;
     private int maxHealth;
-    private int fire;
-    private int maxFire;
     private boolean dead;
     private boolean flinching;
     private long flinchTimer;
@@ -67,7 +65,6 @@ public class Player extends MapObject {
         facingRight = true;
 
         health = maxHealth = 5;
-        fire = maxFire = 2500;
 
         fireCost = 200;
         fireBallDamage = 5;
@@ -133,14 +130,6 @@ public class Player extends MapObject {
 
     public int getMaxHealth() {
         return maxHealth;
-    }
-
-    public int getFire() {
-        return fire;
-    }
-
-    public int getMaxFire() {
-        return maxFire;
     }
 
     public void setFiring() {
