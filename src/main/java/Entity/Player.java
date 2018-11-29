@@ -320,6 +320,7 @@ public class Player extends MapObject {
 
     }
 
+
     public void draw(Graphics2D g) {
 
         setMapPosition();
