@@ -1,4 +1,4 @@
-package Entity.Entety.Enemies;
+package Entity.Enemies;
 
 import Entity.Enemy;
 import TileMap.Tile;
