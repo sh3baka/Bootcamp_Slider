@@ -33,9 +33,9 @@ public class Level1State extends GameState {
     public void init() {
         tileMap = new TileMap(30);
         tileMap.loadTiles("/tiles_lvl1_v4.png");
-        tileMap.loadMap("/TestMap.csv");
+        tileMap.loadMap("/MapTest3.csv");
         tileMap.setPosition(0, 0);
-        tileMap.setTween(0.06);
+        tileMap.setTween(0.01);
 
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
 
@@ -75,9 +75,18 @@ public class Level1State extends GameState {
 
         Coin c;
         Point[] coinPoints = new Point[]{
-                new Point(150, 200),
-                new Point(250, 200),
-                new Point(450, 200)
+                new Point(140, 100),
+                new Point(160, 100),
+                new Point(180, 100),
+                new Point(200, 100),
+                new Point(210, 100),
+                new Point(230, 100),
+                new Point(250, 100),
+                new Point(270, 100),
+                new Point(290, 100),
+                new Point(310, 100),
+                new Point(330, 100),
+                new Point(350, 100)
         };
         for (int i = 0; i < coinPoints.length; i++) {
             c = new Coin(tileMap);
