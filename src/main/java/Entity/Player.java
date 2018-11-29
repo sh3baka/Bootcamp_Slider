@@ -15,6 +15,7 @@ public class Player extends MapObject {
     private boolean dead;
     private boolean flinching;
     private long flinchTimer;
+    public static int score = 0;
 
     //scratch
     private boolean scratching;
@@ -119,6 +120,14 @@ public class Player extends MapObject {
 
     public int getMaxHealth() {
         return maxHealth;
+    }
+
+    public static String getScore(){
+        return String.valueOf(score);
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public void setScratching() {

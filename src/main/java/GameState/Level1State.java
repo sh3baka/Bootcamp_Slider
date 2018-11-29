@@ -37,6 +37,7 @@ public class Level1State extends GameState {
 
         player = new Player(tileMap);
         player.setPosition(40,100);
+        player.setScore(0);
 
         populateEnemies();
         populateCoins();

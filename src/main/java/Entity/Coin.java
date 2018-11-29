@@ -11,7 +11,6 @@ public class Coin extends Enemy {
 
     private int coinScore = 100;
     protected boolean dead;
-    GamePanel gamePanel = new GamePanel();
     private BufferedImage[] sprites;
 
     public Coin(TileMap tm){
@@ -68,8 +67,8 @@ public class Coin extends Enemy {
 
     public void pickUp(){
 
-        gamePanel.score += getCoinScore();
-        System.out.printf("Score: " + gamePanel.score);
+        Player.score += getCoinScore();
+
     }
 
     private void getNextPosition() {

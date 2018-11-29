@@ -13,7 +13,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public static final int WIDTH = 320;
     public static final int HEIGHT = 240;
     public static final int SCALE = 3;
-    public static int score = 0;
 
 
     Thread thread;
@@ -99,9 +98,5 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         Graphics graphics1 = getGraphics();
         graphics1.drawImage(image, 0, 0,WIDTH * SCALE,HEIGHT * SCALE , null);
         graphics1.dispose();
-    }
-
-    public String getScore(){
-        return String.valueOf(score);
     }
 }
