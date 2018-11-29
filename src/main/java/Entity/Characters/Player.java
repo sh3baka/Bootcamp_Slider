@@ -278,6 +278,7 @@ public class Player extends MapObject {
         setMapPosition();
 
         //draw player
+        if(notOnScreen()) { this.dead = true; }
         if (flinching) {
             long elapsed =
                     (System.nanoTime() - flinchTimer) / 1000000;
