@@ -115,6 +115,12 @@ public class Level1State extends GameState {
                         new Explosion(e.getx(), e.gety()));
             }
         }
+
+        //update explosions
+        for (int i = 0; i < explosions.size(); i++) {
+            explosions.get(i).update();
+        }
+
         //update coins
         for (int i =0; i < coins.size(); i++) {
             coins.get(i).update();
@@ -141,6 +147,11 @@ public class Level1State extends GameState {
         //draw enemies
         for (int i =0; i < enemies.size(); i++) {
             enemies.get(i).draw(g);
+        }
+
+        //draw explosions
+        for (int i = 0; i < explosions.size(); i++) {
+            explosions.get(i).draw(g);
         }
 
         //draw coins
