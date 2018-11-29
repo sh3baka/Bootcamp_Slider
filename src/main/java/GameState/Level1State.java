@@ -1,7 +1,6 @@
 package GameState;
-
+import Entity.Entety.Enemies.Slugger;
 import Entity.Coin;
-import Entity.Enemies.Slugger;
 import Entity.Player;
 import Main.GamePanel;
 import TileMap.TileMap;
