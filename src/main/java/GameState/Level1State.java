@@ -133,10 +133,9 @@ public class Level1State extends GameState {
             }
         }
 
-        if (player.isDead()) {
+        if(player.isDead()) {
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
-
     }
 
     public void draw(Graphics2D g) {
