@@ -1,6 +1,7 @@
 package Entity.Characters;
 
 import Entity.Effects.Animation;
+import Entity.Effects.Explosion;
 import TileMap.TileMap;
 
 import javax.imageio.ImageIO;
@@ -56,6 +57,12 @@ public class Slugger extends Enemy {
         right = true;
         facingRight = false;
 
+    }
+
+    public void squish() {
+        animation = new Animation();
+        animation.setFrames(Explosion.getSprites());
+        animation.setDelay(50);
     }
 
     private void getNextPosition() {

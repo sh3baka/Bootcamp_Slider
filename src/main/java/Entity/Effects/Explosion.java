@@ -15,7 +15,7 @@ public class Explosion {
     private int height;
 
     private Animation animation;
-    private BufferedImage[] sprites;
+    public static BufferedImage[] sprites;
 
     private boolean remove;
 
@@ -66,6 +66,10 @@ public class Explosion {
 
     public boolean shoulRemove() {
         return remove;
+    }
+
+    public static BufferedImage[] getSprites() {
+        return sprites;
     }
 
     public void setMapPosition(int x, int y) {
