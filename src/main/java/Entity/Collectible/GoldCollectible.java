@@ -30,7 +30,7 @@ public class GoldCollectible extends Collectible {
                             "/Items/coinGold.png"
                     )
             );
-            sprites = new BufferedImage[4];
+            sprites = new BufferedImage[10];
             for (int i = 0; i < sprites.length; i++) {
                 sprites[i] = spritesheet.getSubimage(
                         i * width,
@@ -45,6 +45,6 @@ public class GoldCollectible extends Collectible {
 
         animation = new Animation();
         animation.setFrames(sprites);
-        animation.setDelay(300);
+        animation.setDelay(100);
     }
 }
