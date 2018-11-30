@@ -1,5 +1,6 @@
 package Entity.Characters;
 
+import Audio.AudioPlayer;
 import Entity.Collectible.GoldCollectible;
 import Entity.Effects.Animation;
 import TileMap.TileMap;
@@ -8,6 +9,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Player extends MapObject {
 
@@ -16,6 +18,8 @@ public class Player extends MapObject {
     private static final int WALKING = 1;
     private static final int JUMPING = 2;
     private static final int FALLING = 3;
+
+    private HashMap<String, AudioPlayer> sfx;
 
     public static int score = 0;
     private final int[] numFrames = {
@@ -91,6 +95,9 @@ public class Player extends MapObject {
         currentAction = IDLE;
         animation.setFrames(sprites.get(IDLE));
         animation.setDelay(600);
+
+        sfx = new HashMap<String, AudioPlayer>();
+        sfx.put("jump", new AudioPlayer("/SFX/jumpland44100.mp3"));
 
     }
 

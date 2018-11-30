@@ -29,6 +29,7 @@ public class GameStateManager {
     }
 
     private void unloadState(int state) {
+
         gameStates[state] = null;
     }
 
@@ -36,7 +37,7 @@ public class GameStateManager {
         unloadState(currentState);
         currentState = state;
         loadState(currentState);
-        //gameStates[currentState].init();
+       // gameStates[currentState].init();
     }
 
     public void update() {
@@ -49,7 +50,7 @@ public class GameStateManager {
     }
 
     public void draw(Graphics2D g) {
-        try {
+       try {
 
 
             gameStates[currentState].draw(g);
@@ -58,6 +59,7 @@ public class GameStateManager {
     }
 
     public void keyPressed(int k) {
+
         gameStates[currentState].keyPressed(k);
     }
 
