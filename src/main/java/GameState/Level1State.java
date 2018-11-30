@@ -1,16 +1,15 @@
 package GameState;
 
+import Audio.AudioPlayer;
 import Entity.Characters.Enemy;
 import Entity.Characters.Player;
 import Entity.Characters.Shell;
 import Entity.Characters.Slugger;
-import Entity.Collectible.Coin;
+import Entity.Collectible.GoldCollectible;
 import Entity.Hud.HUD;
 import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
-
-import Audio.AudioPlayer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -28,7 +27,7 @@ public class Level1State extends GameState {
     private AudioPlayer bgMusic;
 
     private ArrayList<Enemy> enemies;
-    private ArrayList<Coin> coins;
+    private ArrayList<GoldCollectible> goldCoins;
     private ArrayList<Enemy> shells;
 
     public Level1State(GameStateManager gsm) {
@@ -41,7 +40,7 @@ public class Level1State extends GameState {
         tileMap.loadTiles("/tiles_lvl1.png");
         tileMap.loadMap("/TestMap.csv");
         tileMap.setPosition(0, 0);
-        tileMap.setTween(0.01);
+        tileMap.setTween(0.06);
 
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
 
@@ -79,9 +78,9 @@ public class Level1State extends GameState {
 
     private void populateCoins() {
 
-        coins = new ArrayList<Coin>();
+        goldCoins = new ArrayList<GoldCollectible>();
 
-        Coin c;
+        GoldCollectible c;
         Point[] coinPoints = new Point[]{
                 new Point(140, 100),
                 new Point(160, 100),
@@ -97,9 +96,9 @@ public class Level1State extends GameState {
                 new Point(350, 100)
         };
         for (int i = 0; i < coinPoints.length; i++) {
-            c = new Coin(tileMap);
+            c = new GoldCollectible(tileMap);
             c.setPosition(coinPoints[i].x, coinPoints[i].y);
-            coins.add(c);
+            goldCoins.add(c);
         }
     }
 
@@ -113,7 +112,7 @@ public class Level1State extends GameState {
         );
 
         //check coin collect
-        player.checkCollect(coins);
+        player.checkCollect(goldCoins);
         player.checkDead(player);
 
         //set background
@@ -147,15 +146,15 @@ public class Level1State extends GameState {
             }
         }
 
-        //update coins
-        for (int i = 0; i < coins.size(); i++) {
-            coins.get(i).update();
-            if (coins.get(i).isDead()) {
-                coins.remove(i);
+        //update goldCoins
+        for (int i = 0; i < goldCoins.size(); i++) {
+            goldCoins.get(i).update();
+            if (goldCoins.get(i).isDead()) {
+                goldCoins.remove(i);
             }
         }
 
-        if(player.isDead()) {
+        if (player.isDead()) {
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
     }
@@ -179,9 +178,9 @@ public class Level1State extends GameState {
             shells.get(i).draw(g);
         }
 
-        //draw coins
-        for (int i = 0; i < coins.size(); i++) {
-            coins.get(i).draw(g);
+        //draw goldCoins
+        for (int i = 0; i < goldCoins.size(); i++) {
+            goldCoins.get(i).draw(g);
         }
     }
 

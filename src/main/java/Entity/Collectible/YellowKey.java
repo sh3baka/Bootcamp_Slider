@@ -1,21 +1,16 @@
 package Entity.Collectible;
 
-import Entity.Characters.Enemy;
-import Entity.Characters.Player;
 import Entity.Effects.Animation;
 import TileMap.TileMap;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Coin extends Enemy {
+public class YellowKey extends Collectible {
 
-    public boolean dead;
-    private int coinScore = 100;
     private BufferedImage[] sprites;
 
-    public Coin(TileMap tm) {
+    public YellowKey(TileMap tm) {
         super(tm);
 
         fallSpeed = 0.2;
@@ -25,6 +20,8 @@ public class Coin extends Enemy {
         height = 30;
         cwidth = 20;
         cheight = 20;
+
+        score = 0;
 
         try {
 
@@ -48,50 +45,6 @@ public class Coin extends Enemy {
 
         animation = new Animation();
         animation.setFrames(sprites);
-        animation.setDelay(200);
-    }
-
-    public int getCoinScore() {
-        return coinScore;
-    }
-
-    public void setCoinScore(int coinScore) {
-        this.coinScore = coinScore;
-    }
-
-    public void pickUp() {
-
-        Player.score += getCoinScore();
-
-    }
-
-    private void getNextPosition() {
-
-        //falling
-        if (falling) {
-            dy += fallSpeed;
-        }
-    }
-
-    public boolean isDead() {
-        return dead;
-    }
-
-    public void update() {
-        //update position
-        getNextPosition();
-        checkTileMapCollision();
-        setPosition(xtemp, ytemp);
-
-        animation.update();
-    }
-
-    public void draw(Graphics2D g) {
-
-        //if(notOnScreen()) return;
-
-        setMapPosition();
-        super.draw(g);
-
+        animation.setDelay(300);
     }
 }

@@ -1,6 +1,6 @@
 package Entity.Characters;
 
-import Entity.Collectible.Coin;
+import Entity.Collectible.GoldCollectible;
 import Entity.Effects.Animation;
 import Entity.MapObject;
 import TileMap.TileMap;
@@ -73,12 +73,12 @@ public class Player extends MapObject {
                 for (int j = 0; j < numFrames[i]; j++) {
 
 
-                        bi[j] = spritesheet.getSubimage( //res
-                                j * width,
-                                i * height,
-                                width,
-                                height
-                        );
+                    bi[j] = spritesheet.getSubimage( //res
+                            j * width,
+                            i * height,
+                            width,
+                            height
+                    );
                 }
 
                 sprites.add(bi);
@@ -135,7 +135,7 @@ public class Player extends MapObject {
             Enemy e = enemies.get(i);
 
             // check enemy collision
-            if(e instanceof Slugger) {
+            if (e instanceof Slugger) {
 
                 if (intersects(e) && this.falling) {
 
@@ -147,7 +147,7 @@ public class Player extends MapObject {
                     hit(e.getDamage());
                 }
 
-            } else if(e instanceof Shell) {
+            } else if (e instanceof Shell) {
 
                 if (intersects(e) && this.falling) {
 
@@ -265,22 +265,22 @@ public class Player extends MapObject {
         animation.update();
 
         //set direction
-            if (right) facingRight = true;
+        if (right) facingRight = true;
         if (left) facingRight = false;
     }
 
 
-    public void checkCollect(ArrayList<Coin> coins) {
+    public void checkCollect(ArrayList<GoldCollectible> goldCoins) {
 
         // loop through enemies
-        for (int i = 0; i < coins.size(); i++) {
+        for (int i = 0; i < goldCoins.size(); i++) {
 
-            Coin coin = coins.get(i);
+            GoldCollectible goldCoin = goldCoins.get(i);
 
             // check enemy collision
-            if (intersects(coin)) {
-                coin.pickUp();
-                coin.dead = true;
+            if (intersects(goldCoin)) {
+                goldCoin.pickUp();
+                goldCoin.dead = true;
             }
         }
 
@@ -292,7 +292,9 @@ public class Player extends MapObject {
         setMapPosition();
 
         //draw player
-        if(notOnScreen()) { this.dead = true; }
+        if (notOnScreen()) {
+            this.dead = true;
+        }
         if (flinching) {
             long elapsed =
                     (System.nanoTime() - flinchTimer) / 1000000;
