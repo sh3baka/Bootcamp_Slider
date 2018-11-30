@@ -6,17 +6,14 @@ import java.awt.image.BufferedImage;
 
 public class Explosion {
 
+    public static BufferedImage[] sprites;
     private int x;
     private int y;
     private int xmap;
     private int ymap;
-
     private int width;
     private int height;
-
     private Animation animation;
-    public static BufferedImage[] sprites;
-
     private boolean remove;
 
     public Explosion(int x, int y) {
@@ -57,6 +54,10 @@ public class Explosion {
 
     }
 
+    public static BufferedImage[] getSprites() {
+        return sprites;
+    }
+
     public void update() {
         animation.update();
 //        if (animation.hasPlayedOnce()) {
@@ -66,10 +67,6 @@ public class Explosion {
 
     public boolean shoulRemove() {
         return remove;
-    }
-
-    public static BufferedImage[] getSprites() {
-        return sprites;
     }
 
     public void setMapPosition(int x, int y) {

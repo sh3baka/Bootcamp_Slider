@@ -1,7 +1,6 @@
 package GameState;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class GameStateManager {
 
@@ -45,7 +44,8 @@ public class GameStateManager {
 
 
             gameStates[currentState].update();
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
 
     public void draw(Graphics2D g) {
@@ -53,7 +53,8 @@ public class GameStateManager {
 
 
             gameStates[currentState].draw(g);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
 
     public void keyPressed(int k) {
