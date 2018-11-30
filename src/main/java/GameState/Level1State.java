@@ -52,7 +52,7 @@ public class Level1State extends GameState {
 
         hud = new HUD(player);
 
-        bgMusic = new AudioPlayer("/Music/Fantasy_Game_Background.wav");
+        bgMusic = new AudioPlayer("/Music/Fantasy_Game_Background.mp3");
         bgMusic.play();
     }
 
