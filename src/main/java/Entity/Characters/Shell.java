@@ -24,6 +24,7 @@ public class Shell extends Enemy {
         cheight = 10;
 
         health = 1;
+        worth = 5;
 
         try {
 

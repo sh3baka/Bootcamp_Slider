@@ -10,15 +10,22 @@ public class HUD {
 
     private Player player;
 
-    private BufferedImage image;
+    private BufferedImage heart;
+    private BufferedImage heartEmpty;
     private Font font;
 
     public HUD(Player p) {
         player = p;
         try {
-            image = ImageIO.read(
+            heart = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/HUD/hud_heartFull.png"
+
+                    )
+            );
+            heartEmpty = ImageIO.read(
+                    getClass().getResourceAsStream(
+                            "/HUD/hud_heartEmpty.png"
 
                     )
             );
@@ -31,10 +38,24 @@ public class HUD {
 
     public void draw(Graphics2D g) {
 
-        g.drawImage(image, 0, 1, null);
+        int offset = 0;
+        int offsetMax = 0;
+
+        for(int i = 0; i < player.getMaxHealth(); i++) {
+
+            g.drawImage(heartEmpty, 0 + offsetMax, 1, null);
+            offsetMax += 20;
+
+        }
+
+        for(int i = 0; i < player.getHealth(); i++) {
+
+            g.drawImage(heart, 0 + offset, 1, null);
+            offset += 20;
+
+        }
         g.setFont(font);
         g.setColor(Color.WHITE);
-        g.drawString(player.getHealth() + "/" + player.getMaxHealth(), 15, 27);
         g.drawString("Score: " + Player.getScore(), 50, 50);
     }
 }

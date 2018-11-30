@@ -2,7 +2,6 @@ package Entity.Characters;
 
 import Entity.Collectible.GoldCollectible;
 import Entity.Effects.Animation;
-import Entity.MapObject;
 import TileMap.TileMap;
 
 import javax.imageio.ImageIO;
@@ -95,22 +94,17 @@ public class Player extends MapObject {
 
     }
 
-    public static String getScore() {
-        return String.valueOf(score);
-    }
+    public static int getScore() { return score; }
 
     public void setScore(int score) {
         this.score = score;
     }
 
-    public int getHealth() {
-        return health;
-    }
+    public int getHealth() { return health; }
 
     public int getMaxHealth() {
         return maxHealth;
     }
-
 
     public void setDead() {
         dead = true;
@@ -143,6 +137,8 @@ public class Player extends MapObject {
 
                     e.health--;
 
+                    setScore(getScore() + e.getWorth());
+
                 } else if (intersects(e)) {
                     hit(e.getDamage());
                 }
@@ -151,9 +147,13 @@ public class Player extends MapObject {
 
                 if (intersects(e) && this.falling) {
 
+
+
                     dy = killJumpStart;
 
                     e.health--;
+
+                    setScore(getScore() + e.getWorth());
 
                 }
             }

@@ -1,4 +1,4 @@
-package Entity;
+package Entity.Characters;
 
 import Entity.Effects.Animation;
 import Main.GamePanel;

@@ -1,6 +1,5 @@
 package Entity.Characters;
 
-import Entity.MapObject;
 import TileMap.TileMap;
 
 public class Enemy extends MapObject {
@@ -9,6 +8,7 @@ public class Enemy extends MapObject {
     protected int maxHealth;
     protected boolean dead;
     protected int damage;
+    protected int worth;
 
     protected boolean flinching;
     protected long flinchTimer;
@@ -39,6 +39,8 @@ public class Enemy extends MapObject {
     public int getHealth() {
         return health;
     }
+
+    public int getWorth() { return worth; }
 
     public void update() {
     }

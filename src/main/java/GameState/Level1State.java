@@ -26,7 +26,6 @@ public class Level1State extends GameState {
 
     private AudioPlayer bgMusic;
 
-    private ArrayList<Enemy> enemies;
     private ArrayList<GoldCollectible> goldCoins;
     private ArrayList<Enemy> shells;
 
@@ -40,7 +39,7 @@ public class Level1State extends GameState {
         tileMap.loadTiles("/tiles_lvl1.png");
         tileMap.loadMap("/TestMap.csv");
         tileMap.setPosition(0, 0);
-        tileMap.setTween(0.06);
+        tileMap.setTween(0.07);
 
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
 
