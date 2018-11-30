@@ -48,7 +48,7 @@ public class Coin extends Enemy {
 
         animation = new Animation();
         animation.setFrames(sprites);
-        animation.setDelay(300);
+        animation.setDelay(200);
     }
 
     public int getCoinScore() {
