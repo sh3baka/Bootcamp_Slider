@@ -10,6 +10,8 @@ import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
 
+import Audio.AudioPlayer;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -21,6 +23,9 @@ public class Level1State extends GameState {
     private Background bg;
 
     private HUD hud;
+
+    private AudioPlayer bgMusic;
+
     private ArrayList<Enemy> enemies;
     private ArrayList<Coin> coins;
     private ArrayList<Explosion> explosions;
@@ -47,6 +52,9 @@ public class Level1State extends GameState {
         populateCoins();
 
         hud = new HUD(player);
+
+        bgMusic = new AudioPlayer("/Music/Fantasy_Game_Background.mp3");
+        bgMusic.play();
     }
 
     private void populateEnemies() {

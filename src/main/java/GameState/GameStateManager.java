@@ -7,38 +7,61 @@ public class GameStateManager {
 
     public static final int MENUSTATE = 0;
     public static final int LEVEL1STATE = 1;
-    private ArrayList<GameState> gameStates;
+    public static final int NUMGAMESTATE = 2;
+    private GameState[] gameStates;
     private int currentState;
 
     public GameStateManager() {
 
-        gameStates = new ArrayList<GameState>();
+        gameStates = new GameState[NUMGAMESTATE];
 
         currentState = MENUSTATE;
-        gameStates.add(new MenuState(this));
-        gameStates.add(new Level1State(this));
+        loadState(currentState);
 
+
+    }
+
+    private void loadState(int state) {
+        if (state == MENUSTATE)
+            gameStates[state] = new MenuState(this);
+        if (state == LEVEL1STATE)
+            gameStates[state] = new Level1State(this);
+
+    }
+
+    private void unloadState(int state) {
+        gameStates[state] = null;
     }
 
     public void setState(int state) {
+        unloadState(currentState);
         currentState = state;
-        gameStates.get(currentState).init();
+        loadState(currentState);
+        //gameStates[currentState].init();
     }
 
     public void update() {
-        gameStates.get(currentState).update();
+        try {
+
+
+            gameStates[currentState].update();
+        } catch (Exception e) {}
     }
 
     public void draw(Graphics2D g) {
-        gameStates.get(currentState).draw(g);
+        try {
+
+
+            gameStates[currentState].draw(g);
+        } catch (Exception e) {}
     }
 
     public void keyPressed(int k) {
-        gameStates.get(currentState).keyPressed(k);
+        gameStates[currentState].keyPressed(k);
     }
 
     public void keyReleased(int k) {
-        gameStates.get(currentState).keyReleased(k);
+        gameStates[currentState].keyReleased(k);
     }
 
 }
