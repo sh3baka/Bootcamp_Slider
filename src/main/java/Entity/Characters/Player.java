@@ -1,7 +1,7 @@
 package Entity.Characters;
 
 import Audio.AudioPlayer;
-import Entity.Collectible.GoldCollectible;
+import Entity.Collectible.GoldCoin;
 import Entity.Effects.Animation;
 import TileMap.TileMap;
 import javax.imageio.ImageIO;
@@ -281,12 +281,12 @@ public class Player extends MapObject {
     }
 
 
-    public void checkCollect(ArrayList<GoldCollectible> goldCoins) {
+    public void checkCollect(ArrayList<GoldCoin> goldCoins) {
 
         // loop through enemies
         for (int i = 0; i < goldCoins.size(); i++) {
 
-            GoldCollectible goldCoin = goldCoins.get(i);
+            GoldCoin goldCoin = goldCoins.get(i);
 
             // check enemy collision
             if (intersects(goldCoin)) {
@@ -316,5 +316,12 @@ public class Player extends MapObject {
             }
         }
         super.draw(g);
+    }
+
+    @Override
+    public void setPosition(double x, double y) {
+        super.x = x;
+        super.y = y;
+        System.out.println("X: " + (int)super.x + " Y: " + (int)super.y);
     }
 }

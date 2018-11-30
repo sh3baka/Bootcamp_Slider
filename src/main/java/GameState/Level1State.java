@@ -5,12 +5,13 @@ import Entity.Characters.Enemy;
 import Entity.Characters.Player;
 import Entity.Characters.Shell;
 import Entity.Characters.Slugger;
-import Entity.Collectible.GoldCollectible;
+import Entity.Collectible.GoldCoin;
 import Entity.Effects.Door;
 import Entity.Hud.HUD;
 import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -30,7 +31,8 @@ public class Level1State extends GameState {
 
     private AudioPlayer bgMusic;
 
-    private ArrayList<GoldCollectible> goldCoins;
+    private ArrayList<GoldCoin> goldCoins;
+    private int stage = 1;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -66,28 +68,31 @@ public class Level1State extends GameState {
 
     private void populateEnemies() {
 
-        slugs = new ArrayList<Enemy>();
-        shells = new ArrayList<Enemy>();
+            if (player.getx() > 200 && player.getx() < 202 && stage == 1) {
+                slugs = new ArrayList<Enemy>();
+                shells = new ArrayList<Enemy>();
 
-        Slugger s;
+                Slugger s;
 
-        Point[] points = new Point[]{
-                new Point(160, 200),
-                new Point(260, 200),
-                new Point(460, 200)
-        };
-        for (int i = 0; i < points.length; i++) {
-            s = new Slugger(tileMap);
-            s.setPosition(points[i].x, points[i].y);
-            slugs.add(s);
-        }
+                Point[] points = new Point[]{
+                        new Point(160, 180),
+                        new Point(260, 180),
+                        new Point(460, 180)
+                };
+                for (int i = 0; i < points.length; i++) {
+                    s = new Slugger(tileMap);
+                    s.setPosition(points[i].x, points[i].y);
+                    slugs.add(s);
+                }
+                stage++;
+            }
     }
 
     private void populateCoins() {
 
-        goldCoins = new ArrayList<GoldCollectible>();
+        goldCoins = new ArrayList<GoldCoin>();
 
-        GoldCollectible c;
+        GoldCoin c;
         Point[] coinPoints = new Point[]{
                 new Point(140, 100),
                 new Point(160, 100),
@@ -103,7 +108,7 @@ public class Level1State extends GameState {
                 new Point(350, 100)
         };
         for (int i = 0; i < coinPoints.length; i++) {
-            c = new GoldCollectible(tileMap);
+            c = new GoldCoin(tileMap);
             c.setPosition(coinPoints[i].x, coinPoints[i].y);
             goldCoins.add(c);
         }
@@ -136,6 +141,8 @@ public class Level1State extends GameState {
     }
 
     public void update() {
+
+        populateEnemies();
 
         //System.out.println("X = " + doors.size());
 
@@ -191,6 +198,8 @@ public class Level1State extends GameState {
         if (player.isDead()) {
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
+
+
     }
 
     public void keyPressed(int k) {

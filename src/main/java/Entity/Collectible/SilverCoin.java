@@ -6,11 +6,11 @@ import TileMap.TileMap;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
-public class SilverCollectible extends Collectible {
+public class SilverCoin extends Collectible {
 
     private BufferedImage[] sprites;
 
-    public SilverCollectible(TileMap tm) {
+    public SilverCoin(TileMap tm) {
         super(tm);
 
         fallSpeed = 0.2;

@@ -50,16 +50,13 @@ public class GameStateManager {
     }
 
     public void draw(Graphics2D g) {
-       try {
-
-
+        try {
             gameStates[currentState].draw(g);
         } catch (Exception e) {
         }
     }
 
     public void keyPressed(int k) {
-
         gameStates[currentState].keyPressed(k);
     }
 

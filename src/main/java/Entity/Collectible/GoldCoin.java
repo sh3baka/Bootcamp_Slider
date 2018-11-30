@@ -6,11 +6,11 @@ import TileMap.TileMap;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
-public class GoldCollectible extends Collectible {
+public class GoldCoin extends Collectible {
 
     private BufferedImage[] sprites;
 
-    public GoldCollectible(TileMap tm) {
+    public GoldCoin(TileMap tm) {
         super(tm);
 
         fallSpeed = 0.2;
