@@ -23,7 +23,7 @@ public class Slugger extends Enemy {
 
         width = 33;
         height = 20;
-        cwidth = 30;
+        cwidth = 25;
         cheight = 10;
 
         health = maxHealth = 2;
@@ -60,12 +60,6 @@ public class Slugger extends Enemy {
 
     }
 
-    public void squish() {
-        animation = new Animation();
-        animation.setFrames(Explosion.getSprites());
-        animation.setDelay(50);
-    }
-
     private void getNextPosition() {
 
         //movement
@@ -85,6 +79,15 @@ public class Slugger extends Enemy {
             dy += fallSpeed;
 
         }
+    }
+
+    public void draw(Graphics2D g) {
+
+        //if(!notOnScreen()) return;
+
+        setMapPosition();
+        super.draw(g);
+
     }
 
     public void update() {
@@ -107,14 +110,5 @@ public class Slugger extends Enemy {
 
         //update animation
         animation.update();
-    }
-
-    public void draw(Graphics2D g) {
-
-        //if(!notOnScreen()) return;
-
-        setMapPosition();
-        super.draw(g);
-
     }
 }

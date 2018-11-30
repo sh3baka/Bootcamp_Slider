@@ -27,7 +27,7 @@ public class YellowKey extends Collectible {
 
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Items/coinGold.png"
+                            "/Items/keyYellow.png"
                     )
             );
             sprites = new BufferedImage[4];

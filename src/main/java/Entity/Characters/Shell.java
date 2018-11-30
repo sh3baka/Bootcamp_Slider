@@ -20,7 +20,7 @@ public class Shell extends Enemy {
 
         width = 33;
         height = 20;
-        cwidth = 30;
+        cwidth = 25;
         cheight = 10;
 
         health = 1;
@@ -50,16 +50,6 @@ public class Shell extends Enemy {
         animation.setFrames(sprites);
         animation.setDelay(30);
 
-    }
-
-    public void update() {
-
-        //update position
-        checkTileMapCollision();
-        setPosition(xtemp, ytemp);
-
-        //update animation
-        animation.update();
     }
 
     public void draw(Graphics2D g) {

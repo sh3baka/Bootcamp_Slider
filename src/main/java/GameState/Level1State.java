@@ -6,11 +6,11 @@ import Entity.Characters.Player;
 import Entity.Characters.Shell;
 import Entity.Characters.Slugger;
 import Entity.Collectible.GoldCollectible;
+import Entity.Effects.Door;
 import Entity.Hud.HUD;
 import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -23,11 +23,14 @@ public class Level1State extends GameState {
 
     private HUD hud;
     private ArrayList<Enemy> slugs;
+    private ArrayList<Enemy> shells;
+    //private ArrayList<Door> doors;
+
+    private Door door;
 
     private AudioPlayer bgMusic;
 
     private ArrayList<GoldCollectible> goldCoins;
-    private ArrayList<Enemy> shells;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -50,10 +53,15 @@ public class Level1State extends GameState {
         populateEnemies();
         populateCoins();
 
+        //buildDoors();
+
         hud = new HUD(player);
 
         bgMusic = new AudioPlayer("/Music/Fantasy_Game_Backgroundd.mp3");
         bgMusic.play();
+
+        door = new Door(tileMap);
+
     }
 
     private void populateEnemies() {
@@ -101,7 +109,35 @@ public class Level1State extends GameState {
         }
     }
 
+    public void draw(Graphics2D g) {
+        bg.draw(g);
+        tileMap.draw(g);
+        player.draw(g);
+
+
+        //draw hud
+        hud.draw(g);
+
+        //draw enemies
+        //slugs
+        for (int i = 0; i < slugs.size(); i++) {
+            slugs.get(i).draw(g);
+        }
+        //shells
+        for (int i = 0; i < shells.size(); i++) {
+            shells.get(i).draw(g);
+        }
+        //draw goldCoins
+        for (int i = 0; i < goldCoins.size(); i++) {
+            goldCoins.get(i).draw(g);
+        }
+
+        door.draw(g);
+    }
+
     public void update() {
+
+        //System.out.println("X = " + doors.size());
 
         player.update();
 
@@ -138,7 +174,6 @@ public class Level1State extends GameState {
         //update shells
         for (int i = 0; i < shells.size(); i++) {
             Enemy e = shells.get(i);
-            e.update();
             if (e.getHealth() == 0) {
                 shells.remove(i);
                 i--;
@@ -155,31 +190,6 @@ public class Level1State extends GameState {
 
         if (player.isDead()) {
             gsm.setState(GameStateManager.LEVEL1STATE);
-        }
-    }
-
-    public void draw(Graphics2D g) {
-        bg.draw(g);
-        tileMap.draw(g);
-        player.draw(g);
-
-
-        //draw hud
-        hud.draw(g);
-
-        //draw enemies
-        //slugs
-        for (int i = 0; i < slugs.size(); i++) {
-            slugs.get(i).draw(g);
-        }
-        //shells
-        for (int i = 0; i < shells.size(); i++) {
-            shells.get(i).draw(g);
-        }
-
-        //draw goldCoins
-        for (int i = 0; i < goldCoins.size(); i++) {
-            goldCoins.get(i).draw(g);
         }
     }
 

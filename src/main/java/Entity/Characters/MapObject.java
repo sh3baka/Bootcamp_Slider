@@ -4,7 +4,6 @@ import Entity.Effects.Animation;
 import Main.GamePanel;
 import TileMap.Tile;
 import TileMap.TileMap;
-
 import java.awt.*;
 
 public abstract class MapObject {

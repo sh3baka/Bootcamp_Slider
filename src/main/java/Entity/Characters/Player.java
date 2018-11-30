@@ -4,7 +4,6 @@ import Audio.AudioPlayer;
 import Entity.Collectible.GoldCollectible;
 import Entity.Effects.Animation;
 import TileMap.TileMap;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -31,6 +30,7 @@ public class Player extends MapObject {
     private boolean dead;
     private boolean flinching;
     private long flinchTimer;
+    private static int coins;
 
     // animations
     private ArrayList<BufferedImage[]> sprites;
@@ -53,10 +53,11 @@ public class Player extends MapObject {
         killJumpStart = -7.7;
         stopJumpSpeed = 0.3;
         maxFallSpeed = 4.0;
+        coins = 0;
 
         facingRight = true;
 
-        health = maxHealth = 5;
+        health = maxHealth = 3;
 
         //load sprites
         try {
@@ -106,6 +107,8 @@ public class Player extends MapObject {
     public void setScore(int score) {
         this.score = score;
     }
+
+    public static int getCoins() { return coins; }
 
     public int getHealth() { return health; }
 
@@ -289,6 +292,7 @@ public class Player extends MapObject {
             if (intersects(goldCoin)) {
                 goldCoin.pickUp();
                 goldCoin.dead = true;
+                coins++;
             }
         }
 
@@ -302,7 +306,8 @@ public class Player extends MapObject {
         //draw player
         if (notOnScreen()) {
             this.dead = true;
-        }
+            }
+
         if (flinching) {
             long elapsed =
                     (System.nanoTime() - flinchTimer) / 1000000;
