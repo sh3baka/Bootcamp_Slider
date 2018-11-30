@@ -207,6 +207,7 @@ public class Player extends MapObject {
 
         //jumping
         if (jumping && !falling) {
+            sfx.get("jump").play();
             dy = jumpStart;
             falling = true;
         }
