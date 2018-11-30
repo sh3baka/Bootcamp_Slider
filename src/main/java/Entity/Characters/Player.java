@@ -17,9 +17,7 @@ public class Player extends MapObject {
     private static final int WALKING = 1;
     private static final int JUMPING = 2;
     private static final int FALLING = 3;
-    private static final int GLIDING = 4;
-    private static final int FIREBALL = 5;
-    private static final int SCRATCHING = 6; //res
+
     public static int score = 0;
     private final int[] numFrames = {
             2, 8, 1, 2
@@ -30,8 +28,10 @@ public class Player extends MapObject {
     private boolean dead;
     private boolean flinching;
     private long flinchTimer;
+
     // animations
     private ArrayList<BufferedImage[]> sprites;
+
 
     public Player(TileMap tm) {
 
@@ -47,6 +47,7 @@ public class Player extends MapObject {
         stopSpeed = 0.4;
         fallSpeed = 0.15;
         jumpStart = -4.8;
+        killJumpStart = -7.7;
         stopJumpSpeed = 0.3;
         maxFallSpeed = 4.0;
 
@@ -62,32 +63,22 @@ public class Player extends MapObject {
                     )
             );
 
-            sprites = new ArrayList<BufferedImage[]>();
+            sprites = new ArrayList<>();
 
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 4; i++) {
 
                 BufferedImage[] bi =
                         new BufferedImage[numFrames[i]];
 
                 for (int j = 0; j < numFrames[i]; j++) {
 
-                    if (i != 6) {
+
                         bi[j] = spritesheet.getSubimage( //res
                                 j * width,
                                 i * height,
                                 width,
                                 height
                         );
-
-                    } else {
-                        bi[j] = spritesheet.getSubimage( //res
-                                j * width * 2,
-                                i * height,
-                                width,
-                                height
-                        );
-                    }
-
                 }
 
                 sprites.add(bi);
@@ -120,6 +111,7 @@ public class Player extends MapObject {
         return maxHealth;
     }
 
+
     public void setDead() {
         dead = true;
     }
@@ -142,45 +134,28 @@ public class Player extends MapObject {
 
             Enemy e = enemies.get(i);
 
-            // scratch attack
-//            if(scratching) {
-//                if(facingRight) {
-//                    if(
-//                            e.getx() > x &&
-//                                    e.getx() < x + scratchRange &&
-//                                    e.gety() > y - height / 2 &&
-//                                    e.gety() < y + height / 2
-//                    ) {
-//                        e.hit(scratchDamage);
-//                    }
-//                }
-//                else {
-//                    if(
-//                            e.getx() < x &&
-//                                    e.getx() > x - scratchRange &&
-//                                    e.gety() > y - height / 2 &&
-//                                    e.gety() < y + height / 2
-//                    ) {
-//                        e.hit(scratchDamage);
-//                    }
-//                }
-//            }
-//
-//            // fireballs
-//            for(int j = 0; j < fireBalls.size(); j++) {
-//                if(fireBalls.get(j).intersects(e)) {
-//                    e.hit(fireBallDamage);
-//                    fireBalls.get(j).setHit();
-//                    break;
-//                }
-//            }
-
             // check enemy collision
-            if (intersects(e) && this.falling) {
-                e.dead = true;
+            if(e instanceof Slugger) {
 
-            } else if (intersects(e)) {
-                hit(e.getDamage());
+                if (intersects(e) && this.falling) {
+
+                    dy = killJumpStart;
+
+                    e.health--;
+
+                } else if (intersects(e)) {
+                    hit(e.getDamage());
+                }
+
+            } else if(e instanceof Shell) {
+
+                if (intersects(e) && this.falling) {
+
+                    dy = killJumpStart;
+
+                    e.health--;
+
+                }
             }
         }
     }
@@ -221,13 +196,6 @@ public class Player extends MapObject {
                     dx = 0;
                 }
             }
-        }
-
-        //cannot move while attacking, except in air
-        if (
-                (currentAction == SCRATCHING || currentAction == FIREBALL) &&
-                        !(jumping || falling)) {
-            dx = 0;
         }
 
         //jumping
@@ -297,7 +265,6 @@ public class Player extends MapObject {
         animation.update();
 
         //set direction
-        if (currentAction != SCRATCHING && currentAction != FIREBALL)
             if (right) facingRight = true;
         if (left) facingRight = false;
     }
@@ -320,12 +287,12 @@ public class Player extends MapObject {
 
     }
 
-
     public void draw(Graphics2D g) {
 
         setMapPosition();
 
         //draw player
+        if(notOnScreen()) { this.dead = true; }
         if (flinching) {
             long elapsed =
                     (System.nanoTime() - flinchTimer) / 1000000;

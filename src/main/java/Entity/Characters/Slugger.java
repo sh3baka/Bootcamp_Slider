@@ -86,15 +86,6 @@ public class Slugger extends Enemy {
         checkTileMapCollision();
         setPosition(xtemp, ytemp);
 
-        //check flinching
-        if (flinching) {
-            long elapsed =
-                    (System.nanoTime() - flinchTimer) / 1000000;
-            if (elapsed > 400) {
-                flinching = false;
-            }
-        }
-
         //if it hits a wall, go other direction
         if (right && dx == 0) {
             right = false;
