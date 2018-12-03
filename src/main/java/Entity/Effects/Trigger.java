@@ -17,6 +17,5 @@ public class Trigger {
         this.isTriggered = false;
         this.triggerPositionX = triggerPositionX;
     }
-
 }
 

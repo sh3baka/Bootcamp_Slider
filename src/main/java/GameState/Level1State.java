@@ -14,6 +14,7 @@ import TileMap.TileMap;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 public class Level1State extends GameState {
@@ -68,7 +69,7 @@ public class Level1State extends GameState {
 
     private void populateEnemies() {
 
-            if (player.getx() > 200 && player.getx() < 202 && stage == 1) {
+
                 slugs = new ArrayList<Enemy>();
                 shells = new ArrayList<Enemy>();
 
@@ -79,13 +80,12 @@ public class Level1State extends GameState {
                         new Point(260, 180),
                         new Point(460, 180)
                 };
+
                 for (int i = 0; i < points.length; i++) {
                     s = new Slugger(tileMap);
                     s.setPosition(points[i].x, points[i].y);
                     slugs.add(s);
                 }
-                stage++;
-            }
     }
 
     private void populateCoins() {
@@ -119,15 +119,14 @@ public class Level1State extends GameState {
         tileMap.draw(g);
         player.draw(g);
 
-
         //draw hud
         hud.draw(g);
 
         //draw enemies
         //slugs
-        for (int i = 0; i < slugs.size(); i++) {
-            slugs.get(i).draw(g);
-        }
+            for (int i = 0; i < slugs.size(); i++) {
+                slugs.get(i).draw(g);
+            }
         //shells
         for (int i = 0; i < shells.size(); i++) {
             shells.get(i).draw(g);
@@ -141,8 +140,6 @@ public class Level1State extends GameState {
     }
 
     public void update() {
-
-        populateEnemies();
 
         //System.out.println("X = " + doors.size());
 
