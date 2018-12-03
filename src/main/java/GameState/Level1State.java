@@ -6,7 +6,9 @@ import Entity.Characters.Player;
 import Entity.Characters.Shell;
 import Entity.Characters.Slugger;
 import Entity.Collectible.GoldCoin;
-import Entity.Effects.Door;
+import Entity.Collectible.YellowKey;
+import Entity.Effects.ClosedDoor;
+import Entity.Effects.OpenDoor;
 import Entity.Hud.HUD;
 import Main.GamePanel;
 import TileMap.Background;
@@ -14,7 +16,6 @@ import TileMap.TileMap;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 public class Level1State extends GameState {
@@ -26,9 +27,10 @@ public class Level1State extends GameState {
     private HUD hud;
     private ArrayList<Enemy> slugs;
     private ArrayList<Enemy> shells;
-    //private ArrayList<Door> doors;
 
-    private Door door;
+    private YellowKey yKey;
+    private ArrayList<ClosedDoor> closedDoors;
+    private ArrayList<OpenDoor> openDoors;
 
     private AudioPlayer bgMusic;
 
@@ -54,16 +56,15 @@ public class Level1State extends GameState {
         player.setScore(0);
 
         populateEnemies();
-        populateCoins();
-
-        //buildDoors();
+        populateItems();
 
         hud = new HUD(player);
 
-        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
-        bgMusic.play();
+//        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
+//        bgMusic.play();
 
-        door = new Door(tileMap);
+        yKey = new YellowKey(tileMap);
+        yKey.setPosition(150, 170);
 
     }
 
@@ -88,10 +89,14 @@ public class Level1State extends GameState {
                 }
     }
 
-    private void populateCoins() {
+    private void populateItems() {
 
         goldCoins = new ArrayList<GoldCoin>();
 
+
+        openDoors = new ArrayList<OpenDoor>();
+        closedDoors = new ArrayList<ClosedDoor>();
+        //coins
         GoldCoin c;
         Point[] coinPoints = new Point[]{
                 new Point(140, 100),
@@ -112,36 +117,50 @@ public class Level1State extends GameState {
             c.setPosition(coinPoints[i].x, coinPoints[i].y);
             goldCoins.add(c);
         }
+        //doors
+        ClosedDoor d;
+        Point[] doorPoints = new Point[]{
+                new Point(300, 135)
+        };
+        for (int i = 0; i < doorPoints.length; i++) {
+            d = new ClosedDoor(tileMap);
+            d.setPosition(doorPoints[i].getX(), doorPoints[i].getY());
+            closedDoors.add(d);
+        }
     }
 
     public void draw(Graphics2D g) {
+
         bg.draw(g);
         tileMap.draw(g);
         player.draw(g);
-
-        //draw hud
         hud.draw(g);
 
-        //draw enemies
+        if(!yKey.isDead()) {
+            yKey.draw(g);
+        }
         //slugs
-            for (int i = 0; i < slugs.size(); i++) {
-                slugs.get(i).draw(g);
-            }
+        for (int i = 0; i < slugs.size(); i++) {
+            slugs.get(i).draw(g);
+        }
         //shells
         for (int i = 0; i < shells.size(); i++) {
             shells.get(i).draw(g);
         }
-        //draw goldCoins
+        //goldCoins
         for (int i = 0; i < goldCoins.size(); i++) {
             goldCoins.get(i).draw(g);
         }
-
-        door.draw(g);
+        //doors
+        for (int i = 0; i < closedDoors.size(); i++) {
+            closedDoors.get(i).draw(g);
+        }
+        for (int i = 0; i < openDoors.size(); i++) {
+            openDoors.get(i).draw(g);
+        }
     }
 
     public void update() {
-
-        //System.out.println("X = " + doors.size());
 
         player.update();
 
@@ -150,10 +169,12 @@ public class Level1State extends GameState {
                 GamePanel.HEIGHT / 2 - player.gety()
         );
 
-        //check coin collect
+        //coin collect
         player.checkCollect(goldCoins);
-        player.checkDead(player);
+        //keys
+        player.checkKeys(yKey);
 
+        player.checkDead(player);
         //set background
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
@@ -174,7 +195,6 @@ public class Level1State extends GameState {
                         new Shell(tileMap, e.getx(), e.gety()));
             }
         }
-
         //update shells
         for (int i = 0; i < shells.size(); i++) {
             Enemy e = shells.get(i);
@@ -183,7 +203,6 @@ public class Level1State extends GameState {
                 i--;
             }
         }
-
         //update goldCoins
         for (int i = 0; i < goldCoins.size(); i++) {
             goldCoins.get(i).update();
@@ -191,7 +210,19 @@ public class Level1State extends GameState {
                 goldCoins.remove(i);
             }
         }
+        //update doors
+        for (int i = 0; i < closedDoors.size(); i++) {
+            ClosedDoor d = closedDoors.get(i);
+            //d.update();
+            if (player.getKey()) {
+                closedDoors.remove(i);
+                i--;
+                openDoors.add(
+                        new OpenDoor(tileMap, d.getx(), d.gety()));
+            }
+        }
 
+        //update player death
         if (player.isDead()) {
             gsm.setState(GameStateManager.LEVEL1STATE);
         }

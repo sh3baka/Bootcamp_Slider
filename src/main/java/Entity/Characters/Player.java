@@ -2,6 +2,7 @@ package Entity.Characters;
 
 import Audio.AudioPlayer;
 import Entity.Collectible.GoldCoin;
+import Entity.Collectible.YellowKey;
 import Entity.Effects.Animation;
 import TileMap.TileMap;
 import javax.imageio.ImageIO;
@@ -30,7 +31,9 @@ public class Player extends MapObject {
     private boolean dead;
     private boolean flinching;
     private long flinchTimer;
+
     private static int coins;
+    private boolean hasKey;
 
     // animations
     private ArrayList<BufferedImage[]> sprites;
@@ -50,10 +53,12 @@ public class Player extends MapObject {
         stopSpeed = 0.4;
         fallSpeed = 0.15;
         jumpStart = -4.8;
-        killJumpStart = -7.7;
+        killJumpStart = -7.6;
         stopJumpSpeed = 0.3;
         maxFallSpeed = 4.0;
+
         coins = 0;
+        hasKey = false;
 
         facingRight = true;
 
@@ -102,6 +107,10 @@ public class Player extends MapObject {
 
     }
 
+    public boolean getKey() { return hasKey; }
+
+    public void setKey(boolean hasKey) { this.hasKey = hasKey; }
+
     public static int getScore() { return score; }
 
     public void setScore(int score) {
@@ -144,9 +153,7 @@ public class Player extends MapObject {
                 if (intersects(e) && this.falling) {
 
                     dy = killJumpStart;
-
                     e.health--;
-
                     setScore(getScore() + e.getWorth());
 
                 } else if (intersects(e)) {
@@ -157,16 +164,18 @@ public class Player extends MapObject {
 
                 if (intersects(e) && this.falling) {
 
-
-
                     dy = killJumpStart;
-
                     e.health--;
-
                     setScore(getScore() + e.getWorth());
 
                 }
             }
+        }
+    }
+    public void checkKeys(YellowKey key) {
+        if (intersects(key)) {
+            setKey(true);
+            key.dead = true;
         }
     }
 
@@ -210,7 +219,7 @@ public class Player extends MapObject {
 
         //jumping
         if (jumping && !falling) {
-           // sfx.get("jump").play();
+            sfx.get("jump").play();
             dy = jumpStart;
             falling = true;
         }
@@ -322,6 +331,6 @@ public class Player extends MapObject {
     public void setPosition(double x, double y) {
         super.x = x;
         super.y = y;
-        System.out.println("X: " + (int)super.x + " Y: " + (int)super.y);
+        //System.out.println("X: " + (int)super.x + " Y: " + (int)super.y);
     }
 }

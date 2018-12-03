@@ -1,29 +1,32 @@
-package Entity.Collectible;
+package Entity.Effects;
 
-import Entity.Effects.Animation;
+import Entity.Characters.MapObject;
 import TileMap.TileMap;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class YellowKey extends Collectible {
+public class OpenDoor extends MapObject {
 
     private BufferedImage[] sprites;
 
-    public YellowKey(TileMap tm) {
+    public OpenDoor(TileMap tm, int x, int y) {
         super(tm);
 
-        width = 70;
-        height = 70;
-        cwidth = 70;
-        cheight = 70;
+        this.x = x;
+        this.y = y;
+
+        width = 30;
+        height = 30;
+        cwidth = 30;
+        cheight = 30;
 
         try {
 
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Items/keyYellow.png"
+                            "/Tiles/door_open.png"
                     )
             );
             sprites = new BufferedImage[1];
@@ -41,7 +44,7 @@ public class YellowKey extends Collectible {
 
         animation = new Animation();
         animation.setFrames(sprites);
-        animation.setDelay(300);
+        animation.setDelay(30);
     }
 
     public void draw(Graphics2D g) {
@@ -50,7 +53,12 @@ public class YellowKey extends Collectible {
 
         setMapPosition();
         super.draw(g);
-
     }
+    public void update() {
+        //update position
+        checkTileMapCollision();
+        setPosition(xtemp, ytemp);
 
+        animation.update();
+    }
 }

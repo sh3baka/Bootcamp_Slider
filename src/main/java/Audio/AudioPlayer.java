@@ -29,7 +29,7 @@ public class AudioPlayer {
             AudioInputStream dais =
                     AudioSystem.getAudioInputStream(
                             decodeFormat, ais);
-            clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip(null);
             clip.open(dais);
 
         } catch (Exception e) {
