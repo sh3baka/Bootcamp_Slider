@@ -59,7 +59,7 @@ public class Level1State extends GameState {
 
         hud = new HUD(player);
 
-        bgMusic = new AudioPlayer("/Music/Fantasy_Game_Backgroundd.mp3");
+        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
         bgMusic.play();
 
         door = new Door(tileMap);
