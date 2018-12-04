@@ -60,8 +60,8 @@ public class Level1State extends GameState {
 
         hud = new HUD(player);
 
-//        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
-//        bgMusic.play();
+        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
+        bgMusic.play();
 
         yKey = new YellowKey(tileMap);
         yKey.setPosition(150, 170);
@@ -224,6 +224,7 @@ public class Level1State extends GameState {
 
         //update player death
         if (player.isDead()) {
+            bgMusic.stop();
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
 
