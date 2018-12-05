@@ -61,18 +61,18 @@ public class Slugger extends Enemy {
 
     private void getNextPosition() {
 
-            //movement
-            if (left) {
-                dx -= moveSpeed;
-                if (dx < -maxSpeed) {
-                    dx = -maxSpeed;
-                }
-            } else if (right) {
-                dx += moveSpeed;
-                if (dx > maxSpeed) {
-                    dx = maxSpeed;
-                }
+        //movement
+        if (left) {
+            dx -= moveSpeed;
+            if (dx < -maxSpeed) {
+                dx = -maxSpeed;
             }
+        } else if (right) {
+            dx += moveSpeed;
+            if (dx > maxSpeed) {
+                dx = maxSpeed;
+            }
+        }
         //falling
         if (falling) {
             dy += fallSpeed;
@@ -93,7 +93,6 @@ public class Slugger extends Enemy {
         getNextPosition();
         checkTileMapCollision();
         setPosition(xtemp, ytemp);
-
 
 
         //if it hits a wall, go other direction

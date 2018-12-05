@@ -21,7 +21,7 @@ public class Topaz extends Collectible {
         cwidth = 20;
         cheight = 20;
 
-        score = 0;
+        score = 500;
 
         try {
 

@@ -56,14 +56,14 @@ public class HUD {
         int offset = 0;
         int offsetMax = 0;
 
-        for(int i = 0; i < player.getMaxHealth(); i++) {
+        for (int i = 0; i < player.getMaxHealth(); i++) {
 
             g.drawImage(heartEmpty, 0 + offsetMax, 0, null);
             offsetMax += 20;
 
         }
 
-        for(int i = 0; i < player.getHealth(); i++) {
+        for (int i = 0; i < player.getHealth(); i++) {
 
             g.drawImage(heart, 0 + offset, 0, null);
             offset += 20;

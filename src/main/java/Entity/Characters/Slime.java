@@ -28,6 +28,7 @@ public class Slime extends Enemy {
 
         health = maxHealth = 1;
         damage = 1;
+        worth = 15;
 
         //load sprites
         try {

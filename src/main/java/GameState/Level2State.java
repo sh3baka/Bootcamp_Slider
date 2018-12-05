@@ -68,22 +68,22 @@ public class Level2State extends GameState {
     private void populateEnemies() {
 
 
-                slugs = new ArrayList<Enemy>();
-                shells = new ArrayList<Enemy>();
+        slugs = new ArrayList<Enemy>();
+        shells = new ArrayList<Enemy>();
 
-                Slugger s;
+        Slugger s;
 
-                Point[] points = new Point[]{
-                        new Point(160, 180),
-                        new Point(260, 180),
-                        new Point(460, 180)
-                };
+        Point[] points = new Point[]{
+                new Point(160, 180),
+                new Point(260, 180),
+                new Point(460, 180)
+        };
 
-                for (int i = 0; i < points.length; i++) {
-                    s = new Slugger(tileMap);
-                    s.setPosition(points[i].x, points[i].y);
-                    slugs.add(s);
-                }
+        for (int i = 0; i < points.length; i++) {
+            s = new Slugger(tileMap);
+            s.setPosition(points[i].x, points[i].y);
+            slugs.add(s);
+        }
     }
 
     private void populateItems() {
@@ -134,7 +134,7 @@ public class Level2State extends GameState {
         player.draw(g);
         hud.draw(g);
 
-        if(!yKey.isDead()) {
+        if (!yKey.isDead()) {
             yKey.draw(g);
         }
         //slugs

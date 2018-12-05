@@ -51,6 +51,7 @@ public class ClosedDoor extends MapObject {
         setMapPosition();
         super.draw(g);
     }
+
     public void update() {
         //update position
         checkTileMapCollision();

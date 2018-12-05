@@ -17,7 +17,7 @@ public class Fly extends Enemy {
 
         moveSpeed = 0.3;
         maxSpeed = 0.3;
-        fallSpeed = 0.2;
+        fallSpeed = 0;
         maxFallSpeed = 10.0;
 
         width = 33;
@@ -25,8 +25,9 @@ public class Fly extends Enemy {
         cwidth = 30;
         cheight = 10;
 
-        health = maxHealth = 2;
+        health = maxHealth = 1;
         damage = 1;
+        worth = 15;
 
         //load sprites
         try {

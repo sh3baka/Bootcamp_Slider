@@ -1,10 +1,7 @@
 package GameState;
 
 import Audio.AudioPlayer;
-import Entity.Characters.Enemy;
-import Entity.Characters.Player;
-import Entity.Characters.Shell;
-import Entity.Characters.Slugger;
+import Entity.Characters.*;
 import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
 import Entity.Effects.ClosedDoor;
@@ -28,6 +25,8 @@ public class Level1State extends GameState {
     private HUD hud;
     private ArrayList<Enemy> slugs;
     private ArrayList<Enemy> shells;
+    private ArrayList<Enemy> flys;
+    private ArrayList<Enemy> slimes;
 
     private YellowKey yKey;
     private ArrayList<ClosedDoor> closedDoors;
@@ -53,6 +52,8 @@ public class Level1State extends GameState {
 
         slugs = new ArrayList<Enemy>();
         shells = new ArrayList<Enemy>();
+        flys = new ArrayList<Enemy>();
+        slimes = new ArrayList<Enemy>();
 
         bg = new Background("/Backgrounds/bg_lvl1.gif", 0.1);
 
@@ -72,19 +73,43 @@ public class Level1State extends GameState {
     private void populateEnemies() {
 
         Slugger s;
+        Fly fly;
+        Slime slime;
 
-        LinkedList<Point> points = new LinkedList<Point>();
-              points.add(new Point(160, 180));
-                points.add(new Point(260, 180)) ;
-               points.add(new Point(460, 180)) ;
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(160, 180));
 
-               for(Point point : points){
-                   if(player.getx() > 200 && player.getx() < 203) {
-                       s = new Slugger(tileMap);
-                       s.setPosition(point.x, point.y);
-                       slugs.add(s);
-                   }
-               }
+        for (Point point : sluggerPoints) {
+            if (player.getx() > 200 && player.getx() < 203) {
+                s = new Slugger(tileMap);
+                s.setPosition(point.x, point.y);
+                slugs.add(s);
+            }
+        }
+
+        LinkedList<Point> flyPoints = new LinkedList<Point>();
+        flyPoints.add(new Point(180,100));
+
+        for (Point point : flyPoints){
+            if (player.getx() > 200 && player.getx() < 203) {
+                fly = new Fly(tileMap);
+                fly.setPosition(point.x, point.y);
+                flys.add(fly);
+            }
+        }
+
+        LinkedList<Point> slimePoints = new LinkedList<Point>();
+        slimePoints.add(new Point(220,100));
+
+        for (Point point : slimePoints){
+            if (player.getx() > 200 && player.getx() < 203) {
+                slime = new Slime(tileMap);
+                slime.setPosition(point.x, point.y);
+                slimes.add(slime);
+            }
+        }
+
+
     }
 
     private void populateItems() {
@@ -147,10 +172,16 @@ public class Level1State extends GameState {
         if(!yKey.isDead()) {
             yKey.draw(g);
         }
+
+
         //slugs
         drawAll(g, slugs);
         //shells
         drawAll(g, shells);
+        //Fly
+        drawAll(g, flys);
+        // slime
+        drawAll(g, slimes);
         //goldCoins
         for (int i = 0; i < goldCoins.size(); i++) {
             goldCoins.get(i).draw(g);
@@ -185,6 +216,16 @@ public class Level1State extends GameState {
 
         //attack shells
         player.checkAttack(shells);
+
+        for (int i = 0; i < flys.size(); i++) {
+            Enemy e = flys.get(i);
+            e.update();
+        }
+
+        for (int i = 0; i < slimes.size(); i++) {
+            Enemy e = slimes.get(i);
+            e.update();
+        }
 
         //update slugs
         for (int i = 0; i < slugs.size(); i++) {
@@ -223,7 +264,7 @@ public class Level1State extends GameState {
             }
         }
         //update level
-        if ( player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
+        if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
             bgMusic.stop();
             gsm.setState(GameStateManager.LEVEL2STATE);
         }

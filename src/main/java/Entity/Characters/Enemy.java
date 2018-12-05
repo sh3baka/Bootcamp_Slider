@@ -15,7 +15,6 @@ public class Enemy extends MapObject {
 
 
     public Enemy(TileMap tm) {
-
         super(tm);
     }
 
@@ -40,7 +39,9 @@ public class Enemy extends MapObject {
         return health;
     }
 
-    public int getWorth() { return worth; }
+    public int getWorth() {
+        return worth;
+    }
 
     public void update() {
     }

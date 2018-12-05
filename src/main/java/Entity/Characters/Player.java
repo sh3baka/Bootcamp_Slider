@@ -5,6 +5,7 @@ import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
 import Entity.Effects.Animation;
 import TileMap.TileMap;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,21 +19,18 @@ public class Player extends MapObject {
     private static final int WALKING = 1;
     private static final int JUMPING = 2;
     private static final int FALLING = 3;
-
-    private HashMap<String, AudioPlayer> sfx;
-
     public static int score = 0;
+    private static int coins;
     private final int[] numFrames = {
             2, 8, 1, 2
     };
+    private HashMap<String, AudioPlayer> sfx;
     //player stuff
     private int health;
     private int maxHealth;
     private boolean dead;
     private boolean flinching;
     private long flinchTimer;
-
-    private static int coins;
     private boolean hasKey;
 
     private static double X;
@@ -112,17 +110,25 @@ public class Player extends MapObject {
     public static double getX() { return X; }
     public static double getY() { return Y; }
 
-    public boolean getKey() { return hasKey; }
-
-    public void setKey(boolean hasKey) { this.hasKey = hasKey; }
-
-    public static int getScore() { return score; }
+    public static int getScore() {
+        return score;
+    }
 
     public void setScore(int score) {
         this.score = score;
     }
 
-    public static int getCoins() { return coins; }
+    public static int getCoins() {
+        return coins;
+    }
+
+    public boolean getKey() {
+        return hasKey;
+    }
+
+    public void setKey(boolean hasKey) {
+        this.hasKey = hasKey;
+    }
 
     public void setCoins(int coins) { this.coins = coins; }
 
@@ -181,6 +187,7 @@ public class Player extends MapObject {
             }
         }
     }
+
     public void checkKeys(YellowKey key) {
         if (intersects(key)) {
             setKey(true);
@@ -326,7 +333,7 @@ public class Player extends MapObject {
         //draw player
         if (notOnScreen()) {
             this.dead = true;
-            }
+        }
 
         if (flinching) {
             long elapsed =
