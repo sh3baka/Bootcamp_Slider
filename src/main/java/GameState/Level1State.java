@@ -22,20 +22,20 @@ public class Level1State extends GameState {
     Player player;
     private TileMap tileMap;
     private Background bg;
-
     private HUD hud;
+
     private ArrayList<Enemy> slugs;
     private ArrayList<Enemy> shells;
     private ArrayList<Enemy> flys;
     private ArrayList<Enemy> slimes;
 
+    private ArrayList<Collectible> goldCoins;
     private YellowKey yKey;
     private ArrayList<ClosedDoor> closedDoors;
     private ArrayList<OpenDoor> openDoors;
 
     private AudioPlayer bgMusic;
 
-    private ArrayList<Collectible> goldCoins;
     private int stage;
 
     public Level1State(GameStateManager gsm) {
@@ -49,12 +49,14 @@ public class Level1State extends GameState {
         tileMap.loadTiles("/tiles_lvl1.png");
         tileMap.loadMap("/levelMap1.csv");
         tileMap.setPosition(0, 0);
-        tileMap.setTween(0.07);
+        tileMap.setTween(0.06);
 
         slugs = new ArrayList<Enemy>();
         shells = new ArrayList<Enemy>();
         flys = new ArrayList<Enemy>();
         slimes = new ArrayList<Enemy>();
+
+        goldCoins = new ArrayList<Collectible>();
 
         bg = new Background("/Backgrounds/bg_lvl1.gif", 0.1);
 
@@ -82,27 +84,27 @@ public class Level1State extends GameState {
         sluggerPoints.add(new Point(160, 180));
 
         for (Point point : sluggerPoints) {
-                s = new Slugger(tileMap);
-                s.setPosition(point.x, point.y);
-                slugs.add(s);
+            s = new Slugger(tileMap);
+            s.setPosition(point.x, point.y);
+            slugs.add(s);
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(180,100));
+        flyPoints.add(new Point(180, 100));
 
-        for (Point point : flyPoints){
-                fly = new Fly(tileMap);
-                fly.setPosition(point.x, point.y);
-                flys.add(fly);
+        for (Point point : flyPoints) {
+            fly = new Fly(tileMap);
+            fly.setPosition(point.x, point.y);
+            flys.add(fly);
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(220,100));
+        slimePoints.add(new Point(220, 100));
 
-        for (Point point : slimePoints){
-                slime = new Slime(tileMap);
-                slime.setPosition(point.x, point.y);
-                slimes.add(slime);
+        for (Point point : slimePoints) {
+            slime = new Slime(tileMap);
+            slime.setPosition(point.x, point.y);
+            slimes.add(slime);
         }
         //coins
         goldCoins = new ArrayList<Collectible>();
@@ -118,6 +120,7 @@ public class Level1State extends GameState {
             goldCoins.add(c);
         }
     }
+
     private void populateThings1() {
         Slugger s;
         Fly fly;
@@ -132,16 +135,16 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(280,100));
-        for (Point point : flyPoints){
+        flyPoints.add(new Point(280, 100));
+        for (Point point : flyPoints) {
             fly = new Fly(tileMap);
             fly.setPosition(point.x, point.y);
             flys.add(fly);
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(320,100));
-        for (Point point : slimePoints){
+        slimePoints.add(new Point(320, 100));
+        for (Point point : slimePoints) {
             slime = new Slime(tileMap);
             slime.setPosition(point.x, point.y);
             slimes.add(slime);
@@ -196,7 +199,7 @@ public class Level1State extends GameState {
         player.draw(g);
         hud.draw(g);
         //key
-        if(!yKey.isDead()) {
+        if (!yKey.isDead()) {
             yKey.draw(g);
         }
         //draw stuff
@@ -212,11 +215,13 @@ public class Level1State extends GameState {
             e.draw(g);
         }
     }
+
     private void drawThings(Graphics2D g, ArrayList<Collectible> things) {
         for (Collectible c : things) {
             c.draw(g);
         }
     }
+
     private void updateEnemies(ArrayList<Enemy> enemies) {
         for (Enemy e : enemies) {
             e.update();

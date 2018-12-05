@@ -87,18 +87,18 @@ public class Level2State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(180,100));
+        flyPoints.add(new Point(180, 100));
 
-        for (Point point : flyPoints){
+        for (Point point : flyPoints) {
             fly = new Fly(tileMap);
             fly.setPosition(point.x, point.y);
             flys.add(fly);
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(220,100));
+        slimePoints.add(new Point(220, 100));
 
-        for (Point point : slimePoints){
+        for (Point point : slimePoints) {
             slime = new Slime(tileMap);
             slime.setPosition(point.x, point.y);
             slimes.add(slime);
@@ -117,6 +117,7 @@ public class Level2State extends GameState {
             goldCoins.add(c);
         }
     }
+
     private void populateThings1() {
         Slugger s;
         Fly fly;
@@ -131,16 +132,16 @@ public class Level2State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(280,100));
-        for (Point point : flyPoints){
+        flyPoints.add(new Point(280, 100));
+        for (Point point : flyPoints) {
             fly = new Fly(tileMap);
             fly.setPosition(point.x, point.y);
             flys.add(fly);
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(320,100));
-        for (Point point : slimePoints){
+        slimePoints.add(new Point(320, 100));
+        for (Point point : slimePoints) {
             slime = new Slime(tileMap);
             slime.setPosition(point.x, point.y);
             slimes.add(slime);
@@ -195,7 +196,7 @@ public class Level2State extends GameState {
         player.draw(g);
         hud.draw(g);
         //key
-        if(!yKey.isDead()) {
+        if (!yKey.isDead()) {
             yKey.draw(g);
         }
         //draw stuff
@@ -211,11 +212,13 @@ public class Level2State extends GameState {
             e.draw(g);
         }
     }
+
     private void drawThings(Graphics2D g, ArrayList<Collectible> things) {
         for (Collectible c : things) {
             c.draw(g);
         }
     }
+
     private void updateEnemies(ArrayList<Enemy> enemies) {
         for (Enemy e : enemies) {
             e.update();

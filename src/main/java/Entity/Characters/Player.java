@@ -2,7 +2,6 @@ package Entity.Characters;
 
 import Audio.AudioPlayer;
 import Entity.Collectible.Collectible;
-import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
 import Entity.Effects.Animation;
 import TileMap.TileMap;
@@ -22,6 +21,8 @@ public class Player extends MapObject {
     private static final int FALLING = 3;
     public static int score = 0;
     private static int coins;
+    private static double X;
+    private static double Y;
     private final int[] numFrames = {
             2, 8, 1, 2
     };
@@ -33,10 +34,6 @@ public class Player extends MapObject {
     private boolean flinching;
     private long flinchTimer;
     private boolean hasKey;
-
-    private static double X;
-    private static double Y;
-
     // animations
     private ArrayList<BufferedImage[]> sprites;
 
@@ -108,8 +105,14 @@ public class Player extends MapObject {
         sfx.put("jump", new AudioPlayer("/SFX/jumpland44100.mp3"));
 
     }
-    public static double getX() { return X; }
-    public static double getY() { return Y; }
+
+    public static double getX() {
+        return X;
+    }
+
+    public static double getY() {
+        return Y;
+    }
 
     public static int getScore() {
         return score;
@@ -123,6 +126,10 @@ public class Player extends MapObject {
         return coins;
     }
 
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
     public boolean getKey() {
         return hasKey;
     }
@@ -131,9 +138,9 @@ public class Player extends MapObject {
         this.hasKey = hasKey;
     }
 
-    public void setCoins(int coins) { this.coins = coins; }
-
-    public int getHealth() { return health; }
+    public int getHealth() {
+        return health;
+    }
 
     public int getMaxHealth() {
         return maxHealth;
@@ -350,6 +357,5 @@ public class Player extends MapObject {
     public void setPosition(double x, double y) {
         super.x = x;
         super.y = y;
-        //System.out.println("X: " + (int)super.x + " Y: " + (int)super.y);
     }
 }
