@@ -52,7 +52,7 @@ public class Level2State extends GameState {
         bg = new Background("/Backgrounds/bg_lvl2.png", 0.1);
 
         player = new Player(tileMap);
-        player.setPosition(80, 100);
+        player.setPosition(190, 0);
         player.setScore(0);
 
         populateEnemies();

@@ -37,7 +37,7 @@ public class Slugger extends Enemy {
                             "/Enemies/snailWalk1.png"
                     )
             );
-            sprites = new BufferedImage[4];
+            sprites = new BufferedImage[6];
             for (int i = 0; i < sprites.length; i++) {
                 sprites[i] = spritesheet.getSubimage(
                         i * width,
@@ -52,7 +52,7 @@ public class Slugger extends Enemy {
 
         animation = new Animation();
         animation.setFrames(sprites);
-        animation.setDelay(300);
+        animation.setDelay(100);
 
         right = true;
         facingRight = false;

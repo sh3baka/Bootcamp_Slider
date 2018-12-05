@@ -46,7 +46,7 @@ public class Level1State extends GameState {
     public void init() {
         tileMap = new TileMap(30);
         tileMap.loadTiles("/tiles_lvl1.png");
-        tileMap.loadMap("/TestMap.csv");
+        tileMap.loadMap("/levelMap1.csv");
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.07);
 
@@ -128,7 +128,7 @@ public class Level1State extends GameState {
         closedDoors = new ArrayList<ClosedDoor>();
         ClosedDoor d;
         Point[] doorPoints = new Point[]{
-                new Point(300, 135)
+                new Point(5910, 135)
         };
         for (int i = 0; i < doorPoints.length; i++) {
             d = new ClosedDoor(tileMap);
@@ -238,7 +238,7 @@ public class Level1State extends GameState {
             }
         }
         //update level
-        if ( player.getKey() && player.getx() > 296 && player.getx() < 303 && player.gety() > 130 && player.gety() < 142) {
+        if ( player.getKey() && player.getx() > 5910 && player.getx() < 5940 && player.gety() > 135 && player.gety() < 175) {
             gsm.setState(GameStateManager.LEVEL2STATE);
         }
         //update player death
