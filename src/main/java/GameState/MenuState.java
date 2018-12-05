@@ -58,19 +58,17 @@ public class MenuState extends GameState {
         //draw title
         g.setColor(titleColor);
         g.setFont(titleFont);
-        g.drawString("Alien", 30, 60);
-        g.drawString("   vs", 60, 90);
-        g.drawString("Predators", 30, 120);
+        //g.drawString("Alien vs Predators", 30, 70);
 
         //draw menu options
         g.setFont(font);
         for (int i = 0; i < options.length; i++) {
             if (i == currentChoice) {
-                g.setColor(Color.BLACK);
+                g.setColor(Color.WHITE);
             } else {
-                g.setColor(Color.RED);
+                g.setColor(Color.DARK_GRAY);
             }
-            g.drawString(options[i], 145, 140 + i * 15);
+            g.drawString(options[i], 250, 140 + i * 15);
         }
     }
 
