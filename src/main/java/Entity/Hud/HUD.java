@@ -14,6 +14,7 @@ public class HUD {
     private BufferedImage heart;
     private BufferedImage heartEmpty;
     private BufferedImage coin;
+    private BufferedImage key;
     private Font font;
 
     public HUD(Player p) {
@@ -34,6 +35,12 @@ public class HUD {
             coin = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/HUD/hud_coins.png"
+
+                    )
+            );
+            key = ImageIO.read(
+                    getClass().getResourceAsStream(
+                            "/Items/keyYellow.png"
 
                     )
             );
@@ -63,6 +70,9 @@ public class HUD {
 
         }
         g.drawImage(coin, GamePanel.WIDTH - 100, 1, null);
+        if (player.getKey()) {
+            g.drawImage(key, GamePanel.WIDTH - 150, -15, null);
+        }
         g.setFont(font);
         g.setColor(Color.WHITE);
         g.drawString("Score: " + Player.getScore(), 20, 50);

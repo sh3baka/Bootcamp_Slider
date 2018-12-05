@@ -16,8 +16,8 @@ public class YellowKey extends Collectible {
 
         width = 70;
         height = 70;
-        cwidth = 70;
-        cheight = 70;
+        cwidth = 20;
+        cheight = 10;
 
         try {
 

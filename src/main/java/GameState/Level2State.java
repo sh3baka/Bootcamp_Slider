@@ -18,7 +18,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class Level1State extends GameState {
+public class Level2State extends GameState {
 
     Player player;
     private TileMap tileMap;
@@ -37,19 +37,19 @@ public class Level1State extends GameState {
     private ArrayList<GoldCoin> goldCoins;
     private int stage = 1;
 
-    public Level1State(GameStateManager gsm) {
+    public Level2State(GameStateManager gsm) {
         this.gsm = gsm;
         init();
     }
 
     public void init() {
         tileMap = new TileMap(30);
-        tileMap.loadTiles("/tiles_lvl1.png");
-        tileMap.loadMap("/TestMap.csv");
+        tileMap.loadTiles("/tiles_lvl2.png");
+        tileMap.loadMap("/levelMap2.csv");
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.07);
 
-        bg = new Background("/Backgrounds/bg_lvl1.gif", 0.1);
+        bg = new Background("/Backgrounds/bg_lvl2.png", 0.1);
 
         player = new Player(tileMap);
         player.setPosition(80, 100);
@@ -131,13 +131,6 @@ public class Level1State extends GameState {
 
         bg.draw(g);
         tileMap.draw(g);
-        //doors
-        for (int i = 0; i < closedDoors.size(); i++) {
-            closedDoors.get(i).draw(g);
-        }
-        for (int i = 0; i < openDoors.size(); i++) {
-            openDoors.get(i).draw(g);
-        }
         player.draw(g);
         hud.draw(g);
 
@@ -156,7 +149,13 @@ public class Level1State extends GameState {
         for (int i = 0; i < goldCoins.size(); i++) {
             goldCoins.get(i).draw(g);
         }
-
+        //doors
+        for (int i = 0; i < closedDoors.size(); i++) {
+            closedDoors.get(i).draw(g);
+        }
+        for (int i = 0; i < openDoors.size(); i++) {
+            openDoors.get(i).draw(g);
+        }
     }
 
     public void update() {
@@ -212,6 +211,7 @@ public class Level1State extends GameState {
         //update doors
         for (int i = 0; i < closedDoors.size(); i++) {
             ClosedDoor d = closedDoors.get(i);
+            //d.update();
             if (player.getKey()) {
                 closedDoors.remove(i);
                 i--;
@@ -219,10 +219,7 @@ public class Level1State extends GameState {
                         new OpenDoor(tileMap, d.getx(), d.gety()));
             }
         }
-        //update level
-        if ( player.getKey() && player.getx() > 296 && player.getx() < 303 && player.gety() > 130 && player.gety() < 142) {
-            gsm.setState(GameStateManager.LEVEL2STATE);
-        }
+
         //update player death
         if (player.isDead()) {
             bgMusic.stop();
