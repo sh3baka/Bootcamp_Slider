@@ -315,7 +315,6 @@ public class Player extends MapObject {
         //draw player
         if (notOnScreen()) {
             this.dead = true;
-
             }
 
         if (flinching) {

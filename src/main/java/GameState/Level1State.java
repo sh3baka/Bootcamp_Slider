@@ -17,6 +17,7 @@ import TileMap.TileMap;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Level1State extends GameState {
 
@@ -49,41 +50,50 @@ public class Level1State extends GameState {
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.07);
 
+        slugs = new ArrayList<Enemy>();
+        shells = new ArrayList<Enemy>();
+
         bg = new Background("/Backgrounds/bg_lvl1.gif", 0.1);
 
         player = new Player(tileMap);
         player.setPosition(80, 100);
         player.setScore(0);
 
-        populateEnemies();
+
         populateItems();
+
 
         hud = new HUD(player);
 
-//        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
-//        bgMusic.play();
+        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
+        bgMusic.play();
+
+        yKey = new YellowKey(tileMap);
+        yKey.setPosition(150, 170);
+
 
     }
 
     private void populateEnemies() {
 
 
-                slugs = new ArrayList<Enemy>();
-                shells = new ArrayList<Enemy>();
 
-                Slugger s;
 
-                Point[] points = new Point[]{
-                        new Point(160, 180),
-                        new Point(260, 180),
-                        new Point(460, 180)
-                };
+        Slugger s;
 
-                for (int i = 0; i < points.length; i++) {
-                    s = new Slugger(tileMap);
-                    s.setPosition(points[i].x, points[i].y);
-                    slugs.add(s);
-                }
+
+        LinkedList<Point> points = new LinkedList<Point>();
+              points.add(new Point(160, 180));
+                points.add(new Point(260, 180)) ;
+               points.add(new Point(460, 180)) ;
+
+               for(Point point : points){
+                   if(player.getx() > 200 && player.getx() < 203) {
+                       s = new Slugger(tileMap);
+                       s.setPosition(point.x, point.y);
+                       slugs.add(s);
+                   }
+               }
     }
 
     private void populateItems() {
@@ -141,22 +151,27 @@ public class Level1State extends GameState {
         player.draw(g);
         hud.draw(g);
 
-        if(!yKey.isDead()) {
+        if (!yKey.isDead()) {
             yKey.draw(g);
         }
+
+
+
         //slugs
-        for (int i = 0; i < slugs.size(); i++) {
-            slugs.get(i).draw(g);
-        }
+        drawAll(g, slugs);
         //shells
-        for (int i = 0; i < shells.size(); i++) {
-            shells.get(i).draw(g);
-        }
+        drawAll(g, shells);
         //goldCoins
         for (int i = 0; i < goldCoins.size(); i++) {
             goldCoins.get(i).draw(g);
         }
 
+    }
+
+    private void drawAll(Graphics2D g, ArrayList<Enemy> slugs) {
+        for (int i = 0; i < slugs.size(); i++) {
+            slugs.get(i).draw(g);
+        }
     }
 
     public void update() {
@@ -168,6 +183,7 @@ public class Level1State extends GameState {
                 GamePanel.HEIGHT / 2 - player.gety()
         );
 
+        populateEnemies();
         //coin collect
         player.checkCollect(goldCoins);
         //keys
@@ -202,6 +218,7 @@ public class Level1State extends GameState {
                 i--;
             }
         }
+
         //update goldCoins
         for (int i = 0; i < goldCoins.size(); i++) {
             goldCoins.get(i).update();
@@ -212,6 +229,7 @@ public class Level1State extends GameState {
         //update doors
         for (int i = 0; i < closedDoors.size(); i++) {
             ClosedDoor d = closedDoors.get(i);
+            //d.update();
             if (player.getKey()) {
                 closedDoors.remove(i);
                 i--;

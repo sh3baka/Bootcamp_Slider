@@ -1,7 +1,6 @@
 package Entity.Characters;
 
 import Entity.Effects.Animation;
-import Entity.Effects.Explosion;
 import TileMap.TileMap;
 
 import javax.imageio.ImageIO;
@@ -62,28 +61,26 @@ public class Slugger extends Enemy {
 
     private void getNextPosition() {
 
-        //movement
-        if (left) {
-            dx -= moveSpeed;
-            if (dx < -maxSpeed) {
-                dx = -maxSpeed;
+            //movement
+            if (left) {
+                dx -= moveSpeed;
+                if (dx < -maxSpeed) {
+                    dx = -maxSpeed;
+                }
+            } else if (right) {
+                dx += moveSpeed;
+                if (dx > maxSpeed) {
+                    dx = maxSpeed;
+                }
             }
-        } else if (right) {
-            dx += moveSpeed;
-            if (dx > maxSpeed) {
-                dx = maxSpeed;
-            }
-        }
         //falling
         if (falling) {
             dy += fallSpeed;
-
         }
+
     }
 
     public void draw(Graphics2D g) {
-
-        //if(!notOnScreen()) return;
 
         setMapPosition();
         super.draw(g);
@@ -96,6 +93,8 @@ public class Slugger extends Enemy {
         getNextPosition();
         checkTileMapCollision();
         setPosition(xtemp, ytemp);
+
+
 
         //if it hits a wall, go other direction
         if (right && dx == 0) {
