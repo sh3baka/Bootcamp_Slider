@@ -44,15 +44,15 @@ public class Level1State extends GameState {
 
     public void init() {
         tileMap = new TileMap(30);
-        tileMap.loadTiles("/tiles_lvl1.png");
-        tileMap.loadMap("/TestMap.csv");
+        tileMap.loadTiles("/tiles_lvl2.png");
+        tileMap.loadMap("/levelMap2.csv");
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.07);
 
-        bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
+        bg = new Background("/Backgrounds/bg_lvl2.png", 0.1);
 
         player = new Player(tileMap);
-        player.setPosition(40, 100);
+        player.setPosition(80, 100);
         player.setScore(0);
 
         populateEnemies();
