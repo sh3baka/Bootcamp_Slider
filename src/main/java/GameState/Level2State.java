@@ -1,10 +1,7 @@
 package GameState;
 
 import Audio.AudioPlayer;
-import Entity.Characters.Enemy;
-import Entity.Characters.Player;
-import Entity.Characters.Shell;
-import Entity.Characters.Slugger;
+import Entity.Characters.*;
 import Entity.Collectible.Collectible;
 import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
@@ -18,6 +15,7 @@ import TileMap.TileMap;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Level2State extends GameState {
 
@@ -28,6 +26,8 @@ public class Level2State extends GameState {
     private HUD hud;
     private ArrayList<Enemy> slugs;
     private ArrayList<Enemy> shells;
+    private ArrayList<Enemy> flys;
+    private ArrayList<Enemy> slimes;
 
     private YellowKey yKey;
     private ArrayList<ClosedDoor> closedDoors;
@@ -50,14 +50,19 @@ public class Level2State extends GameState {
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.07);
 
+        slugs = new ArrayList<Enemy>();
+        shells = new ArrayList<Enemy>();
+        flys = new ArrayList<Enemy>();
+        slimes = new ArrayList<Enemy>();
+
         bg = new Background("/Backgrounds/bg_lvl2.png", 0.1);
 
         player = new Player(tileMap);
         player.setPosition(190, 0);
         player.setScore(0);
 
-        populateEnemies();
-        populateItems();
+        stage = 0;
+        drawDoors();
 
         hud = new HUD(player);
 
@@ -66,96 +71,154 @@ public class Level2State extends GameState {
 
     }
 
-    private void populateEnemies() {
-
-
-        slugs = new ArrayList<Enemy>();
-        shells = new ArrayList<Enemy>();
+    private void populateThings0() {
 
         Slugger s;
+        Fly fly;
+        Slime slime;
 
-        Point[] points = new Point[]{
-                new Point(160, 180),
-                new Point(260, 180),
-                new Point(460, 180)
-        };
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(160, 180));
 
-        for (int i = 0; i < points.length; i++) {
+        for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
-            s.setPosition(points[i].x, points[i].y);
+            s.setPosition(point.x, point.y);
             slugs.add(s);
         }
-    }
 
-    private void populateItems() {
+        LinkedList<Point> flyPoints = new LinkedList<Point>();
+        flyPoints.add(new Point(180,100));
 
-        //key
-        yKey = new YellowKey(tileMap);
-        yKey.setPosition(150, 170);
+        for (Point point : flyPoints){
+            fly = new Fly(tileMap);
+            fly.setPosition(point.x, point.y);
+            flys.add(fly);
+        }
+
+        LinkedList<Point> slimePoints = new LinkedList<Point>();
+        slimePoints.add(new Point(220,100));
+
+        for (Point point : slimePoints){
+            slime = new Slime(tileMap);
+            slime.setPosition(point.x, point.y);
+            slimes.add(slime);
+        }
         //coins
         goldCoins = new ArrayList<Collectible>();
         GoldCoin c;
         Point[] coinPoints = new Point[]{
                 new Point(140, 100),
                 new Point(160, 100),
-                new Point(180, 100),
-                new Point(200, 100),
-                new Point(210, 100),
-                new Point(230, 100),
-                new Point(250, 100),
-                new Point(270, 100),
-                new Point(290, 100),
-                new Point(310, 100),
-                new Point(330, 100),
-                new Point(350, 100)
+                new Point(180, 100)
         };
-        for (int i = 0; i < coinPoints.length; i++) {
+        for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
-            c.setPosition(coinPoints[i].x, coinPoints[i].y);
+            c.setPosition(point.x, point.y);
             goldCoins.add(c);
         }
+    }
+    private void populateThings1() {
+        Slugger s;
+        Fly fly;
+        Slime slime;
+
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(260, 180));
+        for (Point point : sluggerPoints) {
+            s = new Slugger(tileMap);
+            s.setPosition(point.x, point.y);
+            slugs.add(s);
+        }
+
+        LinkedList<Point> flyPoints = new LinkedList<Point>();
+        flyPoints.add(new Point(280,100));
+        for (Point point : flyPoints){
+            fly = new Fly(tileMap);
+            fly.setPosition(point.x, point.y);
+            flys.add(fly);
+        }
+
+        LinkedList<Point> slimePoints = new LinkedList<Point>();
+        slimePoints.add(new Point(320,100));
+        for (Point point : slimePoints){
+            slime = new Slime(tileMap);
+            slime.setPosition(point.x, point.y);
+            slimes.add(slime);
+        }
+        //coins
+        goldCoins = new ArrayList<Collectible>();
+        GoldCoin c;
+        Point[] coinPoints = new Point[]{
+                new Point(240, 100),
+                new Point(260, 100),
+                new Point(280, 100)
+        };
+        for (Point point : coinPoints) {
+            c = new GoldCoin(tileMap);
+            c.setPosition(point.x, point.y);
+            goldCoins.add(c);
+        }
+    }
+
+    private void drawDoors() {
+
+        //key
+        yKey = new YellowKey(tileMap);
+        yKey.setPosition(150, 170);
         //doors
         openDoors = new ArrayList<OpenDoor>();
         closedDoors = new ArrayList<ClosedDoor>();
         ClosedDoor d;
         Point[] doorPoints = new Point[]{
-                new Point(300, 135)
+                new Point(5910, 135)
         };
-        for (int i = 0; i < doorPoints.length; i++) {
+        for (Point point : doorPoints) {
             d = new ClosedDoor(tileMap);
-            d.setPosition(doorPoints[i].getX(), doorPoints[i].getY());
+            d.setPosition(point.getX(), point.getY());
             closedDoors.add(d);
         }
     }
 
     public void draw(Graphics2D g) {
 
+        //background and map
         bg.draw(g);
         tileMap.draw(g);
+        //doors
+        for (ClosedDoor door : closedDoors) {
+            door.draw(g);
+        }
+        for (OpenDoor door : openDoors) {
+            door.draw(g);
+        }
+        //player
         player.draw(g);
         hud.draw(g);
-
-        if (!yKey.isDead()) {
+        //key
+        if(!yKey.isDead()) {
             yKey.draw(g);
         }
-        //slugs
-        for (int i = 0; i < slugs.size(); i++) {
-            slugs.get(i).draw(g);
+        //draw stuff
+        drawEnemies(g, slugs);
+        drawEnemies(g, shells);
+        drawEnemies(g, flys);
+        drawEnemies(g, slimes);
+        drawThings(g, goldCoins);
+    }
+
+    private void drawEnemies(Graphics2D g, ArrayList<Enemy> enemies) {
+        for (Enemy e : enemies) {
+            e.draw(g);
         }
-        //shells
-        for (int i = 0; i < shells.size(); i++) {
-            shells.get(i).draw(g);
+    }
+    private void drawThings(Graphics2D g, ArrayList<Collectible> things) {
+        for (Collectible c : things) {
+            c.draw(g);
         }
-        //goldCoins
-        for (int i = 0; i < goldCoins.size(); i++) {
-            goldCoins.get(i).draw(g);
-        }
-        //doors
-        for (int i = 0; i < closedDoors.size(); i++) {
-            closedDoors.get(i).draw(g);
-        }
-        for (int i = 0; i < openDoors.size(); i++) {
-            openDoors.get(i).draw(g);
+    }
+    private void updateEnemies(ArrayList<Enemy> enemies) {
+        for (Enemy e : enemies) {
+            e.update();
         }
     }
 
@@ -167,13 +230,20 @@ public class Level2State extends GameState {
                 GamePanel.WIDTH / 2 - player.getx(),
                 GamePanel.HEIGHT / 2 - player.gety()
         );
-
+        //trigger 0
+        if (player.getx() > 200 && stage == 0) {
+            populateThings0();
+            stage++;
+        }
+        //trigger 1
+        if (player.getx() > 300 && stage == 1) {
+            populateThings1();
+            stage++;
+        }
         //coin collect
         player.checkCollect(goldCoins);
         //keys
         player.checkKeys(yKey);
-
-        player.checkDead(player);
         //set background
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
@@ -183,6 +253,8 @@ public class Level2State extends GameState {
         //attack shells
         player.checkAttack(shells);
 
+        updateEnemies(flys);
+        updateEnemies(slimes);
         //update slugs
         for (int i = 0; i < slugs.size(); i++) {
             Enemy e = slugs.get(i);
@@ -212,7 +284,6 @@ public class Level2State extends GameState {
         //update doors
         for (int i = 0; i < closedDoors.size(); i++) {
             ClosedDoor d = closedDoors.get(i);
-            //d.update();
             if (player.getKey()) {
                 closedDoors.remove(i);
                 i--;
@@ -220,7 +291,6 @@ public class Level2State extends GameState {
                         new OpenDoor(tileMap, d.getx(), d.gety()));
             }
         }
-
         //update player death
         if (player.isDead()) {
             bgMusic.stop();
@@ -228,8 +298,6 @@ public class Level2State extends GameState {
             player.setCoins(0);
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
-
-
     }
 
     public void keyPressed(int k) {
