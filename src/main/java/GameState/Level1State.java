@@ -2,6 +2,7 @@ package GameState;
 
 import Audio.AudioPlayer;
 import Entity.Characters.*;
+import Entity.Collectible.Collectible;
 import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
 import Entity.Effects.ClosedDoor;
@@ -34,8 +35,8 @@ public class Level1State extends GameState {
 
     private AudioPlayer bgMusic;
 
-    private ArrayList<GoldCoin> goldCoins;
-    private int stage = 1;
+    private ArrayList<Collectible> goldCoins;
+    private int stage;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -61,7 +62,8 @@ public class Level1State extends GameState {
         player.setPosition(80, 100);
         player.setScore(0);
 
-        populateItems();
+        stage = 0;
+        drawDoors();
 
         hud = new HUD(player);
 
@@ -70,7 +72,7 @@ public class Level1State extends GameState {
 
     }
 
-    private void populateEnemies() {
+    private void populateThings0() {
 
         Slugger s;
         Fly fly;
@@ -80,65 +82,90 @@ public class Level1State extends GameState {
         sluggerPoints.add(new Point(160, 180));
 
         for (Point point : sluggerPoints) {
-            if (player.getx() > 200 && player.getx() < 203) {
                 s = new Slugger(tileMap);
                 s.setPosition(point.x, point.y);
                 slugs.add(s);
-            }
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(180,100));
 
         for (Point point : flyPoints){
-            if (player.getx() > 200 && player.getx() < 203) {
                 fly = new Fly(tileMap);
                 fly.setPosition(point.x, point.y);
                 flys.add(fly);
-            }
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(220,100));
 
         for (Point point : slimePoints){
-            if (player.getx() > 200 && player.getx() < 203) {
                 slime = new Slime(tileMap);
                 slime.setPosition(point.x, point.y);
                 slimes.add(slime);
-            }
         }
-
-
-    }
-
-    private void populateItems() {
-
-        //key
-        yKey = new YellowKey(tileMap);
-        yKey.setPosition(150, 170);
         //coins
-        goldCoins = new ArrayList<GoldCoin>();
+        goldCoins = new ArrayList<Collectible>();
         GoldCoin c;
         Point[] coinPoints = new Point[]{
                 new Point(140, 100),
                 new Point(160, 100),
-                new Point(180, 100),
-                new Point(200, 100),
-                new Point(210, 100),
-                new Point(230, 100),
-                new Point(250, 100),
-                new Point(270, 100),
-                new Point(290, 100),
-                new Point(310, 100),
-                new Point(330, 100),
-                new Point(350, 100)
+                new Point(180, 100)
         };
-        for (int i = 0; i < coinPoints.length; i++) {
+        for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
-            c.setPosition(coinPoints[i].x, coinPoints[i].y);
+            c.setPosition(point.x, point.y);
             goldCoins.add(c);
         }
+    }
+    private void populateThings1() {
+        Slugger s;
+        Fly fly;
+        Slime slime;
+
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(260, 180));
+        for (Point point : sluggerPoints) {
+            s = new Slugger(tileMap);
+            s.setPosition(point.x, point.y);
+            slugs.add(s);
+        }
+
+        LinkedList<Point> flyPoints = new LinkedList<Point>();
+        flyPoints.add(new Point(280,100));
+        for (Point point : flyPoints){
+            fly = new Fly(tileMap);
+            fly.setPosition(point.x, point.y);
+            flys.add(fly);
+        }
+
+        LinkedList<Point> slimePoints = new LinkedList<Point>();
+        slimePoints.add(new Point(320,100));
+        for (Point point : slimePoints){
+            slime = new Slime(tileMap);
+            slime.setPosition(point.x, point.y);
+            slimes.add(slime);
+        }
+        //coins
+        goldCoins = new ArrayList<Collectible>();
+        GoldCoin c;
+        Point[] coinPoints = new Point[]{
+                new Point(240, 100),
+                new Point(260, 100),
+                new Point(280, 100)
+        };
+        for (Point point : coinPoints) {
+            c = new GoldCoin(tileMap);
+            c.setPosition(point.x, point.y);
+            goldCoins.add(c);
+        }
+    }
+
+    private void drawDoors() {
+
+        //key
+        yKey = new YellowKey(tileMap);
+        yKey.setPosition(150, 170);
         //doors
         openDoors = new ArrayList<OpenDoor>();
         closedDoors = new ArrayList<ClosedDoor>();
@@ -146,9 +173,9 @@ public class Level1State extends GameState {
         Point[] doorPoints = new Point[]{
                 new Point(5910, 135)
         };
-        for (int i = 0; i < doorPoints.length; i++) {
+        for (Point point : doorPoints) {
             d = new ClosedDoor(tileMap);
-            d.setPosition(doorPoints[i].getX(), doorPoints[i].getY());
+            d.setPosition(point.getX(), point.getY());
             closedDoors.add(d);
         }
     }
@@ -159,11 +186,11 @@ public class Level1State extends GameState {
         bg.draw(g);
         tileMap.draw(g);
         //doors
-        for (int i = 0; i < closedDoors.size(); i++) {
-            closedDoors.get(i).draw(g);
+        for (ClosedDoor door : closedDoors) {
+            door.draw(g);
         }
-        for (int i = 0; i < openDoors.size(); i++) {
-            openDoors.get(i).draw(g);
+        for (OpenDoor door : openDoors) {
+            door.draw(g);
         }
         //player
         player.draw(g);
@@ -172,25 +199,27 @@ public class Level1State extends GameState {
         if(!yKey.isDead()) {
             yKey.draw(g);
         }
-
-
-        //slugs
-        drawAll(g, slugs);
-        //shells
-        drawAll(g, shells);
-        //Fly
-        drawAll(g, flys);
-        // slime
-        drawAll(g, slimes);
-        //goldCoins
-        for (int i = 0; i < goldCoins.size(); i++) {
-            goldCoins.get(i).draw(g);
-        }
+        //draw stuff
+        drawEnemies(g, slugs);
+        drawEnemies(g, shells);
+        drawEnemies(g, flys);
+        drawEnemies(g, slimes);
+        drawThings(g, goldCoins);
     }
 
-    private void drawAll(Graphics2D g, ArrayList<Enemy> slugs) {
-        for (int i = 0; i < slugs.size(); i++) {
-            slugs.get(i).draw(g);
+    private void drawEnemies(Graphics2D g, ArrayList<Enemy> enemies) {
+        for (Enemy e : enemies) {
+            e.draw(g);
+        }
+    }
+    private void drawThings(Graphics2D g, ArrayList<Collectible> things) {
+        for (Collectible c : things) {
+            c.draw(g);
+        }
+    }
+    private void updateEnemies(ArrayList<Enemy> enemies) {
+        for (Enemy e : enemies) {
+            e.update();
         }
     }
 
@@ -202,8 +231,16 @@ public class Level1State extends GameState {
                 GamePanel.WIDTH / 2 - player.getx(),
                 GamePanel.HEIGHT / 2 - player.gety()
         );
-
-        populateEnemies();
+        //trigger 0
+        if (player.getx() > 200 && stage == 0) {
+            populateThings0();
+            stage++;
+        }
+        //trigger 1
+        if (player.getx() > 300 && stage == 1) {
+            populateThings1();
+            stage++;
+        }
         //coin collect
         player.checkCollect(goldCoins);
         //keys
@@ -217,16 +254,8 @@ public class Level1State extends GameState {
         //attack shells
         player.checkAttack(shells);
 
-        for (int i = 0; i < flys.size(); i++) {
-            Enemy e = flys.get(i);
-            e.update();
-        }
-
-        for (int i = 0; i < slimes.size(); i++) {
-            Enemy e = slimes.get(i);
-            e.update();
-        }
-
+        updateEnemies(flys);
+        updateEnemies(slimes);
         //update slugs
         for (int i = 0; i < slugs.size(); i++) {
             Enemy e = slugs.get(i);

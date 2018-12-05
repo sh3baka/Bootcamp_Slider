@@ -16,8 +16,8 @@ public class Slime extends Enemy {
 
         super(tm);
 
-        moveSpeed = 0.3;
-        maxSpeed = 0.3;
+        moveSpeed = 0.1;
+        maxSpeed = 0.1;
         fallSpeed = 0.2;
         maxFallSpeed = 10.0;
 
@@ -27,7 +27,7 @@ public class Slime extends Enemy {
         cheight = 10;
 
         health = maxHealth = 1;
-        damage = 1;
+        damage = 2;
         worth = 15;
 
         //load sprites

@@ -5,6 +5,7 @@ import Entity.Characters.Enemy;
 import Entity.Characters.Player;
 import Entity.Characters.Shell;
 import Entity.Characters.Slugger;
+import Entity.Collectible.Collectible;
 import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
 import Entity.Effects.ClosedDoor;
@@ -34,7 +35,7 @@ public class Level2State extends GameState {
 
     private AudioPlayer bgMusic;
 
-    private ArrayList<GoldCoin> goldCoins;
+    private ArrayList<Collectible> goldCoins;
     private int stage = 1;
 
     public Level2State(GameStateManager gsm) {
@@ -92,7 +93,7 @@ public class Level2State extends GameState {
         yKey = new YellowKey(tileMap);
         yKey.setPosition(150, 170);
         //coins
-        goldCoins = new ArrayList<GoldCoin>();
+        goldCoins = new ArrayList<Collectible>();
         GoldCoin c;
         Point[] coinPoints = new Point[]{
                 new Point(140, 100),

@@ -1,6 +1,7 @@
 package Entity.Characters;
 
 import Audio.AudioPlayer;
+import Entity.Collectible.Collectible;
 import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
 import Entity.Effects.Animation;
@@ -308,12 +309,12 @@ public class Player extends MapObject {
     }
 
 
-    public void checkCollect(ArrayList<GoldCoin> goldCoins) {
+    public void checkCollect(ArrayList<Collectible> goldCoins) {
 
         // loop through enemies
         for (int i = 0; i < goldCoins.size(); i++) {
 
-            GoldCoin goldCoin = goldCoins.get(i);
+            Collectible goldCoin = goldCoins.get(i);
 
             // check enemy collision
             if (intersects(goldCoin)) {

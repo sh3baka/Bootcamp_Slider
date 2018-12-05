@@ -15,8 +15,8 @@ public class Fly extends Enemy {
 
         super(tm);
 
-        moveSpeed = 0.3;
-        maxSpeed = 0.3;
+        moveSpeed = 1;
+        maxSpeed = 1;
         fallSpeed = 0;
         maxFallSpeed = 10.0;
 
