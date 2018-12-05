@@ -37,7 +37,7 @@ public class Fly extends Enemy {
                             "/Enemies/flyFly1.png"
                     )
             );
-            sprites = new BufferedImage[1];
+            sprites = new BufferedImage[2];
             for (int i = 0; i < sprites.length; i++) {
                 sprites[i] = spritesheet.getSubimage(
                         i * width,
@@ -52,7 +52,7 @@ public class Fly extends Enemy {
 
         animation = new Animation();
         animation.setFrames(sprites);
-        animation.setDelay(300);
+        animation.setDelay(75);
 
         right = true;
         facingRight = false;
