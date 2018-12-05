@@ -35,10 +35,10 @@ public class Slime extends Enemy {
 
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Enemies/snailWalk1.png"
+                            "/Enemies/slimeWalk1.png"
                     )
             );
-            sprites = new BufferedImage[4];
+            sprites = new BufferedImage[11];
             for (int i = 0; i < sprites.length; i++) {
                 sprites[i] = spritesheet.getSubimage(
                         i * width,
@@ -53,7 +53,7 @@ public class Slime extends Enemy {
 
         animation = new Animation();
         animation.setFrames(sprites);
-        animation.setDelay(300);
+        animation.setDelay(100);
 
         right = true;
         facingRight = false;
