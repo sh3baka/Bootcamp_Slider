@@ -37,7 +37,7 @@ public class Fly extends Enemy {
                             "/Enemies/flyFly1.png"
                     )
             );
-            sprites = new BufferedImage[2];
+            sprites = new BufferedImage[6];
             for (int i = 0; i < sprites.length; i++) {
                 sprites[i] = spritesheet.getSubimage(
                         i * width,
