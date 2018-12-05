@@ -60,8 +60,8 @@ public class Level2State extends GameState {
 
         hud = new HUD(player);
 
-//        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
-//        bgMusic.play();
+        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
+        bgMusic.play();
 
     }
 
@@ -223,6 +223,8 @@ public class Level2State extends GameState {
         //update player death
         if (player.isDead()) {
             bgMusic.stop();
+            player.setScore(0);
+            player.setCoins(0);
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
 

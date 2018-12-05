@@ -62,15 +62,10 @@ public class Level1State extends GameState {
 
         populateItems();
 
-
         hud = new HUD(player);
 
         bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
         bgMusic.play();
-
-        yKey = new YellowKey(tileMap);
-        yKey.setPosition(150, 170);
-
 
     }
 
@@ -139,6 +134,7 @@ public class Level1State extends GameState {
 
     public void draw(Graphics2D g) {
 
+        //background and map
         bg.draw(g);
         tileMap.draw(g);
         //doors
@@ -148,15 +144,13 @@ public class Level1State extends GameState {
         for (int i = 0; i < openDoors.size(); i++) {
             openDoors.get(i).draw(g);
         }
+        //player
         player.draw(g);
         hud.draw(g);
-
-        if (!yKey.isDead()) {
+        //key
+        if(!yKey.isDead()) {
             yKey.draw(g);
         }
-
-
-
         //slugs
         drawAll(g, slugs);
         //shells
@@ -165,7 +159,6 @@ public class Level1State extends GameState {
         for (int i = 0; i < goldCoins.size(); i++) {
             goldCoins.get(i).draw(g);
         }
-
     }
 
     private void drawAll(Graphics2D g, ArrayList<Enemy> slugs) {
@@ -188,8 +181,6 @@ public class Level1State extends GameState {
         player.checkCollect(goldCoins);
         //keys
         player.checkKeys(yKey);
-
-        player.checkDead(player);
         //set background
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
@@ -218,7 +209,6 @@ public class Level1State extends GameState {
                 i--;
             }
         }
-
         //update goldCoins
         for (int i = 0; i < goldCoins.size(); i++) {
             goldCoins.get(i).update();
@@ -229,7 +219,6 @@ public class Level1State extends GameState {
         //update doors
         for (int i = 0; i < closedDoors.size(); i++) {
             ClosedDoor d = closedDoors.get(i);
-            //d.update();
             if (player.getKey()) {
                 closedDoors.remove(i);
                 i--;
@@ -238,16 +227,17 @@ public class Level1State extends GameState {
             }
         }
         //update level
-        if ( player.getKey() && player.getx() > 5910 && player.getx() < 5940 && player.gety() > 135 && player.gety() < 175) {
+        if ( player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
+            bgMusic.stop();
             gsm.setState(GameStateManager.LEVEL2STATE);
         }
         //update player death
-        if (player.isDead()) {
+        if (player.checkDead(player)) {
             bgMusic.stop();
+            player.setScore(0);
+            player.setCoins(0);
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
-
-
     }
 
     public void keyPressed(int k) {

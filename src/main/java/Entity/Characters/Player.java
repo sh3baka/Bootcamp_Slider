@@ -119,6 +119,8 @@ public class Player extends MapObject {
 
     public static int getCoins() { return coins; }
 
+    public void setCoins(int coins) { this.coins = coins; }
+
     public int getHealth() { return health; }
 
     public int getMaxHealth() {
@@ -133,10 +135,12 @@ public class Player extends MapObject {
         return dead;
     }
 
-    public void checkDead(Player p) {
+    public boolean checkDead(Player p) {
         if (p.getHealth() == 0) {
             p.setDead();
+            return true;
         }
+        return false;
     }
 
 
@@ -216,7 +220,6 @@ public class Player extends MapObject {
                 }
             }
         }
-
         //jumping
         if (jumping && !falling) {
             sfx.get("jump").play();
