@@ -41,6 +41,7 @@ public class Level1State extends GameState {
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
         init();
+
     }
 
     public void init() {
@@ -59,7 +60,6 @@ public class Level1State extends GameState {
         player.setPosition(80, 100);
         player.setScore(0);
 
-
         populateItems();
 
         hud = new HUD(player);
@@ -71,11 +71,7 @@ public class Level1State extends GameState {
 
     private void populateEnemies() {
 
-
-
-
         Slugger s;
-
 
         LinkedList<Point> points = new LinkedList<Point>();
               points.add(new Point(160, 180));

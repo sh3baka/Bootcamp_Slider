@@ -35,6 +35,9 @@ public class Player extends MapObject {
     private static int coins;
     private boolean hasKey;
 
+    private static double X;
+    private static double Y;
+
     // animations
     private ArrayList<BufferedImage[]> sprites;
 
@@ -106,6 +109,8 @@ public class Player extends MapObject {
         sfx.put("jump", new AudioPlayer("/SFX/jumpland44100.mp3"));
 
     }
+    public static double getX() { return X; }
+    public static double getY() { return Y; }
 
     public boolean getKey() { return hasKey; }
 
@@ -290,6 +295,9 @@ public class Player extends MapObject {
         //set direction
         if (right) facingRight = true;
         if (left) facingRight = false;
+
+        X = x;
+        Y = y;
     }
 
 

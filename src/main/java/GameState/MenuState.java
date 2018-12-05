@@ -30,11 +30,11 @@ public class MenuState extends GameState {
             bg = new Background("/sample.png", 1);
             bg.setVector(0, 0);
 
-            titleColor = new Color(128, 0, 0);
+            titleColor = new Color(0, 0, 0);
             titleFont = new Font(
-                    "Century Gothic",
+                    "Noto Sans CJK TC Bold",
                     Font.PLAIN,
-                    28);
+                    38);
 
             font = new Font("Arial", Font.PLAIN, 12);
 
@@ -58,7 +58,9 @@ public class MenuState extends GameState {
         //draw title
         g.setColor(titleColor);
         g.setFont(titleFont);
-        g.drawString("Alien vs Predators", 30, 70);
+        g.drawString("Alien", 30, 60);
+        g.drawString("   vs", 60, 90);
+        g.drawString("Predators", 30, 120);
 
         //draw menu options
         g.setFont(font);

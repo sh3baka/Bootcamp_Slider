@@ -77,5 +77,8 @@ public class HUD {
         g.setColor(Color.WHITE);
         g.drawString("Score: " + Player.getScore(), 20, 50);
         g.drawString("X " + Player.getCoins(), 260, 30);
+
+        g.drawString("X " + Player.getX(), 260, 100);
+        g.drawString("Y " + Player.getY(), 260, 130);
     }
 }
