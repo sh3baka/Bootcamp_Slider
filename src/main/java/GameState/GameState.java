@@ -3,6 +3,7 @@ package GameState;
 import Audio.AudioPlayer;
 import Entity.Characters.*;
 import Entity.Collectible.Collectible;
+import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
 import Entity.Effects.ClosedDoor;
 import Entity.Effects.OpenDoor;
@@ -26,7 +27,11 @@ public abstract class GameState {
     ArrayList<Enemy> slimes;
     ArrayList<Enemy> spikes;
 
-
+    Slugger slugger;
+    Fly fly;
+    Slime slime;
+    Spike spike;
+    GoldCoin c;
 
     ArrayList<Collectible> goldCoins;
     YellowKey yKey;
@@ -41,7 +46,9 @@ public abstract class GameState {
 
     protected GameStateManager gsm;
 
-    public abstract void init();
+    public void init(){
+
+    }
 
     public abstract void update();
 
@@ -86,5 +93,59 @@ public abstract class GameState {
         spikes = new ArrayList<Enemy>();
     }
 
+    public void updateDoors() {
+        for (int i = 0; i < closedDoors.size(); i++) {
+            ClosedDoor d = closedDoors.get(i);
+            //d.update();
+            if (player.getKey()) {
+                closedDoors.remove(i);
+                i--;
+                openDoors.add(
+                        new OpenDoor(tileMap, d.getx(), d.gety()));
+            }
+        }
+    }
 
+    public void updateGoldCoins() {
+        for (int i = 0; i < goldCoins.size(); i++) {
+            goldCoins.get(i).update();
+            if (goldCoins.get(i).isDead()) {
+                goldCoins.remove(i);
+            }
+        }
+    }
+
+    public void updateShells() {
+        for (int i = 0; i < shells.size(); i++) {
+            Enemy e = shells.get(i);
+            if (e.getHealth() == 0) {
+                shells.remove(i);
+                i--;
+            }
+        }
+    }
+
+    public void updateSlugs() {
+        for (int i = 0; i < slugs.size(); i++) {
+            Enemy e = slugs.get(i);
+            e.update();
+            if (e.getHealth() == 1) {
+                slugs.remove(i);
+                i--;
+                shells.add(
+                        new Shell(tileMap, e.getx(), e.gety()));
+            }
+        }
+    }
+
+    public void updateFlies(ArrayList<Enemy> flys) {
+        for (int i = 0; i < flys.size(); i++) {
+            Enemy e = flys.get(i);
+            e.update();
+            if (e.getHealth() == 0) {
+                flys.remove(i);
+                i--;
+            }
+        }
+    }
 }

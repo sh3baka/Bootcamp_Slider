@@ -56,10 +56,10 @@ public class Help0State extends GameState {
 
     public void keyPressed(int k) {
         if (k == KeyEvent.VK_ESCAPE || k == KeyEvent.VK_LEFT) {
-            gsm.setState(GameStateManager.MENUSTATE);;
+            gsm.setState(GameStateManager.MENUSTATE);
         }
         if (k == KeyEvent.VK_SPACE || k == KeyEvent.VK_ENTER || k == KeyEvent.VK_RIGHT) {
-            gsm.setState(GameStateManager.HELP1STATE);;
+            gsm.setState(GameStateManager.HELP1STATE);
         }
     }
 

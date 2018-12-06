@@ -45,7 +45,7 @@ public class PlayerTest {
     public void getScore() {
         player.setScore(2222);
 
-        int actual = player.getScore();
+        int actual = Player.getScore();
 
         assertEquals(2222, actual);
     }
@@ -54,14 +54,14 @@ public class PlayerTest {
     public void setScore() {
         player.setScore(22222);
 
-        assertEquals(22222, player.getScore());
+        assertEquals(22222, Player.getScore());
     }
 
     @Test
     public void getCoins() {
         player.setCoins(5);
 
-        assertEquals(5, player.getCoins());
+        assertEquals(5, Player.getCoins());
     }
 
     @Test
@@ -82,7 +82,7 @@ public class PlayerTest {
     public void setCoins() {
         player.setCoins(555);
 
-        assertEquals(555, player.getCoins());
+        assertEquals(555, Player.getCoins());
     }
 
     @Test
@@ -156,7 +156,7 @@ public class PlayerTest {
 
         player.checkCollect(goldCoins);
 
-        assertEquals(1, player.coins);
+        assertEquals(1, Player.coins);
     }
 
     @Test

@@ -124,7 +124,7 @@ public class Player extends MapObject {
     }
 
     public void setScore(int score) {
-        this.score = score;
+        Player.score = score;
     }
 
     public static int getCoins() {
@@ -132,7 +132,7 @@ public class Player extends MapObject {
     }
 
     public void setCoins(int coins) {
-        this.coins = coins;
+        Player.coins = coins;
     }
 
     public boolean getKey() {
