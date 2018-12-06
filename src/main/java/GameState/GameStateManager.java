@@ -4,15 +4,15 @@ import java.awt.*;
 
 public class GameStateManager {
 
-    public static final int MENUSTATE = 0;
-    public static final int HELP0STATE = 1;
-    public static final int HELP1STATE = 2;
-    public static final int HELP2STATE = 3;
-    public static final int HELP3STATE = 4;
-    public static final int LEVEL1STATE = 5;
-    public static final int LEVEL2STATE = 6;
-    public static final int LEVEL3STATE = 7;
-    public static final int NUMGAMESTATE = 8;
+    static final int MENUSTATE = 0;
+    static final int HELP0STATE = 1;
+    static final int HELP1STATE = 2;
+    static final int HELP2STATE = 3;
+    static final int HELP3STATE = 4;
+    static final int LEVEL1STATE = 5;
+    static final int LEVEL2STATE = 6;
+    static final int LEVEL3STATE = 7;
+    private static final int NUMGAMESTATE = 8;
     private GameState[] gameStates;
     private int currentState;
 
@@ -20,7 +20,7 @@ public class GameStateManager {
 
         gameStates = new GameState[NUMGAMESTATE];
 
-        currentState = MENUSTATE;
+        currentState = LEVEL1STATE;
         loadState(currentState);
 
 
@@ -62,6 +62,7 @@ public class GameStateManager {
         try {
             gameStates[currentState].update();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -69,6 +70,7 @@ public class GameStateManager {
         try {
             gameStates[currentState].draw(g);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

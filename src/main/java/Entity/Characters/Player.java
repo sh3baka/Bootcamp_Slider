@@ -20,10 +20,10 @@ public class Player extends MapObject {
     private static final int JUMPING = 2;
     private static final int FALLING = 3;
     public static int score = 0;
-    public static int coins;
+    static int coins;
     private static double X;
     private static double Y;
-    public static double dY;
+    private static double dY;
     private final int[] numFrames = {
             16, 6, 1, 2
     };
@@ -139,7 +139,7 @@ public class Player extends MapObject {
         return hasKey;
     }
 
-    public void setKey(boolean hasKey) {
+    void setKey(boolean hasKey) {
         this.hasKey = hasKey;
     }
 
@@ -151,7 +151,7 @@ public class Player extends MapObject {
         return maxHealth;
     }
 
-    public void setDead() {
+    void setDead() {
         dead = true;
     }
 
@@ -159,12 +159,8 @@ public class Player extends MapObject {
         return dead;
     }
 
-    public void setHealth(int health) {
+    void setHealth(int health) {
         this.health = health;
-    }
-
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
     }
 
     public boolean checkDead(Player p) {
@@ -175,21 +171,16 @@ public class Player extends MapObject {
         return false;
     }
 
-    public boolean hasKey() {
+    boolean hasKey() {
         return hasKey;
     }
-
-
 
     public void checkAttack(ArrayList<Enemy> enemies) {
 
        //  loop through enemies
-        for (int i = 0; i < enemies.size(); i++) {
-
-            Enemy e = enemies.get(i);
+        for (Enemy e : enemies) {
 
             // check enemy collision
-            if (e instanceof Enemy) {
 
                 if (intersects(e) && this.dy > 0) {
 
@@ -200,26 +191,21 @@ public class Player extends MapObject {
                 } else if (intersects(e)) {
                     hit(e.getDamage());
                 }
-            }
+
         }
     }
     public void checkSpikes(ArrayList<Enemy> spikes) {
 
         // loop through enemies
-        for (int i = 0; i < spikes.size(); i++) {
-
-            Enemy e = spikes.get(i);
+        for (Enemy e : spikes) {
 
             // check enemy collision
-            if (e instanceof Enemy) {
-
                 if (intersects(e)) {
 
                     dy = jumpStart;
                     hit(e.getDamage());
                 }
             }
-        }
     }
 
 
@@ -230,7 +216,7 @@ public class Player extends MapObject {
         }
     }
 
-    public void hit(int damage) {
+    void hit(int damage) {
 
         if (flinching) return;
         health -= damage;
@@ -347,14 +333,12 @@ public class Player extends MapObject {
     public void checkCollect(ArrayList<Collectible> goldCoins) {
 
         // loop through enemies
-        for (int i = 0; i < goldCoins.size(); i++) {
-
-            Collectible goldCoin = goldCoins.get(i);
+        for (Collectible c : goldCoins) {
 
             // check enemy collision
-            if (intersects(goldCoin)) {
-                goldCoin.pickUp();
-                goldCoin.dead = true;
+            if (intersects(c)) {
+                c.pickUp();
+                c.dead = true;
                 coins++;
             }
         }
@@ -365,11 +349,6 @@ public class Player extends MapObject {
     public void draw(Graphics2D g) {
 
         setMapPosition();
-
-        //draw player
-        if (notOnScreen()) {
-            this.dead = true;
-        }
 
         if (flinching) {
             long elapsed =

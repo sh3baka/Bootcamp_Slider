@@ -19,7 +19,7 @@ import java.util.LinkedList;
 
 public class Level2State extends GameState {
 
-    public Level2State(GameStateManager gsm) {
+    Level2State(GameStateManager gsm) {
         this.gsm = gsm;
         init();
     }
@@ -32,6 +32,7 @@ public class Level2State extends GameState {
         tileMap.setTween(0.06);
 
         initEnemyArrayLists();
+        populateThings0();
 
         bg = new Background("/Backgrounds/bg_lvl2.png", 0.1);
 
@@ -39,7 +40,7 @@ public class Level2State extends GameState {
         player.setPosition(190, 0);
         player.setScore(0);
 
-         stage = 0;
+         stage = 1;
         drawDoors();
 
         hud = new HUD(player);
@@ -340,71 +341,6 @@ public class Level2State extends GameState {
             slimes.add(slime);
         }
     }
-    private void populateThings7() {
-        Slugger slugger;
-        Fly fly;
-        Slime slime;
-        Spike spike;
-        GoldCoin c;
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(3640, 80));
-
-        for (Point point : sluggerPoints) {
-            slugger = new Slugger(tileMap);
-            slugger.setPosition(point.x, point.y);
-            slugs.add(slugger);
-        }
-
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(3680, 50));
-
-        for (Point point : flyPoints) {
-            fly = new Fly(tileMap);
-            fly.setPosition(point.x, point.y);
-            flys.add(fly);
-        }
-
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(3730, 80));
-
-        for (Point point : slimePoints) {
-            slime = new Slime(tileMap);
-            slime.setPosition(point.x, point.y);
-            slimes.add(slime);
-        }
-
-    }
-    private void populateThings8() {
-        Slugger slugger;
-        Fly fly;
-        Slime slime;
-        Spike spike;
-        GoldCoin c;
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(5360, 1400));
-
-        for (Point point : sluggerPoints) {
-            slugger = new Slugger(tileMap);
-            slugger.setPosition(point.x, point.y);
-            slugs.add(slugger);
-        }
-
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(5180, 60));
-
-        for (Point point : flyPoints) {
-            fly = new Fly(tileMap);
-            fly.setPosition(point.x, point.y);
-            flys.add(fly);
-        }
-
-    }
-
-
-
-
 
     private void drawDoors() {
 
@@ -475,55 +411,40 @@ public class Level2State extends GameState {
         player.update();
 
         tileMap.setPosition(
-                GamePanel.WIDTH / 2 - player.getx(),
-                GamePanel.HEIGHT / 2 - player.gety()
+                (float)GamePanel.WIDTH / 2 - player.getx(),
+                (float)GamePanel.HEIGHT / 2 - player.gety()
         );
-        //trigger 0
-        if (player.gety() > 0 && stage == 0) {
-            populateThings0();
-            stage++;
-        }
         //trigger 1
-        if (player.getx() > 220 && stage == 1) {
+        if (player.getx() > 420 && stage == 1) {
             populateThings1();
             stage++;
         }
         //trigger 2
-        if (player.getx() > 800 && stage == 2) {
+        if (player.getx() > 600 && stage == 2) {
             populateThings2();
             stage++;
         }
         //trigger 3
-        if (player.getx() > 1190 && stage == 3) {
+        if (player.getx() > 990 && stage == 3) {
             populateThings3();
             stage++;
         }
         //trigger 4
-        if (player.getx() > 1800 && stage == 4) {
+        if (player.getx() > 1600 && stage == 4) {
             populateThings4();
             stage++;
         }
 
         //trigger 5
-        if (player.getx() > 2300 && stage == 5) {
+        if (player.getx() > 2100 && stage == 5) {
             populateThings5();
             stage++;
         }
         //trigger 6
-        if (player.getx() > 3000 && stage == 6) {
+        if (player.getx() > 2800 && stage == 6) {
             populateThings6();
             stage++;
         }
-        //trigger 7
-      // if (player.getx() > 3300 && stage == 7) {
-        //    populateThings7();
-          //  stage++;
-        //}
-        //trigger 8
-        //if (player.getx() > 4500 && stage == 8) {
-          //  populateThings8();
-            //stage++;
-        //}
 
         //coin collect
         player.checkCollect(goldCoins);
@@ -538,8 +459,38 @@ public class Level2State extends GameState {
         //attack shells
         player.checkAttack(shells);
 
-        updateEnemies(flys);
-        updateEnemies(slimes);
+        //attack flies
+        player.checkAttack(flys);
+
+        //attack slimes
+        player.checkAttack(slimes);
+
+        //attack spikes
+        player.checkSpikes(spikes);
+
+        //update spikes
+        for (Enemy e : spikes) {
+            e.update();
+        }
+
+        //update flies
+        for (int i = 0; i < flys.size(); i++) {
+            Enemy e = flys.get(i);
+            e.update();
+            if (e.getHealth() == 0) {
+                flys.remove(i);
+                i--;
+            }
+        }
+        //update slimes
+        for (int i = 0; i < slimes.size(); i++) {
+            Enemy e = slimes.get(i);
+            e.update();
+            if (e.getHealth() == 0) {
+                slimes.remove(i);
+                i--;
+            }
+        }
         //update slugs
         for (int i = 0; i < slugs.size(); i++) {
             Enemy e = slugs.get(i);

@@ -19,7 +19,7 @@ import java.util.LinkedList;
 
 public class Level3State extends GameState {
 
-    public Level3State(GameStateManager gsm) {
+    Level3State(GameStateManager gsm) {
         this.gsm = gsm;
         init();
     }
@@ -32,6 +32,7 @@ public class Level3State extends GameState {
         tileMap.setTween(0.06);
 
         initEnemyArrayLists();
+        populateThings0();
 
         bg = new Background("/Backgrounds/bg_lvl3.png", 0.1);
 
@@ -39,7 +40,7 @@ public class Level3State extends GameState {
         player.setPosition(190, 0);
         player.setScore(0);
 
-        stage = 0;
+        stage = 1;
         drawDoors();
 
         hud = new HUD(player);
@@ -48,7 +49,6 @@ public class Level3State extends GameState {
         bgMusic.play();
 
     }
-
 
     private void populateThings0() {
         Slugger slugger;
@@ -228,57 +228,6 @@ public class Level3State extends GameState {
             goldCoins.add(c);
         }
     }
-    private void populateThings3() {
-        Slugger slugger;
-        Fly fly;
-        Slime slime;
-        Spike spike;
-        GoldCoin c;
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(4130, 180));
-
-        for (Point point : sluggerPoints) {
-            slugger = new Slugger(tileMap);
-            slugger.setPosition(point.x, point.y);
-            slugs.add(slugger);
-        }
-
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(4060, 170));
-
-        for (Point point : flyPoints) {
-            fly = new Fly(tileMap);
-            fly.setPosition(point.x, point.y);
-            flys.add(fly);
-        }
-
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(220, 100));
-
-        for (Point point : slimePoints) {
-            slime = new Slime(tileMap);
-            slime.setPosition(point.x, point.y);
-            slimes.add(slime);
-        }
-        //coins
-        goldCoins = new ArrayList<Collectible>();
-        Point[] coinPoints = new Point[]{
-                new Point(4060, 170),
-                new Point(4080, 170),
-                new Point(4200, 110),
-                new Point(4220,100),
-                new Point(4390,140),
-                new Point(4310,100)
-        };
-        for (Point point : coinPoints) {
-            c = new GoldCoin(tileMap);
-            c.setPosition(point.x, point.y);
-            goldCoins.add(c);
-        }
-    }
-
-
 
     private void drawDoors() {
 
@@ -349,31 +298,20 @@ public class Level3State extends GameState {
         player.update();
 
         tileMap.setPosition(
-                GamePanel.WIDTH / 2 - player.getx(),
-                GamePanel.HEIGHT / 2 - player.gety()
+                (float)GamePanel.WIDTH / 2 - player.getx(),
+                (float)GamePanel.HEIGHT / 2 - player.gety()
         );
-        //trigger 0
-        if (player.gety() > 0 && stage == 0) {
-            populateThings0();
-            stage++;
-        }
+
         //trigger 1
-        if (player.getx() > 450 && stage == 1) {
+        if (player.getx() > 350 && stage == 1) {
             populateThings1();
             stage++;
         }
         //trigger 2
-        if (player.getx() > 950 && stage == 2) {
+        if (player.getx() > 750 && stage == 2) {
             populateThings2();
             stage++;
         }
-        //trigger 3
-       // if (player.getx() > )
-
-
-
-
-
         //coin collect
         player.checkCollect(goldCoins);
         //keys
@@ -387,8 +325,38 @@ public class Level3State extends GameState {
         //attack shells
         player.checkAttack(shells);
 
-        updateEnemies(flys);
-        updateEnemies(slimes);
+        //attack flies
+        player.checkAttack(flys);
+
+        //attack slimes
+        player.checkAttack(slimes);
+
+        //attack spikes
+        player.checkSpikes(spikes);
+
+        //update spikes
+        for (Enemy e : spikes) {
+            e.update();
+        }
+
+        //update flies
+        for (int i = 0; i < flys.size(); i++) {
+            Enemy e = flys.get(i);
+            e.update();
+            if (e.getHealth() == 0) {
+                flys.remove(i);
+                i--;
+            }
+        }
+        //update slimes
+        for (int i = 0; i < slimes.size(); i++) {
+            Enemy e = slimes.get(i);
+            e.update();
+            if (e.getHealth() == 0) {
+                slimes.remove(i);
+                i--;
+            }
+        }
         //update slugs
         for (int i = 0; i < slugs.size(); i++) {
             Enemy e = slugs.get(i);

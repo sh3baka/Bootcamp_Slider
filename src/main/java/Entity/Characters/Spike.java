@@ -18,7 +18,7 @@ public class Spike extends Enemy {
         width = 30;
         height = 30;
         cwidth = 20;
-        cheight = 20;
+        cheight = 10;
 
         health = 1;
         worth = 0;

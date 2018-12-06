@@ -3,7 +3,6 @@ package GameState;
 import Audio.AudioPlayer;
 import Entity.Characters.*;
 import Entity.Collectible.Collectible;
-import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
 import Entity.Effects.ClosedDoor;
 import Entity.Effects.OpenDoor;
@@ -14,30 +13,29 @@ import TileMap.Background;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public abstract class GameState {
     Player player;
-    protected TileMap tileMap;
-    protected Background bg;
-    protected HUD hud;
+    TileMap tileMap;
+    Background bg;
+    HUD hud;
 
-    protected ArrayList<Enemy> slugs;
-    protected ArrayList<Enemy> shells;
-    protected ArrayList<Enemy> flys;
-    protected ArrayList<Enemy> slimes;
-    protected ArrayList<Enemy> spikes;
+    ArrayList<Enemy> slugs;
+    ArrayList<Enemy> shells;
+    ArrayList<Enemy> flys;
+    ArrayList<Enemy> slimes;
+    ArrayList<Enemy> spikes;
 
 
 
-    protected ArrayList<Collectible> goldCoins;
-    protected YellowKey yKey;
-    protected ArrayList<ClosedDoor> closedDoors;
-    protected ArrayList<OpenDoor> openDoors;
+    ArrayList<Collectible> goldCoins;
+    YellowKey yKey;
+    ArrayList<ClosedDoor> closedDoors;
+    ArrayList<OpenDoor> openDoors;
 
-    protected AudioPlayer bgMusic;
+    AudioPlayer bgMusic;
 
-    protected int stage;
+    int stage;
 
 
 
@@ -80,7 +78,7 @@ public abstract class GameState {
         if (k == KeyEvent.VK_SPACE) player.setJumping(false);
     }
 
-    public void initEnemyArrayLists() {
+    void initEnemyArrayLists() {
         slugs = new ArrayList<Enemy>();
         shells = new ArrayList<Enemy>();
         flys = new ArrayList<Enemy>();

@@ -14,7 +14,7 @@ public class Help3State extends GameState {
 
     private Font font;
 
-    public Help3State(GameStateManager gsm) {
+    Help3State(GameStateManager gsm) {
 
         this.gsm = gsm;
 
@@ -51,20 +51,20 @@ public class Help3State extends GameState {
         g.setColor(Color.WHITE);
         g.setFont(font);
 
-        g.drawString("You can and should KILL or AVOID ", 30, 90);
-        //g.drawString("to get SCORE and COINS", 120, 90);
+        g.drawString("You can and should KILL or AVOID ", 30, 100);
+        g.drawString("Definitely AVOID SPIKES and GAPS", 30, 145);
 
     }
 
     public void keyPressed(int k) {
         if (k == KeyEvent.VK_ESCAPE) {
-            gsm.setState(GameStateManager.MENUSTATE);;
+            gsm.setState(GameStateManager.MENUSTATE);
         }
         if (k == KeyEvent.VK_SPACE || k == KeyEvent.VK_ENTER || k == KeyEvent.VK_RIGHT) {
-            gsm.setState(GameStateManager.MENUSTATE);;
+            gsm.setState(GameStateManager.MENUSTATE);
         }
         if (k == KeyEvent.VK_LEFT) {
-            gsm.setState(GameStateManager.HELP2STATE);;
+            gsm.setState(GameStateManager.HELP2STATE);
         }
     }
 
