@@ -49,12 +49,13 @@ public class Level3State extends GameState {
         tileMap.loadTiles("/tiles_lvl3.png");
         tileMap.loadMap("/levelMap3.csv");
         tileMap.setPosition(0, 0);
-        tileMap.setTween(0.07);
+        tileMap.setTween(0.06);
 
         slugs = new ArrayList<Enemy>();
         shells = new ArrayList<Enemy>();
         flys = new ArrayList<Enemy>();
         slimes = new ArrayList<Enemy>();
+        spikes = new ArrayList<Enemy>();
 
         bg = new Background("/Backgrounds/bg_lvl3.png", 0.1);
 

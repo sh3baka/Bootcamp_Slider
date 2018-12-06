@@ -5,13 +5,14 @@ import java.awt.*;
 public class GameStateManager {
 
     public static final int MENUSTATE = 0;
-    public static final int HELP1STATE = 1;
-    public static final int HELP2STATE = 2;
-    public static final int HELP3STATE = 3;
-    public static final int LEVEL1STATE = 4;
-    public static final int LEVEL2STATE = 5;
-    public static final int LEVEL3STATE = 6;
-    public static final int NUMGAMESTATE = 7;
+    public static final int HELP0STATE = 1;
+    public static final int HELP1STATE = 2;
+    public static final int HELP2STATE = 3;
+    public static final int HELP3STATE = 4;
+    public static final int LEVEL1STATE = 5;
+    public static final int LEVEL2STATE = 6;
+    public static final int LEVEL3STATE = 7;
+    public static final int NUMGAMESTATE = 8;
     private GameState[] gameStates;
     private int currentState;
 
@@ -19,7 +20,7 @@ public class GameStateManager {
 
         gameStates = new GameState[NUMGAMESTATE];
 
-        currentState = HELP1STATE;
+        currentState = LEVEL2STATE;
         loadState(currentState);
 
 
@@ -28,6 +29,8 @@ public class GameStateManager {
     private void loadState(int state) {
         if (state == MENUSTATE)
             gameStates[state] = new MenuState(this);
+        if (state == HELP0STATE)
+            gameStates[state] = new Help0State(this);
         if (state == HELP1STATE)
             gameStates[state] = new Help1State(this);
         if (state == HELP2STATE)

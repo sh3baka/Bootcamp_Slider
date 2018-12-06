@@ -2,18 +2,15 @@ package GameState;
 
 import TileMap.Background;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 public class Help3State extends GameState {
 
     private Background bg;
-
-    private String[] options = {
-            "Start",
-            "Help",
-            "Quit"
-    };
+    private BufferedImage card;
 
     private Font font;
 
@@ -25,6 +22,12 @@ public class Help3State extends GameState {
 
             bg = new Background("/sample.png", 1);
             bg.setVector(0, 0);
+
+            card = ImageIO.read(
+                    getClass().getResourceAsStream(
+                            "/Backgrounds/helpMenu1.png"
+                    )
+            );
 
             font = new Font("Arial", Font.PLAIN, 32);
 

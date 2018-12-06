@@ -15,10 +15,6 @@ public class MenuState extends GameState {
             "Help",
             "Quit"
     };
-
-    private Color titleColor;
-    private Font titleFont;
-
     private Font font;
 
     public MenuState(GameStateManager gsm) {
@@ -66,7 +62,7 @@ public class MenuState extends GameState {
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
         if (currentChoice == 1) {
-            gsm.setState(GameStateManager.HELP1STATE);
+            gsm.setState(GameStateManager.HELP0STATE);
         }
         if (currentChoice == 2) {
             System.exit(0);
