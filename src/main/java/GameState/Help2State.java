@@ -25,11 +25,11 @@ public class Help2State extends GameState {
 
             card = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Backgrounds/helpMenu1.png"
+                            "/Backgrounds/helpMenu2.png"
                     )
             );
 
-            font = new Font("Arial", Font.PLAIN, 32);
+            font = new Font("Arial", Font.PLAIN, 12);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,9 +47,18 @@ public class Help2State extends GameState {
     public void draw(Graphics2D g) {
         //draw bg
         bg.draw(g);
-        g.setColor(Color.RED);
+        g.drawImage(card, 10, 10, null);
+        g.setColor(Color.WHITE);
         g.setFont(font);
-        g.drawString("Collectibles", 60, 40);
+
+        g.drawString("Collect", 30, 90);
+        g.drawString("to get SCORE and COINS", 120, 90);
+
+        g.drawString("Collect", 30, 135);
+        g.drawString("to open", 120, 135);
+        g.drawString("and", 240, 135);
+        g.drawString("proceed to the next LEVEL", 30, 160);
+
     }
 
     public void keyPressed(int k) {
