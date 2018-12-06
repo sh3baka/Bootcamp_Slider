@@ -46,8 +46,8 @@ public class Level1State extends GameState {
 
     public void init() {
         tileMap = new TileMap(30);
-        tileMap.loadTiles("/tiles_lvl1.png");
-        tileMap.loadMap("/levelMap1.csv");
+        tileMap.loadTiles("/tiles_lvl3.png");
+        tileMap.loadMap("/levelMap3.csv");
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.06);
 
@@ -58,7 +58,7 @@ public class Level1State extends GameState {
 
         goldCoins = new ArrayList<Collectible>();
 
-        bg = new Background("/Backgrounds/bg_lvl1.gif", 0.1);
+        bg = new Background("/Backgrounds/bg_lvl3.png", 0.1);
 
         player = new Player(tileMap);
         player.setPosition(80, 100);
@@ -290,6 +290,7 @@ public class Level1State extends GameState {
         //update doors
         for (int i = 0; i < closedDoors.size(); i++) {
             ClosedDoor d = closedDoors.get(i);
+            //d.update();
             if (player.getKey()) {
                 closedDoors.remove(i);
                 i--;
