@@ -52,7 +52,7 @@ public class Player extends MapObject {
         stopSpeed = 0.4;
         fallSpeed = 0.15;
         jumpStart = -4.8;
-        killJumpStart = -7.6;
+        killJumpStart = -5.6;
         stopJumpSpeed = 0.3;
         maxFallSpeed = 4.0;
 
@@ -171,7 +171,7 @@ public class Player extends MapObject {
             Enemy e = enemies.get(i);
 
             // check enemy collision
-            if (e instanceof Slugger) {
+            if (e instanceof Enemy) {
 
                 if (intersects(e) && this.falling) {
 
@@ -181,16 +181,6 @@ public class Player extends MapObject {
 
                 } else if (intersects(e)) {
                     hit(e.getDamage());
-                }
-
-            } else if (e instanceof Shell) {
-
-                if (intersects(e) && this.falling) {
-
-                    dy = killJumpStart;
-                    e.health--;
-                    setScore(getScore() + e.getWorth());
-
                 }
             }
         }

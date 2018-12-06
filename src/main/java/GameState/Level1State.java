@@ -259,8 +259,30 @@ public class Level1State extends GameState {
         //attack shells
         player.checkAttack(shells);
 
-        updateEnemies(flys);
-        updateEnemies(slimes);
+        //attack flies
+        player.checkAttack(flys);
+
+        //attack slimes
+        player.checkAttack(slimes);
+
+        //update flies
+        for (int i = 0; i < flys.size(); i++) {
+            Enemy e = flys.get(i);
+            e.update();
+            if (e.getHealth() == 0) {
+                flys.remove(i);
+                i--;
+            }
+        }
+        //update slimes
+        for (int i = 0; i < slimes.size(); i++) {
+            Enemy e = slimes.get(i);
+            e.update();
+            if (e.getHealth() == 0) {
+                slimes.remove(i);
+                i--;
+            }
+        }
         //update slugs
         for (int i = 0; i < slugs.size(); i++) {
             Enemy e = slugs.get(i);
