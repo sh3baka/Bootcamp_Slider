@@ -313,62 +313,6 @@ public class Level2State extends GameState {
         }
     }
 
-    private void populateThings7() {
-
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(3640, 80));
-
-        for (Point point : sluggerPoints) {
-            slugger = new Slugger(tileMap);
-            slugger.setPosition(point.x, point.y);
-            slugs.add(slugger);
-        }
-
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(3680, 50));
-
-        for (Point point : flyPoints) {
-            fly = new Fly(tileMap);
-            fly.setPosition(point.x, point.y);
-            flys.add(fly);
-        }
-
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(3730, 80));
-
-        for (Point point : slimePoints) {
-            slime = new Slime(tileMap);
-            slime.setPosition(point.x, point.y);
-            slimes.add(slime);
-        }
-
-    }
-
-    private void populateThings8() {
-
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(5360, 1400));
-
-        for (Point point : sluggerPoints) {
-            slugger = new Slugger(tileMap);
-            slugger.setPosition(point.x, point.y);
-            slugs.add(slugger);
-        }
-
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(5180, 60));
-
-        for (Point point : flyPoints) {
-            fly = new Fly(tileMap);
-            fly.setPosition(point.x, point.y);
-            flys.add(fly);
-        }
-
-    }
-
-
     private void drawDoors() {
 
         //key
@@ -424,12 +368,6 @@ public class Level2State extends GameState {
     private void drawThings(Graphics2D g, ArrayList<Collectible> things) {
         for (Collectible c : things) {
             c.draw(g);
-        }
-    }
-
-    private void updateEnemies(ArrayList<Enemy> enemies) {
-        for (Enemy e : enemies) {
-            e.update();
         }
     }
 

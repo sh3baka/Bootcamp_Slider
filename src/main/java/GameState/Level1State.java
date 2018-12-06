@@ -343,12 +343,6 @@ public class Level1State extends GameState {
         }
     }
 
-    private void updateEnemies(ArrayList<Enemy> enemies) {
-        for (Enemy e : enemies) {
-            e.update();
-        }
-    }
-
     public void update() {
 
         player.update();
@@ -391,6 +385,21 @@ public class Level1State extends GameState {
         player.checkKeys(yKey);
         //set background
         bg.setPosition(tileMap.getx(), tileMap.gety());
+
+        //attack slugs
+        player.checkAttack(slugs);
+
+        //attack shells
+        player.checkAttack(shells);
+
+        //attack flies
+        player.checkAttack(flys);
+
+        //attack slimes
+        player.checkAttack(slimes);
+
+        //attack spikes
+        player.checkSpikes(spikes);
 
         //update flies
         updateFlies(flys);
