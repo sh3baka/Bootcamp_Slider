@@ -7,7 +7,8 @@ public class GameStateManager {
     public static final int MENUSTATE = 0;
     public static final int LEVEL1STATE = 1;
     public static final int LEVEL2STATE = 2;
-    public static final int NUMGAMESTATE = 3;
+    public static final int LEVEL3STATE = 3;
+    public static final int NUMGAMESTATE = 4;
     private GameState[] gameStates;
     private int currentState;
 
@@ -28,6 +29,8 @@ public class GameStateManager {
             gameStates[state] = new Level1State(this);
         if (state == LEVEL2STATE)
             gameStates[state] = new Level2State(this);
+        if (state == LEVEL3STATE)
+            gameStates[state] = new Level3State(this);
 
     }
 

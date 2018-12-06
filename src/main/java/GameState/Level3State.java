@@ -17,51 +17,48 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Level1State extends GameState {
+public class Level3State extends GameState {
 
     Player player;
     private TileMap tileMap;
     private Background bg;
-    private HUD hud;
 
+    private HUD hud;
     private ArrayList<Enemy> slugs;
     private ArrayList<Enemy> shells;
     private ArrayList<Enemy> flys;
     private ArrayList<Enemy> slimes;
 
-    private ArrayList<Collectible> goldCoins;
     private YellowKey yKey;
     private ArrayList<ClosedDoor> closedDoors;
     private ArrayList<OpenDoor> openDoors;
 
     private AudioPlayer bgMusic;
 
-    private int stage;
+    private ArrayList<Collectible> goldCoins;
+    private int stage = 1;
 
-    public Level1State(GameStateManager gsm) {
+    public Level3State(GameStateManager gsm) {
         this.gsm = gsm;
         init();
-
     }
 
     public void init() {
         tileMap = new TileMap(30);
-        tileMap.loadTiles("/tiles_lvl1.png");
-        tileMap.loadMap("/levelMap1.csv");
+        tileMap.loadTiles("/tiles_lvl3.png");
+        tileMap.loadMap("/levelMap3.csv");
         tileMap.setPosition(0, 0);
-        tileMap.setTween(0.06);
+        tileMap.setTween(0.07);
 
         slugs = new ArrayList<Enemy>();
         shells = new ArrayList<Enemy>();
         flys = new ArrayList<Enemy>();
         slimes = new ArrayList<Enemy>();
 
-        goldCoins = new ArrayList<Collectible>();
-
-        bg = new Background("/Backgrounds/bg_lvl1.png", 0.1);
+        bg = new Background("/Backgrounds/bg_lvl3.png", 0.1);
 
         player = new Player(tileMap);
-        player.setPosition(80, 100);
+        player.setPosition(190, 0);
         player.setScore(0);
 
         stage = 0;
@@ -290,7 +287,6 @@ public class Level1State extends GameState {
         //update doors
         for (int i = 0; i < closedDoors.size(); i++) {
             ClosedDoor d = closedDoors.get(i);
-            //d.update();
             if (player.getKey()) {
                 closedDoors.remove(i);
                 i--;
@@ -298,13 +294,8 @@ public class Level1State extends GameState {
                         new OpenDoor(tileMap, d.getx(), d.gety()));
             }
         }
-        //update level
-        if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
-            bgMusic.stop();
-            gsm.setState(GameStateManager.LEVEL2STATE);
-        }
         //update player death
-        if (player.checkDead(player)) {
+        if (player.isDead()) {
             bgMusic.stop();
             player.setScore(0);
             player.setCoins(0);

@@ -171,7 +171,7 @@ public class Level2State extends GameState {
         closedDoors = new ArrayList<ClosedDoor>();
         ClosedDoor d;
         Point[] doorPoints = new Point[]{
-                new Point(5910, 135)
+                new Point(5910, 105)
         };
         for (Point point : doorPoints) {
             d = new ClosedDoor(tileMap);
@@ -294,6 +294,12 @@ public class Level2State extends GameState {
                         new OpenDoor(tileMap, d.getx(), d.gety()));
             }
         }
+        //update level
+        if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
+            bgMusic.stop();
+            gsm.setState(GameStateManager.LEVEL3STATE);
+        }
+
         //update player death
         if (player.isDead()) {
             bgMusic.stop();
