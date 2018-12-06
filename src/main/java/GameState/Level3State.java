@@ -256,6 +256,8 @@ public class Level3State extends GameState {
         }
     }
 
+
+
     private void drawDoors() {
 
         //key
