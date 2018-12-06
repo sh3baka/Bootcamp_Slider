@@ -1,9 +1,9 @@
 package GameState;
 
 import Audio.AudioPlayer;
-import Entity.Characters.Enemy;
-import Entity.Characters.Player;
+import Entity.Characters.*;
 import Entity.Collectible.Collectible;
+import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
 import Entity.Effects.ClosedDoor;
 import Entity.Effects.OpenDoor;
@@ -14,6 +14,7 @@ import TileMap.Background;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public abstract class GameState {
     Player player;
@@ -27,6 +28,8 @@ public abstract class GameState {
     protected ArrayList<Enemy> slimes;
     protected ArrayList<Enemy> spikes;
 
+
+
     protected ArrayList<Collectible> goldCoins;
     protected YellowKey yKey;
     protected ArrayList<ClosedDoor> closedDoors;
@@ -35,6 +38,8 @@ public abstract class GameState {
     protected AudioPlayer bgMusic;
 
     protected int stage;
+
+
 
     protected GameStateManager gsm;
 
@@ -74,5 +79,14 @@ public abstract class GameState {
         //
         if (k == KeyEvent.VK_SPACE) player.setJumping(false);
     }
+
+    public void initEnemyArrayLists() {
+        slugs = new ArrayList<Enemy>();
+        shells = new ArrayList<Enemy>();
+        flys = new ArrayList<Enemy>();
+        slimes = new ArrayList<Enemy>();
+        spikes = new ArrayList<Enemy>();
+    }
+
 
 }

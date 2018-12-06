@@ -31,11 +31,7 @@ public class Level3State extends GameState {
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.06);
 
-        slugs = new ArrayList<Enemy>();
-        shells = new ArrayList<Enemy>();
-        flys = new ArrayList<Enemy>();
-        slimes = new ArrayList<Enemy>();
-        spikes = new ArrayList<Enemy>();
+        initEnemyArrayLists();
 
         bg = new Background("/Backgrounds/bg_lvl3.png", 0.1);
 
@@ -53,12 +49,13 @@ public class Level3State extends GameState {
 
     }
 
-    private void populateThings0() {
 
-        Slugger s;
+    private void populateThings0() {
+        Slugger slugger;
         Fly fly;
         Slime slime;
         Spike spike;
+        GoldCoin c;
 
         LinkedList<Point> spikePoints = new LinkedList<Point>();
         spikePoints.add(new Point(110, 200));
@@ -73,9 +70,9 @@ public class Level3State extends GameState {
         sluggerPoints.add(new Point(160, 180));
 
         for (Point point : sluggerPoints) {
-            s = new Slugger(tileMap);
-            s.setPosition(point.x, point.y);
-            slugs.add(s);
+            slugger = new Slugger(tileMap);
+            slugger.setPosition(point.x, point.y);
+            slugs.add(slugger);
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
@@ -89,7 +86,6 @@ public class Level3State extends GameState {
 
         //coins
         goldCoins = new ArrayList<Collectible>();
-        GoldCoin c;
         Point[] coinPoints = new Point[]{
 
                 new Point(160, 100),
@@ -114,16 +110,18 @@ public class Level3State extends GameState {
     }
 
     private void populateThings1() {
-        Slugger s;
+        Slugger slugger;
         Fly fly;
         Slime slime;
+        Spike spike;
+        GoldCoin c;
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(661, 140));
         for (Point point : sluggerPoints) {
-            s = new Slugger(tileMap);
-            s.setPosition(point.x, point.y);
-            slugs.add(s);
+            slugger = new Slugger(tileMap);
+            slugger.setPosition(point.x, point.y);
+            slugs.add(slugger);
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
@@ -143,7 +141,6 @@ public class Level3State extends GameState {
         }
         //coins
         goldCoins = new ArrayList<Collectible>();
-        GoldCoin c;
         Point[] coinPoints = new Point[]{
                 new Point(240, 100),
                 new Point(260, 100),
@@ -168,10 +165,20 @@ public class Level3State extends GameState {
     }
 
     private void populateThings2() {
-
-        Slugger s;
+        Slugger slugger;
         Fly fly;
         Slime slime;
+        Spike spike;
+        GoldCoin c;
+
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(1175, 80));
+
+        for (Point point : sluggerPoints) {
+            slugger = new Slugger(tileMap);
+            slugger.setPosition(point.x, point.y);
+            slugs.add(slugger);
+        }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(1185, 40));
@@ -192,7 +199,6 @@ public class Level3State extends GameState {
         }
         //coins
         goldCoins = new ArrayList<Collectible>();
-        GoldCoin c;
         Point[] coinPoints = new Point[]{
                 new Point(340, 100),
                 new Point(360, 100),
@@ -215,18 +221,19 @@ public class Level3State extends GameState {
         }
     }
     private void populateThings3() {
-
-        Slugger s;
+        Slugger slugger;
         Fly fly;
         Slime slime;
+        Spike spike;
+        GoldCoin c;
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(4130, 180));
 
         for (Point point : sluggerPoints) {
-            s = new Slugger(tileMap);
-            s.setPosition(point.x, point.y);
-            slugs.add(s);
+            slugger = new Slugger(tileMap);
+            slugger.setPosition(point.x, point.y);
+            slugs.add(slugger);
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
@@ -248,7 +255,6 @@ public class Level3State extends GameState {
         }
         //coins
         goldCoins = new ArrayList<Collectible>();
-        GoldCoin c;
         Point[] coinPoints = new Point[]{
                 new Point(4060, 170),
                 new Point(4080, 170),
