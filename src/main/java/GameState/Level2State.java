@@ -28,6 +28,7 @@ public class Level2State extends GameState {
     private ArrayList<Enemy> shells;
     private ArrayList<Enemy> flys;
     private ArrayList<Enemy> slimes;
+    private ArrayList<Enemy> spikes;
 
     private YellowKey yKey;
     private ArrayList<ClosedDoor> closedDoors;
@@ -76,6 +77,16 @@ public class Level2State extends GameState {
         Slugger s;
         Fly fly;
         Slime slime;
+        Spike spike;
+
+        LinkedList<Point> spikePoints = new LinkedList<Point>();
+        spikePoints.add(new Point(110, 200));
+
+        for (Point point : spikePoints) {
+            spike = new Spike(tileMap);
+            spike.setPosition(point.x, point.y);
+            spikes.add(spike);
+        }
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(160, 180));

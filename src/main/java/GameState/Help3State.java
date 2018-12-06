@@ -26,7 +26,7 @@ public class Help3State extends GameState {
             bg = new Background("/sample.png", 1);
             bg.setVector(0, 0);
 
-            font = new Font("Arial", Font.PLAIN, 12);
+            font = new Font("Arial", Font.PLAIN, 32);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,8 +44,9 @@ public class Help3State extends GameState {
     public void draw(Graphics2D g) {
         //draw bg
         bg.draw(g);
-        g.setColor(Color.CYAN);
-        g.drawString("PAGE 3", 240, 140);
+        g.setColor(Color.RED);
+        g.setFont(font);
+        g.drawString("Avoid and Kill", 60, 40);
     }
 
     public void keyPressed(int k) {
