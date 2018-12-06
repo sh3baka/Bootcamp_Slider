@@ -163,6 +163,8 @@ public class Player extends MapObject {
     }
 
 
+
+
     public void checkAttack(ArrayList<Enemy> enemies) {
 
         // loop through enemies
