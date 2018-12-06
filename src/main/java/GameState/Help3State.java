@@ -25,11 +25,11 @@ public class Help3State extends GameState {
 
             card = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Backgrounds/helpMenu1.png"
+                            "/Backgrounds/helpMenu3.png"
                     )
             );
 
-            font = new Font("Arial", Font.PLAIN, 32);
+            font = new Font("Arial", Font.PLAIN, 12);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,9 +47,13 @@ public class Help3State extends GameState {
     public void draw(Graphics2D g) {
         //draw bg
         bg.draw(g);
-        g.setColor(Color.RED);
+        g.drawImage(card, 10, 10, null);
+        g.setColor(Color.WHITE);
         g.setFont(font);
-        g.drawString("Avoid and Kill", 60, 40);
+
+        g.drawString("You can and should KILL or AVOID ", 30, 90);
+        //g.drawString("to get SCORE and COINS", 120, 90);
+
     }
 
     public void keyPressed(int k) {
