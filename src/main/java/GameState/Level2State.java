@@ -468,14 +468,14 @@ public class Level2State extends GameState {
             stage++;
         }
         //trigger 7
-       // if (player.getx() > 3300 && stage == 7) {
-         //   populateThings7();
-           // stage++;
+      // if (player.getx() > 3300 && stage == 7) {
+        //    populateThings7();
+          //  stage++;
         //}
         //trigger 8
-       // if (player.getx() > 4500 && stage == 8) {
-         //   populateThings8();
-           // stage++;
+        //if (player.getx() > 4500 && stage == 8) {
+          //  populateThings8();
+            //stage++;
         //}
 
         //coin collect

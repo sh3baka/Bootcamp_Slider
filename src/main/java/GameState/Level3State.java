@@ -96,7 +96,15 @@ public class Level3State extends GameState {
                 new Point(180, 100),
                 new Point(680,100),
                 new Point(700,100),
-                new Point(720,100)
+                new Point(720,100),
+                new Point(1150,200),
+                new Point(1170,200),
+                new Point(1190,200),
+                new Point(1340,200),
+                new Point(1775,200),
+                new Point(1795,200),
+                new Point(1805,200)
+
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -345,6 +353,8 @@ public class Level3State extends GameState {
             populateThings2();
             stage++;
         }
+        //trigger 3
+       // if (player.getx() > )
 
 
 
