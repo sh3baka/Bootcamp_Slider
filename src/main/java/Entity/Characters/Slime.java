@@ -16,8 +16,8 @@ public class Slime extends Enemy {
 
         super(tm);
 
-        moveSpeed = 0.1;
-        maxSpeed = 0.1;
+        moveSpeed = 0.2;
+        maxSpeed = 0.4;
         fallSpeed = 0.2;
         maxFallSpeed = 10.0;
 

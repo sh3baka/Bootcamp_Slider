@@ -21,7 +21,7 @@ public class Fly extends Enemy {
         width = 33;
         height = 20;
         cwidth = 20;
-        cheight = 10;
+        cheight = 20;
 
         health = maxHealth = 1;
         damage = 1;
