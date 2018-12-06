@@ -165,7 +165,7 @@ public class Level2State extends GameState {
 
         //key
         yKey = new YellowKey(tileMap);
-        yKey.setPosition(150, 170);
+        yKey.setPosition(3970, 200);
         //doors
         openDoors = new ArrayList<OpenDoor>();
         closedDoors = new ArrayList<ClosedDoor>();
