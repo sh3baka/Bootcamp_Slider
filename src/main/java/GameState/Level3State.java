@@ -127,7 +127,7 @@ public class Level3State extends GameState {
         Slime slime;
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(260, 180));
+        sluggerPoints.add(new Point(661, 140));
         for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
             s.setPosition(point.x, point.y);
@@ -135,7 +135,7 @@ public class Level3State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(280, 100));
+        flyPoints.add(new Point(661, 65));
         for (Point point : flyPoints) {
             fly = new Fly(tileMap);
             fly.setPosition(point.x, point.y);
@@ -143,7 +143,7 @@ public class Level3State extends GameState {
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(320, 100));
+        slimePoints.add(new Point(875, 110));
         for (Point point : slimePoints) {
             slime = new Slime(tileMap);
             slime.setPosition(point.x, point.y);
@@ -180,7 +180,7 @@ public class Level3State extends GameState {
         Slime slime;
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(360, 180));
+        sluggerPoints.add(new Point(1175, 80));
 
         for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
@@ -189,7 +189,7 @@ public class Level3State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(380, 100));
+        flyPoints.add(new Point(1185, 40));
 
         for (Point point : flyPoints) {
             fly = new Fly(tileMap);
@@ -198,7 +198,7 @@ public class Level3State extends GameState {
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(420, 100));
+        slimePoints.add(new Point(1210, 110));
 
         for (Point point : slimePoints) {
             slime = new Slime(tileMap);
@@ -345,15 +345,25 @@ public class Level3State extends GameState {
                 GamePanel.HEIGHT / 2 - player.gety()
         );
         //trigger 0
-        if (player.getx() > 200 && stage == 0) {
+        if (player.getx() > 190 && stage == 0) {
             populateThings0();
             stage++;
         }
         //trigger 1
-        if (player.getx() > 300 && stage == 1) {
+        if (player.getx() > 450 && stage == 1) {
             populateThings1();
             stage++;
         }
+        //trigger 2
+        if (player.getx() > 980 && stage == 2) {
+            populateThings2();
+            stage++;
+        }
+
+
+
+
+
         //coin collect
         player.checkCollect(goldCoins);
         //keys
