@@ -20,6 +20,8 @@ public class Level2State extends GameState {
 
     Level2State(GameStateManager gsm) {
         this.gsm = gsm;
+        bgMusic = new AudioPlayer("/Music/level2.mp3");
+        gameOverMusic = new AudioPlayer("/Music/gameOver.mp3");
         init();
     }
 
@@ -40,12 +42,8 @@ public class Level2State extends GameState {
 
         stage = 1;
         drawDoors();
-
         hud = new HUD(player);
-
-        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
         bgMusic.play();
-
     }
 
 
@@ -511,18 +509,20 @@ public class Level2State extends GameState {
 
         // death for player if out of bounds except top of the screen
         if (player.gety() > 300 || player.getx() < 0 || player.getx() > 200*30) {
+            bgMusic.stop();
             player.isDead();
         }
 
-        //update level
+        //
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
             bgMusic.stop();
             gsm.setState(GameStateManager.LEVEL3STATE);
+            stage = 0;
         }
-
         //update player death
-        if (player.isDead()) {
+        if (player.checkDead(player)) {
             bgMusic.stop();
+            gameOverMusic.play();
             player.setScore(0);
             player.setCoins(0);
             gsm.setState(GameStateManager.LEVEL1STATE);
