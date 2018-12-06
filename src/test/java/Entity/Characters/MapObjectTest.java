@@ -3,7 +3,7 @@ package Entity.Characters;
 import TileMap.TileMap;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class MapObjectTest {
 
@@ -28,7 +28,7 @@ public class MapObjectTest {
     @Test
     public void notOnScreen() {
         Player player = new Player(tileMap);
-        player.setPosition(500,500);
+        player.setPosition(500, 500);
 
         assertTrue(player.notOnScreen());
     }

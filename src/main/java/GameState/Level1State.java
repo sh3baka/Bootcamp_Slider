@@ -40,7 +40,7 @@ public class Level1State extends GameState {
         bg = new Background("/Backgrounds/bg_lvl1.png", 0.1);
 
         player = new Player(tileMap);
-        player.setPosition(80,100);
+        player.setPosition(80, 100);
         player.setScore(0);
 
         stage = 1;
@@ -53,16 +53,16 @@ public class Level1State extends GameState {
 
     }
 
-        private void populateThings0() {
+    private void populateThings0() {
 
 
-            LinkedList<Point> spikePoints = new LinkedList<Point>();
+        LinkedList<Point> spikePoints = new LinkedList<Point>();
 
         spikePoints.add(new Point(110, 200));
 
-            addSpikesToList(spikePoints);
+        addSpikesToList(spikePoints);
 
-            LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(300, 140));
 
         addSluggersToList(sluggerPoints);
@@ -70,13 +70,13 @@ public class Level1State extends GameState {
         LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(180, 100));
 
-            addFlysToList(flyPoints);
+        addFlysToList(flyPoints);
 
-            LinkedList<Point> slimePoints = new LinkedList<Point>();
+        LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(220, 100));
 
-            addSlimesToList(slimePoints);
-            //coins
+        addSlimesToList(slimePoints);
+        //coins
         goldCoins = new ArrayList<Collectible>();
 
         Point[] coinPoints = new Point[]{
@@ -102,8 +102,8 @@ public class Level1State extends GameState {
                 new Point(1600, 80),
                 new Point(1620, 80),
                 new Point(1725, 110),
-                new Point(1845 , 140),
-                new Point(2100 , 200),
+                new Point(1845, 140),
+                new Point(2100, 200),
                 new Point(2075, 140),
                 new Point(2125, 140),
                 new Point(2050, 80),
@@ -215,7 +215,7 @@ public class Level1State extends GameState {
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(2800, 170));
 
-addSluggersToList(sluggerPoints);
+        addSluggersToList(sluggerPoints);
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(2820, 90));
@@ -236,6 +236,7 @@ addSluggersToList(sluggerPoints);
             goldCoins.add(c);
         }
     }
+
     private void populateThings4() {
 
 
@@ -247,7 +248,7 @@ addSluggersToList(sluggerPoints);
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(4600, 50));
 
-addSluggersToList(sluggerPoints);
+        addSluggersToList(sluggerPoints);
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(4660, 100));
@@ -275,7 +276,7 @@ addSluggersToList(sluggerPoints);
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(5100, 50));
 
-addSluggersToList(sluggerPoints);
+        addSluggersToList(sluggerPoints);
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(5148, 800));
@@ -355,11 +356,11 @@ addSluggersToList(sluggerPoints);
         player.update();
 
         tileMap.setPosition(
-                (float)GamePanel.WIDTH / 2 - player.getx(),
-                (float)GamePanel.HEIGHT / 2 - player.gety()
+                (float) GamePanel.WIDTH / 2 - player.getx(),
+                (float) GamePanel.HEIGHT / 2 - player.gety()
         );
 
-       //trigger 1
+        //trigger 1
         if (player.getx() > 1340 && stage == 1) {
             populateThings1();
             stage++;
@@ -370,7 +371,7 @@ addSluggersToList(sluggerPoints);
             stage++;
         }
         //trigger 3
-        if (player.getx() >2550 && stage == 3) {
+        if (player.getx() > 2550 && stage == 3) {
             populateThings3();
             stage++;
         }

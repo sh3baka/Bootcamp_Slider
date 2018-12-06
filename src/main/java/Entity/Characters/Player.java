@@ -39,8 +39,6 @@ public class Player extends MapObject {
     private ArrayList<BufferedImage[]> sprites;
 
 
-
-
     public Player(TileMap tm) {
 
         super(tm);
@@ -109,7 +107,9 @@ public class Player extends MapObject {
 
     }
 
-    public static double getdY() { return dY; }
+    public static double getdY() {
+        return dY;
+    }
 
     public static double getX() {
         return X;
@@ -147,6 +147,10 @@ public class Player extends MapObject {
         return health;
     }
 
+    void setHealth(int health) {
+        this.health = health;
+    }
+
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -157,10 +161,6 @@ public class Player extends MapObject {
 
     public boolean isDead() {
         return dead;
-    }
-
-    void setHealth(int health) {
-        this.health = health;
     }
 
     public boolean checkDead(Player p) {
@@ -177,35 +177,36 @@ public class Player extends MapObject {
 
     public void checkAttack(ArrayList<Enemy> enemies) {
 
-       //  loop through enemies
+        //  loop through enemies
         for (Enemy e : enemies) {
 
             // check enemy collision
 
-                if (intersects(e) && this.dy > 0) {
+            if (intersects(e) && this.dy > 0) {
 
-                    dy = jumpStart;
-                    e.health--;
-                    setScore(getScore() + e.getWorth());
+                dy = jumpStart;
+                e.health--;
+                setScore(getScore() + e.getWorth());
 
-                } else if (intersects(e)) {
-                    hit(e.getDamage());
-                }
+            } else if (intersects(e)) {
+                hit(e.getDamage());
+            }
 
         }
     }
+
     public void checkSpikes(ArrayList<Enemy> spikes) {
 
         // loop through enemies
         for (Enemy e : spikes) {
 
             // check enemy collision
-                if (intersects(e)) {
+            if (intersects(e)) {
 
-                    dy = jumpStart;
-                    hit(e.getDamage());
-                }
+                dy = jumpStart;
+                hit(e.getDamage());
             }
+        }
     }
 
 

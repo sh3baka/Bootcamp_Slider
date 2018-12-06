@@ -13,7 +13,6 @@ import TileMap.Background;
 import TileMap.TileMap;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -85,23 +84,23 @@ public class Level3State extends GameState {
 
                 new Point(160, 100),
                 new Point(180, 100),
-                new Point(680,100),
-                new Point(700,100),
-                new Point(720,100),
-                new Point(1150,200),
-                new Point(1170,200),
-                new Point(1190,200),
-                new Point(1340,200),
-                new Point(1775,200),
-                new Point(1795,200),
-                new Point(1805,200),
-                new Point(1150,200),
-                new Point(1170,200),
-                new Point(1190,200),
-                new Point(1335,200),
-                new Point(2290,110),
-                new Point(2310,110),
-                new Point(2330,110)
+                new Point(680, 100),
+                new Point(700, 100),
+                new Point(720, 100),
+                new Point(1150, 200),
+                new Point(1170, 200),
+                new Point(1190, 200),
+                new Point(1340, 200),
+                new Point(1775, 200),
+                new Point(1795, 200),
+                new Point(1805, 200),
+                new Point(1150, 200),
+                new Point(1170, 200),
+                new Point(1190, 200),
+                new Point(1335, 200),
+                new Point(2290, 110),
+                new Point(2310, 110),
+                new Point(2330, 110)
 
 
         };
@@ -144,16 +143,16 @@ public class Level3State extends GameState {
                 new Point(240, 100),
                 new Point(260, 100),
                 new Point(280, 100),
-                new Point(1240,100),
-                new Point(1260,100),
-                new Point(1280,100),
+                new Point(1240, 100),
+                new Point(1260, 100),
+                new Point(1280, 100),
                 new Point(1610, 200),
-                new Point(2260,100),
-                new Point(2260,110),
-                new Point(2740,60),
-                new Point(690,140),
-                new Point(710,140),
-                new Point(730,140)
+                new Point(2260, 100),
+                new Point(2260, 110),
+                new Point(2740, 60),
+                new Point(690, 140),
+                new Point(710, 140),
+                new Point(730, 140)
 
         };
         for (Point point : coinPoints) {
@@ -198,16 +197,16 @@ public class Level3State extends GameState {
                 new Point(340, 100),
                 new Point(360, 100),
                 new Point(380, 100),
-                new Point(3220,200),
-                new Point(3240,200),
-                new Point(3260,200),
+                new Point(3220, 200),
+                new Point(3240, 200),
+                new Point(3260, 200),
                 new Point(980, 110),
-                new Point(1000,110),
-                new Point(1020,110),
-                new Point(1770,80),
+                new Point(1000, 110),
+                new Point(1020, 110),
+                new Point(1770, 80),
                 new Point(1790, 80),
-                new Point(2055,110),
-                new Point(2115,110)
+                new Point(2055, 110),
+                new Point(2115, 110)
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -215,6 +214,7 @@ public class Level3State extends GameState {
             goldCoins.add(c);
         }
     }
+
     private void populateThings3() {
 
 
@@ -250,9 +250,9 @@ public class Level3State extends GameState {
                 new Point(4060, 170),
                 new Point(4080, 170),
                 new Point(4200, 110),
-                new Point(4220,100),
-                new Point(4390,140),
-                new Point(4310,100)
+                new Point(4220, 100),
+                new Point(4390, 140),
+                new Point(4310, 100)
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -260,7 +260,6 @@ public class Level3State extends GameState {
             goldCoins.add(c);
         }
     }
-
 
 
     private void drawDoors() {
@@ -332,8 +331,8 @@ public class Level3State extends GameState {
         player.update();
 
         tileMap.setPosition(
-                (float)GamePanel.WIDTH / 2 - player.getx(),
-                (float)GamePanel.HEIGHT / 2 - player.gety()
+                (float) GamePanel.WIDTH / 2 - player.getx(),
+                (float) GamePanel.HEIGHT / 2 - player.gety()
         );
 
         //trigger 1

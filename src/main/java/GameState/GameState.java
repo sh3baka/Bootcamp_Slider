@@ -8,45 +8,37 @@ import Entity.Collectible.YellowKey;
 import Entity.Effects.ClosedDoor;
 import Entity.Effects.OpenDoor;
 import Entity.Hud.HUD;
-import TileMap.TileMap;
 import TileMap.Background;
+import TileMap.TileMap;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public abstract class GameState {
+    protected GameStateManager gsm;
     Player player;
     TileMap tileMap;
     Background bg;
     HUD hud;
-
     ArrayList<Enemy> slugs;
     ArrayList<Enemy> shells;
     ArrayList<Enemy> flys;
     ArrayList<Enemy> slimes;
     ArrayList<Enemy> spikes;
-
     Slugger slugger;
     Fly fly;
     Slime slime;
     Spike spike;
     GoldCoin c;
-
     ArrayList<Collectible> goldCoins;
     YellowKey yKey;
     ArrayList<ClosedDoor> closedDoors;
     ArrayList<OpenDoor> openDoors;
-
     AudioPlayer bgMusic;
-
     int stage;
 
-
-
-    protected GameStateManager gsm;
-
-    public void init(){
+    public void init() {
 
     }
 

@@ -6,8 +6,6 @@ import Entity.Collectible.YellowKey;
 import TileMap.TileMap;
 import org.junit.Test;
 
-
-
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -119,7 +117,7 @@ public class PlayerTest {
         player.checkAttack(enemies);
 
 
-        assertEquals(0, enemies.get(0).health );
+        assertEquals(0, enemies.get(0).health);
     }
 
     @Test
@@ -164,7 +162,7 @@ public class PlayerTest {
         player.x = 0;
         player.y = 0;
 
-        player.setPosition(100,200);
+        player.setPosition(100, 200);
 
         assertEquals(100, player.getx());
         assertEquals(200, player.gety());

@@ -13,7 +13,6 @@ import TileMap.Background;
 import TileMap.TileMap;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -39,7 +38,7 @@ public class Level2State extends GameState {
         player = new Player(tileMap);
         player.setPosition(190, 0);
 
-         stage = 1;
+        stage = 1;
         drawDoors();
 
         hud = new HUD(player);
@@ -95,11 +94,11 @@ public class Level2State extends GameState {
                 new Point(140, 100),
                 new Point(160, 100),
                 new Point(180, 100),
-                new Point(2353,170),
-                new Point(3410,200),
-                new Point(3490,200),
-                new Point(3410,200),
-                new Point(3520,80)
+                new Point(2353, 170),
+                new Point(3410, 200),
+                new Point(3490, 200),
+                new Point(3410, 200),
+                new Point(3520, 80)
 
         };
         for (Point point : coinPoints) {
@@ -145,10 +144,10 @@ public class Level2State extends GameState {
                 new Point(240, 100),
                 new Point(260, 100),
                 new Point(280, 100),
-                new Point(1800,100),
-                new Point(1820,100),
-                new Point(1840,100),
-                new Point(1860,100)
+                new Point(1800, 100),
+                new Point(1820, 100),
+                new Point(1840, 100),
+                new Point(1860, 100)
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -161,7 +160,7 @@ public class Level2State extends GameState {
 
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(900,50));
+        sluggerPoints.add(new Point(900, 50));
 
         for (Point point : sluggerPoints) {
             slugger = new Slugger(tileMap);
@@ -184,27 +183,27 @@ public class Level2State extends GameState {
                 new Point(340, 100),
                 new Point(360, 100),
                 new Point(380, 100),
-                new Point(440,80),
-                new Point(460,80),
-                new Point(480,80),
-                new Point(1280,200),
-                new Point(1300,200),
-                new Point(1320,200),
-                new Point(2000,150),
-                new Point(2670,140),
+                new Point(440, 80),
+                new Point(460, 80),
+                new Point(480, 80),
+                new Point(1280, 200),
+                new Point(1300, 200),
+                new Point(1320, 200),
+                new Point(2000, 150),
+                new Point(2670, 140),
                 new Point(2690, 140),
-                new Point(2710,140),
-                new Point(3800,80),
-                new Point(3820,80),
-                new Point(3840,80),
-                new Point(4100,200),
-                new Point(4120,200),
-                new Point(4150,40),
-                new Point(4160,40),
-                new Point(4180,40),
-                new Point(4510,200),
+                new Point(2710, 140),
+                new Point(3800, 80),
+                new Point(3820, 80),
+                new Point(3840, 80),
+                new Point(4100, 200),
+                new Point(4120, 200),
+                new Point(4150, 40),
+                new Point(4160, 40),
+                new Point(4180, 40),
+                new Point(4510, 200),
                 new Point(4815, 60),
-                new Point(4900,40)
+                new Point(4900, 40)
 
 
         };
@@ -214,6 +213,7 @@ public class Level2State extends GameState {
             goldCoins.add(c);
         }
     }
+
     private void populateThings3() {
 
 
@@ -290,6 +290,7 @@ public class Level2State extends GameState {
         }
 
     }
+
     private void populateThings6() {
 
 
@@ -311,6 +312,7 @@ public class Level2State extends GameState {
             slimes.add(slime);
         }
     }
+
     private void populateThings7() {
 
 
@@ -342,6 +344,7 @@ public class Level2State extends GameState {
         }
 
     }
+
     private void populateThings8() {
 
 
@@ -364,9 +367,6 @@ public class Level2State extends GameState {
         }
 
     }
-
-
-
 
 
     private void drawDoors() {
@@ -438,8 +438,8 @@ public class Level2State extends GameState {
         player.update();
 
         tileMap.setPosition(
-                (float)GamePanel.WIDTH / 2 - player.getx(),
-                (float)GamePanel.HEIGHT / 2 - player.gety()
+                (float) GamePanel.WIDTH / 2 - player.getx(),
+                (float) GamePanel.HEIGHT / 2 - player.gety()
         );
         //trigger 1
         if (player.getx() > 420 && stage == 1) {
