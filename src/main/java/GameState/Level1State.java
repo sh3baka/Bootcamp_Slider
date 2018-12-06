@@ -93,7 +93,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(160, 180));
+        sluggerPoints.add(new Point(300, 140));
 
         for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
@@ -248,19 +248,7 @@ public class Level1State extends GameState {
             slime.setPosition(point.x, point.y);
             slimes.add(slime);
         }
-        //coins
-        goldCoins = new ArrayList<Collectible>();
-        GoldCoin c;
-        Point[] coinPoints = new Point[]{
-                new Point(3340, 100),
-                new Point(3360, 100),
-                new Point(3380, 100)
-        };
-        for (Point point : coinPoints) {
-            c = new GoldCoin(tileMap);
-            c.setPosition(point.x, point.y);
-            goldCoins.add(c);
-        }
+
     }
 
     private void populateThings3() {
@@ -574,6 +562,7 @@ public class Level1State extends GameState {
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
             bgMusic.stop();
             gsm.setState(GameStateManager.LEVEL2STATE);
+            stage = 0;
         }
         //update player death
         if (player.checkDead(player)) {

@@ -37,7 +37,7 @@ public class Level2State extends GameState {
     private AudioPlayer bgMusic;
 
     private ArrayList<Collectible> goldCoins;
-    private int stage = 1;
+    private int stage;
 
     public Level2State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -63,7 +63,7 @@ public class Level2State extends GameState {
         player.setPosition(190, 0);
         player.setScore(0);
 
-        stage = 0;
+         stage = 0;
         drawDoors();
 
         hud = new HUD(player);
@@ -90,7 +90,7 @@ public class Level2State extends GameState {
         }
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(160, 180));
+        sluggerPoints.add(new Point(160, 200));
 
         for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
@@ -99,7 +99,7 @@ public class Level2State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(180, 100));
+        flyPoints.add(new Point(180, 120));
 
         for (Point point : flyPoints) {
             fly = new Fly(tileMap);
@@ -108,7 +108,7 @@ public class Level2State extends GameState {
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(220, 100));
+        slimePoints.add(new Point(220, 17 0));
 
         for (Point point : slimePoints) {
             slime = new Slime(tileMap);
@@ -501,12 +501,12 @@ public class Level2State extends GameState {
                 GamePanel.HEIGHT / 2 - player.gety()
         );
         //trigger 0
-        if (player.getx() > 190 && stage == 0) {
+        if (player.gety() > 0 && stage == 0) {
             populateThings0();
             stage++;
         }
         //trigger 1
-        if (player.getx() > 240 && stage == 1) {
+        if (player.getx() > 220 && stage == 1) {
             populateThings1();
             stage++;
         }
