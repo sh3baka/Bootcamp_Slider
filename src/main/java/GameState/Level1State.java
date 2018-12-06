@@ -338,7 +338,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(4660, 90));
+        flyPoints.add(new Point(4660, 100));
 
         for (Point point : flyPoints) {
             fly = new Fly(tileMap);
