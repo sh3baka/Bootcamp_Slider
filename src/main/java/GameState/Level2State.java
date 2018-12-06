@@ -303,7 +303,7 @@ public class Level2State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(2750, 90));
+        flyPoints.add(new Point(2750, 100));
 
         for (Point point : flyPoints) {
             fly = new Fly(tileMap);
@@ -494,7 +494,7 @@ public class Level2State extends GameState {
             stage++;
         }
         //trigger 1
-        if (player.getx() > 260 && stage == 1) {
+        if (player.getx() > 240 && stage == 1) {
             populateThings1();
             stage++;
         }

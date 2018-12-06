@@ -385,6 +385,32 @@ public class Level1State extends GameState {
         }
 
     }
+    private void populateThings6() {
+
+        Slugger s;
+        Fly fly;
+        Slime slime;
+
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(5000, 50));
+
+        for (Point point : sluggerPoints) {
+            s = new Slugger(tileMap);
+            s.setPosition(point.x, point.y);
+            slugs.add(s);
+        }
+
+        LinkedList<Point> slimePoints = new LinkedList<Point>();
+        slimePoints.add(new Point(5148, 100));
+
+        for (Point point : slimePoints) {
+            slime = new Slime(tileMap);
+            slime.setPosition(point.x, point.y);
+            slimes.add(slime);
+        }
+
+    }
+
 
     private void drawDoors() {
 
@@ -465,7 +491,7 @@ public class Level1State extends GameState {
             stage++;
         }
         //trigger 1
-       if (player.getx() > 210 && stage == 1) {
+       if (player.getx() > 190 && stage == 1) {
            populateThings1();
            stage++;
         }
@@ -488,6 +514,11 @@ public class Level1State extends GameState {
         //trigger 5
         if (player.getx() > 4340 && stage == 5) {
             populateThings5();
+            stage++;
+        }
+        //trigger 6
+        if (player.getx() > 4800 && stage == 6) {
+            populateThings6();
             stage++;
         }
 
