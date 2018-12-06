@@ -25,7 +25,7 @@ public class Player extends MapObject {
     private static double Y;
     public static double dY;
     private final int[] numFrames = {
-            16, 8, 1, 2
+            16, 6, 1, 2
     };
     private HashMap<String, AudioPlayer> sfx;
     //player stuff
@@ -321,7 +321,7 @@ public class Player extends MapObject {
             if (currentAction != WALKING) {
                 currentAction = WALKING;
                 animation.setFrames(sprites.get(WALKING));
-                animation.setDelay(40);
+                animation.setDelay(70);
                 width = 30;
             }
         } else {
