@@ -349,7 +349,7 @@ public class Level1State extends GameState {
         Spike spike;
 
         LinkedList<Point> spikePoints = new LinkedList<Point>();
-        spikePoints.add(new Point(4540, 140));
+        spikePoints.add(new Point(4570, 170));
 
         for (Point point : spikePoints) {
             spike = new Spike(tileMap);
@@ -486,7 +486,7 @@ public class Level1State extends GameState {
         }
 
         //trigger 5
-        if (player.getx() > 4480 && stage == 5) {
+        if (player.getx() > 4340 && stage == 5) {
             populateThings5();
             stage++;
         }
