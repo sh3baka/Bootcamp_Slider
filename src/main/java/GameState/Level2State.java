@@ -108,7 +108,7 @@ public class Level2State extends GameState {
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(220, 17 0));
+        slimePoints.add(new Point(220, 170));
 
         for (Point point : slimePoints) {
             slime = new Slime(tileMap);
