@@ -23,6 +23,7 @@ public class Player extends MapObject {
     public static int coins;
     private static double X;
     private static double Y;
+    public static double dY;
     private final int[] numFrames = {
             2, 8, 1, 2
     };
@@ -54,7 +55,7 @@ public class Player extends MapObject {
         stopSpeed = 0.4;
         fallSpeed = 0.15;
         jumpStart = -4.8;
-        killJumpStart = -5.6;
+        killJumpStart = -5.2;
         stopJumpSpeed = 0.3;
         maxFallSpeed = 4.0;
 
@@ -107,6 +108,8 @@ public class Player extends MapObject {
         sfx.put("jump", new AudioPlayer("/SFX/jumpland44100.mp3"));
 
     }
+
+    public static double getdY() { return dY; }
 
     public static double getX() {
         return X;
@@ -188,9 +191,9 @@ public class Player extends MapObject {
             // check enemy collision
             if (e instanceof Enemy) {
 
-                if (intersects(e) && this.falling) {
+                if (intersects(e) && this.dy > 0) {
 
-                    dy = killJumpStart;
+                    dy = jumpStart;
                     e.health--;
                     setScore(getScore() + e.getWorth());
 
@@ -200,6 +203,25 @@ public class Player extends MapObject {
             }
         }
     }
+    public void checkSpikes(ArrayList<Enemy> spikes) {
+
+        // loop through enemies
+        for (int i = 0; i < spikes.size(); i++) {
+
+            Enemy e = spikes.get(i);
+
+            // check enemy collision
+            if (e instanceof Enemy) {
+
+                if (intersects(e)) {
+
+                    dy = jumpStart;
+                    hit(e.getDamage());
+                }
+            }
+        }
+    }
+
 
     public void checkKeys(YellowKey key) {
         if (intersects(key)) {
@@ -318,6 +340,7 @@ public class Player extends MapObject {
 
         X = x;
         Y = y;
+        dY = dy;
     }
 
 

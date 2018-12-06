@@ -30,12 +30,6 @@ public class MenuState extends GameState {
             bg = new Background("/sample.png", 1);
             bg.setVector(0, 0);
 
-            titleColor = new Color(0, 0, 0);
-            titleFont = new Font(
-                    "Noto Sans CJK TC Bold",
-                    Font.PLAIN,
-                    38);
-
             font = new Font("Arial", Font.PLAIN, 12);
 
         } catch (Exception e) {
@@ -55,11 +49,6 @@ public class MenuState extends GameState {
         //draw bg
         bg.draw(g);
 
-        //draw title
-        g.setColor(titleColor);
-        g.setFont(titleFont);
-        //g.drawString("Alien vs Predators", 30, 70);
-
         //draw menu options
         g.setFont(font);
         for (int i = 0; i < options.length; i++) {
@@ -77,7 +66,7 @@ public class MenuState extends GameState {
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
         if (currentChoice == 1) {
-            //help
+            gsm.setState(GameStateManager.HELP1STATE);
         }
         if (currentChoice == 2) {
             System.exit(0);
