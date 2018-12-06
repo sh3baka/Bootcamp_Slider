@@ -20,7 +20,7 @@ public class Player extends MapObject {
     private static final int JUMPING = 2;
     private static final int FALLING = 3;
     public static int score = 0;
-    private static int coins;
+    public static int coins;
     private static double X;
     private static double Y;
     public static double dY;
@@ -37,6 +37,8 @@ public class Player extends MapObject {
     private boolean hasKey;
     // animations
     private ArrayList<BufferedImage[]> sprites;
+
+
 
 
     public Player(TileMap tm) {
@@ -157,6 +159,14 @@ public class Player extends MapObject {
         return dead;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
     public boolean checkDead(Player p) {
         if (p.getHealth() == 0) {
             p.setDead();
@@ -165,12 +175,15 @@ public class Player extends MapObject {
         return false;
     }
 
+    public boolean hasKey() {
+        return hasKey;
+    }
 
 
 
     public void checkAttack(ArrayList<Enemy> enemies) {
 
-        // loop through enemies
+       //  loop through enemies
         for (int i = 0; i < enemies.size(); i++) {
 
             Enemy e = enemies.get(i);

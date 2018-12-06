@@ -152,7 +152,66 @@ public class Level2State extends GameState {
         Point[] coinPoints = new Point[]{
                 new Point(240, 100),
                 new Point(260, 100),
-                new Point(280, 100)
+                new Point(280, 100),
+                new Point(1800,100),
+                new Point(1820,100),
+                new Point(1840,100),
+                new Point(1860,100)
+        };
+        for (Point point : coinPoints) {
+            c = new GoldCoin(tileMap);
+            c.setPosition(point.x, point.y);
+            goldCoins.add(c);
+        }
+    }
+
+    private void populateThings2() {
+
+        Slugger s;
+        Fly fly;
+        Slime slime;
+
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(360, 180));
+
+        for (Point point : sluggerPoints) {
+            s = new Slugger(tileMap);
+            s.setPosition(point.x, point.y);
+            slugs.add(s);
+        }
+
+        LinkedList<Point> flyPoints = new LinkedList<Point>();
+        flyPoints.add(new Point(380, 100));
+
+        for (Point point : flyPoints) {
+            fly = new Fly(tileMap);
+            fly.setPosition(point.x, point.y);
+            flys.add(fly);
+        }
+
+        LinkedList<Point> slimePoints = new LinkedList<Point>();
+        slimePoints.add(new Point(420, 100));
+
+        for (Point point : slimePoints) {
+            slime = new Slime(tileMap);
+            slime.setPosition(point.x, point.y);
+            slimes.add(slime);
+        }
+        //coins
+        goldCoins = new ArrayList<Collectible>();
+        GoldCoin c;
+        Point[] coinPoints = new Point[]{
+                new Point(340, 100),
+                new Point(360, 100),
+                new Point(380, 100),
+                new Point(440,80),
+                new Point(460,80),
+                new Point(480,80),
+                new Point(1280,200),
+                new Point(1300,200),
+                new Point(1320,200),
+                new Point(2000,150),
+
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -241,6 +300,11 @@ public class Level2State extends GameState {
         //trigger 1
         if (player.getx() > 300 && stage == 1) {
             populateThings1();
+            stage++;
+        }
+        //trigger 2
+        if (player.getx() > 400 && stage == 2) {
+            populateThings2();
             stage++;
         }
         //coin collect
