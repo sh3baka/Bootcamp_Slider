@@ -222,7 +222,7 @@ public class Level1State extends GameState {
         Slime slime;
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(1580, 100));
+        sluggerPoints.add(new Point(1580, 80));
         for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
             s.setPosition(point.x, point.y);
@@ -230,7 +230,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(1600, 100));
+        flyPoints.add(new Point(1600, 70));
         for (Point point : flyPoints) {
             fly = new Fly(tileMap);
             fly.setPosition(point.x, point.y);
@@ -238,7 +238,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(1600, 100));
+        slimePoints.add(new Point(1600, 80));
         for (Point point : slimePoints) {
             slime = new Slime(tileMap);
             slime.setPosition(point.x, point.y);
@@ -252,7 +252,7 @@ public class Level1State extends GameState {
         Slime slime;
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(520, 180));
+        sluggerPoints.add(new Point(2350, 110));
 
         for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
@@ -261,7 +261,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(1320, 100));
+        flyPoints.add(new Point(2280, 90));
 
         for (Point point : flyPoints) {
             fly = new Fly(tileMap);
@@ -270,7 +270,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(1320, 100));
+        slimePoints.add(new Point(2290, 110));
 
         for (Point point : slimePoints) {
             slime = new Slime(tileMap);
@@ -290,6 +290,100 @@ public class Level1State extends GameState {
             c.setPosition(point.x, point.y);
             goldCoins.add(c);
         }
+    }
+
+    private void populateThings4() {
+
+        Slugger s;
+        Fly fly;
+        Slime slime;
+        Spike spike;
+
+        LinkedList<Point> spikePoints = new LinkedList<Point>();
+        spikePoints.add(new Point(2780, 170));
+
+        for (Point point : spikePoints) {
+            spike = new Spike(tileMap);
+            spike.setPosition(point.x, point.y);
+            spikes.add(spike);
+        }
+
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(2800, 170));
+
+        for (Point point : sluggerPoints) {
+            s = new Slugger(tileMap);
+            s.setPosition(point.x, point.y);
+            slugs.add(s);
+        }
+
+        LinkedList<Point> flyPoints = new LinkedList<Point>();
+        flyPoints.add(new Point(2820, 90));
+
+        for (Point point : flyPoints) {
+            fly = new Fly(tileMap);
+            fly.setPosition(point.x, point.y);
+            flys.add(fly);
+        }
+
+          //coins
+        goldCoins = new ArrayList<Collectible>();
+        GoldCoin c;
+        Point[] coinPoints = new Point[]{
+                new Point(2980, 140),
+                new Point(3040, 110),
+                new Point(3060, 110)
+
+        };
+        for (Point point : coinPoints) {
+            c = new GoldCoin(tileMap);
+            c.setPosition(point.x, point.y);
+            goldCoins.add(c);
+        }
+    }
+    private void populateThings5() {
+
+        Slugger s;
+        Fly fly;
+        Slime slime;
+        Spike spike;
+
+        LinkedList<Point> spikePoints = new LinkedList<Point>();
+        spikePoints.add(new Point(4540, 140));
+
+        for (Point point : spikePoints) {
+            spike = new Spike(tileMap);
+            spike.setPosition(point.x, point.y);
+            spikes.add(spike);
+        }
+
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(4600, 50));
+
+        for (Point point : sluggerPoints) {
+            s = new Slugger(tileMap);
+            s.setPosition(point.x, point.y);
+            slugs.add(s);
+        }
+
+        LinkedList<Point> flyPoints = new LinkedList<Point>();
+        flyPoints.add(new Point(4660, 90));
+
+        for (Point point : flyPoints) {
+            fly = new Fly(tileMap);
+            fly.setPosition(point.x, point.y);
+            flys.add(fly);
+        }
+
+        LinkedList<Point> slimePoints = new LinkedList<Point>();
+        slimePoints.add(new Point(4740, 200));
+
+        for (Point point : slimePoints) {
+            slime = new Slime(tileMap);
+            slime.setPosition(point.x, point.y);
+            slimes.add(slime);
+        }
+
     }
 
     private void drawDoors() {
@@ -371,13 +465,29 @@ public class Level1State extends GameState {
             stage++;
         }
         //trigger 1
-       if (player.getx() > 300 && stage == 1) {
+       if (player.getx() > 240 && stage == 1) {
            populateThings1();
            stage++;
         }
        //trigger 2
-        if (player.getx() > 1500 && stage == 2) {
+        if (player.getx() > 1440 && stage == 2) {
             populateThings2();
+            stage++;
+        }
+        //trigger 3
+        if (player.getx() > 2150 && stage == 3) {
+            populateThings3();
+            stage++;
+        }
+        //trigger 4
+        if (player.getx() >2690 && stage == 4) {
+            populateThings4();
+            stage++;
+        }
+
+        //trigger 5
+        if (player.getx() > 4500 && stage == 5) {
+            populateThings5();
             stage++;
         }
 
