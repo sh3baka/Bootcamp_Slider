@@ -500,6 +500,14 @@ public class Level2State extends GameState {
         //attack shells
         player.checkAttack(shells);
 
+        //attack flies
+        player.checkAttack(flys);
+
+        //attack slimes
+        player.checkAttack(slimes);
+
+        //attack spikes
+        player.checkSpikes(spikes);
 
         //update level
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
