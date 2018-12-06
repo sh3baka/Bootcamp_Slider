@@ -102,7 +102,9 @@ public class Level2State extends GameState {
                 new Point(180, 100),
                 new Point(2353,170),
                 new Point(3410,200),
-                new Point(3490,200)
+                new Point(3490,200),
+                new Point(3410,200),
+                new Point(3520,80)
 
         };
         for (Point point : coinPoints) {
@@ -118,6 +120,17 @@ public class Level2State extends GameState {
         Slime slime;
         Spike spike;
         GoldCoin c;
+
+        LinkedList<Point> spikePoints = new LinkedList<Point>();
+
+        spikePoints.clear();
+        spikePoints.add(new Point(5810, 110));
+
+        for (Point point : spikePoints) {
+            spike = new Spike(tileMap);
+            spike.setPosition(point.x, point.y);
+            spikes.add(spike);
+        }
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(370, 80));
