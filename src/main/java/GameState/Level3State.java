@@ -99,7 +99,8 @@ public class Level3State extends GameState {
                 new Point(1340,200),
                 new Point(1775,200),
                 new Point(1795,200),
-                new Point(1805,200)
+                new Point(1805,200),
+
 
         };
         for (Point point : coinPoints) {
