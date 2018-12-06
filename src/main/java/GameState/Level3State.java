@@ -172,10 +172,12 @@ public class Level3State extends GameState {
                 new Point(1260,100),
                 new Point(1280,100),
                 new Point(1610, 200),
-                new Point(480,200),
                 new Point(2260,100),
                 new Point(2260,110),
-                new Point(2740,60)
+                new Point(2740,60),
+                new Point(690,140),
+                new Point(710,140),
+                new Point(730,140)
 
         };
         for (Point point : coinPoints) {
@@ -226,7 +228,10 @@ public class Level3State extends GameState {
                 new Point(380, 100),
                 new Point(3220,200),
                 new Point(3240,200),
-                new Point(3260,200)
+                new Point(3260,200),
+                new Point(980, 110),
+                new Point(1000,110),
+                new Point(1020,110)
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -357,7 +362,7 @@ public class Level3State extends GameState {
                 GamePanel.HEIGHT / 2 - player.gety()
         );
         //trigger 0
-        if (player.getx() > 190 && stage == 0) {
+        if (player.gety() > 0 && stage == 0) {
             populateThings0();
             stage++;
         }
