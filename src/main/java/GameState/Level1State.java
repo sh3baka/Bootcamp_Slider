@@ -28,6 +28,7 @@ public class Level1State extends GameState {
     private ArrayList<Enemy> shells;
     private ArrayList<Enemy> flys;
     private ArrayList<Enemy> slimes;
+    private ArrayList<Enemy> spikes;
 
     private ArrayList<Collectible> goldCoins;
     private YellowKey yKey;
@@ -55,6 +56,7 @@ public class Level1State extends GameState {
         shells = new ArrayList<Enemy>();
         flys = new ArrayList<Enemy>();
         slimes = new ArrayList<Enemy>();
+        spikes = new ArrayList<Enemy>();
 
         goldCoins = new ArrayList<Collectible>();
 
@@ -79,6 +81,16 @@ public class Level1State extends GameState {
         Slugger s;
         Fly fly;
         Slime slime;
+        Spike spike;
+
+        LinkedList<Point> spikePoints = new LinkedList<Point>();
+        spikePoints.add(new Point(110, 200));
+
+        for (Point point : spikePoints) {
+            spike = new Spike(tileMap);
+            spike.setPosition(point.x, point.y);
+            spikes.add(spike);
+        }
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(160, 180));
@@ -360,6 +372,7 @@ public class Level1State extends GameState {
         drawEnemies(g, shells);
         drawEnemies(g, flys);
         drawEnemies(g, slimes);
+        drawEnemies(g, spikes);
         drawThings(g, goldCoins);
     }
 
@@ -429,6 +442,13 @@ public class Level1State extends GameState {
         //attack slimes
         player.checkAttack(slimes);
 
+        //attack spikes
+        player.checkSpikes(spikes);
+
+        //update spikes
+        for (Enemy e : spikes) {
+            e.update();
+        }
         //update flies
         for (int i = 0; i < flys.size(); i++) {
             Enemy e = flys.get(i);
