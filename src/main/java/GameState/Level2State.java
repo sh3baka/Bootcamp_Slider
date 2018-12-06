@@ -19,26 +19,6 @@ import java.util.LinkedList;
 
 public class Level2State extends GameState {
 
-    Player player;
-    private TileMap tileMap;
-    private Background bg;
-
-    private HUD hud;
-    private ArrayList<Enemy> slugs;
-    private ArrayList<Enemy> shells;
-    private ArrayList<Enemy> flys;
-    private ArrayList<Enemy> slimes;
-    private ArrayList<Enemy> spikes;
-
-    private YellowKey yKey;
-    private ArrayList<ClosedDoor> closedDoors;
-    private ArrayList<OpenDoor> openDoors;
-
-    private AudioPlayer bgMusic;
-
-    private ArrayList<Collectible> goldCoins;
-    private int stage;
-
     public Level2State(GameStateManager gsm) {
         this.gsm = gsm;
         init();
@@ -597,36 +577,4 @@ public class Level2State extends GameState {
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
     }
-
-    public void keyPressed(int k) {
-
-        //arrows
-        if (k == KeyEvent.VK_LEFT) player.setLeft(true);
-        if (k == KeyEvent.VK_RIGHT) player.setRight(true);
-        if (k == KeyEvent.VK_UP) player.setUp(true);
-        if (k == KeyEvent.VK_DOWN) player.setDown(true);
-        //wasd
-        if (k == KeyEvent.VK_A) player.setLeft(true);
-        if (k == KeyEvent.VK_D) player.setRight(true);
-        if (k == KeyEvent.VK_W) player.setUp(true);
-        if (k == KeyEvent.VK_S) player.setDown(true);
-        //
-        if (k == KeyEvent.VK_SPACE) player.setJumping(true);
-        if (k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
-    }
-
-    public void keyReleased(int k) {
-        if (k == KeyEvent.VK_LEFT) player.setLeft(false);
-        if (k == KeyEvent.VK_RIGHT) player.setRight(false);
-        if (k == KeyEvent.VK_UP) player.setUp(false);
-        if (k == KeyEvent.VK_DOWN) player.setDown(false);
-        //wasd
-        if (k == KeyEvent.VK_A) player.setLeft(false);
-        if (k == KeyEvent.VK_D) player.setRight(false);
-        if (k == KeyEvent.VK_W) player.setUp(false);
-        if (k == KeyEvent.VK_S) player.setDown(false);
-        //
-        if (k == KeyEvent.VK_SPACE) player.setJumping(false);
-    }
-
 }
