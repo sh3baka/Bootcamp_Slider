@@ -247,7 +247,7 @@ public class Level1State extends GameState {
         Slime slime;
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(1580, 100));
+        sluggerPoints.add(new Point(1580, 80));
         for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
             s.setPosition(point.x, point.y);
@@ -255,7 +255,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(1600, 100));
+        flyPoints.add(new Point(1600, 70));
         for (Point point : flyPoints) {
             fly = new Fly(tileMap);
             fly.setPosition(point.x, point.y);
@@ -263,7 +263,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(1600, 100));
+        slimePoints.add(new Point(1600, 80));
         for (Point point : slimePoints) {
             slime = new Slime(tileMap);
             slime.setPosition(point.x, point.y);
@@ -277,7 +277,7 @@ public class Level1State extends GameState {
         Slime slime;
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(520, 180));
+        sluggerPoints.add(new Point(2350, 110));
 
         for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
@@ -286,7 +286,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(1320, 100));
+        flyPoints.add(new Point(2280, 90));
 
         for (Point point : flyPoints) {
             fly = new Fly(tileMap);
@@ -295,7 +295,7 @@ public class Level1State extends GameState {
         }
 
         LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(1320, 100));
+        slimePoints.add(new Point(2290, 110));
 
         for (Point point : slimePoints) {
             slime = new Slime(tileMap);
@@ -402,6 +402,11 @@ public class Level1State extends GameState {
        //trigger 2
         if (player.getx() > 1500 && stage == 2) {
             populateThings2();
+            stage++;
+        }
+        //trigger 3
+        if (player.getx() > 2180 && stage == 3) {
+            populateThings3();
             stage++;
         }
 
