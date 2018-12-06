@@ -174,14 +174,6 @@ public class Level2State extends GameState {
             flys.add(fly);
         }
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(1000, 50));
-
-        for (Point point : slimePoints) {
-            slime = new Slime(tileMap);
-            slime.setPosition(point.x, point.y);
-            slimes.add(slime);
-        }
         //coins
         goldCoins = new ArrayList<Collectible>();
         GoldCoin c;
