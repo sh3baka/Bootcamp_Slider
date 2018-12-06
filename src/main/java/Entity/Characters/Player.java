@@ -25,7 +25,7 @@ public class Player extends MapObject {
     private static double Y;
     public static double dY;
     private final int[] numFrames = {
-            2, 8, 1, 2
+            16, 8, 1, 2
     };
     private HashMap<String, AudioPlayer> sfx;
     //player stuff
@@ -102,7 +102,7 @@ public class Player extends MapObject {
         animation = new Animation();
         currentAction = IDLE;
         animation.setFrames(sprites.get(IDLE));
-        animation.setDelay(600);
+        animation.setDelay(50);
 
         sfx = new HashMap<String, AudioPlayer>();
         sfx.put("jump", new AudioPlayer("/SFX/jumpland44100.mp3"));
@@ -328,7 +328,7 @@ public class Player extends MapObject {
             if (currentAction != IDLE) {
                 currentAction = IDLE;
                 animation.setFrames(sprites.get(IDLE));
-                animation.setDelay(400);
+                animation.setDelay(100);
                 width = 30;
             }
         }
