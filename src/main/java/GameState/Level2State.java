@@ -302,6 +302,11 @@ public class Level2State extends GameState {
             populateThings1();
             stage++;
         }
+        //trigger 2
+        if (player.getx() > 400 && stage == 2) {
+            populateThings2();
+            stage++;
+        }
         //coin collect
         player.checkCollect(goldCoins);
         //keys
