@@ -329,6 +329,56 @@ public class Level1State extends GameState {
         }
     }
 
+    private void populateThings4() {
+
+        Slugger s;
+        Fly fly;
+        Slime slime;
+        Spike spike;
+
+        LinkedList<Point> spikePoints = new LinkedList<Point>();
+        spikePoints.add(new Point(2780, 170));
+
+        for (Point point : spikePoints) {
+            spike = new Spike(tileMap);
+            spike.setPosition(point.x, point.y);
+            spikes.add(spike);
+        }
+
+        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
+        sluggerPoints.add(new Point(2800, 170));
+
+        for (Point point : sluggerPoints) {
+            s = new Slugger(tileMap);
+            s.setPosition(point.x, point.y);
+            slugs.add(s);
+        }
+
+        LinkedList<Point> flyPoints = new LinkedList<Point>();
+        flyPoints.add(new Point(2820, 90));
+
+        for (Point point : flyPoints) {
+            fly = new Fly(tileMap);
+            fly.setPosition(point.x, point.y);
+            flys.add(fly);
+        }
+
+          //coins
+        goldCoins = new ArrayList<Collectible>();
+        GoldCoin c;
+        Point[] coinPoints = new Point[]{
+                new Point(2980, 140),
+                new Point(3040, 110),
+                new Point(3060, 110)
+
+        };
+        for (Point point : coinPoints) {
+            c = new GoldCoin(tileMap);
+            c.setPosition(point.x, point.y);
+            goldCoins.add(c);
+        }
+    }
+
     private void drawDoors() {
 
         //key
@@ -420,6 +470,11 @@ public class Level1State extends GameState {
         //trigger 3
         if (player.getx() > 2180 && stage == 3) {
             populateThings3();
+            stage++;
+        }
+        //trigger 4
+        if (player.getx() >2700 && stage == 4) {
+            populateThings4();
             stage++;
         }
 
