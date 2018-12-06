@@ -215,43 +215,6 @@ public class Level1State extends GameState {
             slime.setPosition(point.x, point.y);
             slimes.add(slime);
         }
-
-
-        //coins
-        goldCoins = new ArrayList<Collectible>();
-        GoldCoin c;
-        Point[] coinPoints = new Point[]{
-                new Point(240, 100),
-                new Point(260, 100),
-                new Point(280, 100),
-                new Point(400, 100),
-                new Point(450,100),
-                new Point(650,100),
-                new Point(680, 100),
-                new Point(900,100),
-                new Point(1000,100),
-                new Point(1240,100),
-                new Point(1260,100),
-                new Point(1280,100),
-                new Point(1580,80),
-                new Point(1600,80),
-                new Point(1620,80),
-                new Point(1640,80),
-                new Point(2067,80),
-                new Point(2087,80),
-                new Point(2007,80),
-                new Point(3823,110),
-                new Point(5800,100),
-                new Point(5890,100)
-
-
-
-        };
-        for (Point point : coinPoints) {
-            c = new GoldCoin(tileMap);
-            c.setPosition(point.x, point.y);
-            goldCoins.add(c);
-        }
     }
     private void populateThings2() {
         Slugger s;
