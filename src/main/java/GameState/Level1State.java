@@ -517,7 +517,7 @@ public class Level1State extends GameState {
             stage++;
         }
         //trigger 4
-        if (player.getx() >2690 && stage == 4) {
+        if (player.getx() >2650 && stage == 4) {
             populateThings4();
             stage++;
         }
