@@ -107,19 +107,11 @@ public class Level3State extends GameState {
             flys.add(fly);
         }
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(220, 100));
-
-        for (Point point : slimePoints) {
-            slime = new Slime(tileMap);
-            slime.setPosition(point.x, point.y);
-            slimes.add(slime);
-        }
         //coins
         goldCoins = new ArrayList<Collectible>();
         GoldCoin c;
         Point[] coinPoints = new Point[]{
-                new Point(140, 100),
+
                 new Point(160, 100),
                 new Point(180, 100),
                 new Point(680,100),
@@ -193,15 +185,6 @@ public class Level3State extends GameState {
         Fly fly;
         Slime slime;
 
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(1175, 80));
-
-        for (Point point : sluggerPoints) {
-            s = new Slugger(tileMap);
-            s.setPosition(point.x, point.y);
-            slugs.add(s);
-        }
-
         LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(1185, 40));
 
@@ -231,7 +214,11 @@ public class Level3State extends GameState {
                 new Point(3260,200),
                 new Point(980, 110),
                 new Point(1000,110),
-                new Point(1020,110)
+                new Point(1020,110),
+                new Point(1770,80),
+                new Point(1790, 80),
+                new Point(2055,110),
+                new Point(2115,110)
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -372,7 +359,7 @@ public class Level3State extends GameState {
             stage++;
         }
         //trigger 2
-        if (player.getx() > 980 && stage == 2) {
+        if (player.getx() > 950 && stage == 2) {
             populateThings2();
             stage++;
         }
