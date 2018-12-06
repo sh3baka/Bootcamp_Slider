@@ -193,35 +193,6 @@ public class Level1State extends GameState {
         Slime slime;
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(260, 180));
-        for (Point point : sluggerPoints) {
-            s = new Slugger(tileMap);
-            s.setPosition(point.x, point.y);
-            slugs.add(s);
-        }
-
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
-        flyPoints.add(new Point(280, 100));
-        for (Point point : flyPoints) {
-            fly = new Fly(tileMap);
-            fly.setPosition(point.x, point.y);
-            flys.add(fly);
-        }
-
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
-        slimePoints.add(new Point(320, 100));
-        for (Point point : slimePoints) {
-            slime = new Slime(tileMap);
-            slime.setPosition(point.x, point.y);
-            slimes.add(slime);
-        }
-    }
-    private void populateThings2() {
-        Slugger s;
-        Fly fly;
-        Slime slime;
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(1580, 80));
         for (Point point : sluggerPoints) {
             s = new Slugger(tileMap);
@@ -245,7 +216,7 @@ public class Level1State extends GameState {
             slimes.add(slime);
         }
     }
-    private void populateThings3() {
+    private void populateThings2() {
 
         Slugger s;
         Fly fly;
@@ -292,7 +263,7 @@ public class Level1State extends GameState {
         }
     }
 
-    private void populateThings4() {
+    private void populateThings3() {
 
         Slugger s;
         Fly fly;
@@ -341,7 +312,7 @@ public class Level1State extends GameState {
             goldCoins.add(c);
         }
     }
-    private void populateThings5() {
+    private void populateThings4() {
 
         Slugger s;
         Fly fly;
@@ -385,7 +356,7 @@ public class Level1State extends GameState {
         }
 
     }
-    private void populateThings6() {
+    private void populateThings5() {
 
         Slugger s;
         Fly fly;
@@ -490,35 +461,31 @@ public class Level1State extends GameState {
             populateThings0();
             stage++;
         }
-        //trigger 1
-       if (player.getx() > 190 && stage == 1) {
-           populateThings1();
-           stage++;
+
+       //trigger 1
+        if (player.getx() > 1440 && stage == 1) {
+            populateThings1();
+            stage++;
         }
-       //trigger 2
-        if (player.getx() > 1440 && stage == 2) {
+        //trigger 2
+        if (player.getx() > 2150 && stage == 2) {
             populateThings2();
             stage++;
         }
         //trigger 3
-        if (player.getx() > 2150 && stage == 3) {
+        if (player.getx() >2650 && stage == 3) {
             populateThings3();
             stage++;
         }
+
         //trigger 4
-        if (player.getx() >2650 && stage == 4) {
+        if (player.getx() > 4340 && stage == 4) {
             populateThings4();
             stage++;
         }
-
         //trigger 5
-        if (player.getx() > 4340 && stage == 5) {
+        if (player.getx() > 4800 && stage == 5) {
             populateThings5();
-            stage++;
-        }
-        //trigger 6
-        if (player.getx() > 4800 && stage == 6) {
-            populateThings6();
             stage++;
         }
 
