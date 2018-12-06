@@ -165,13 +165,13 @@ public class Level3State extends GameState {
 
         //key
         yKey = new YellowKey(tileMap);
-        yKey.setPosition(150, 170);
+        yKey.setPosition(3945, 65);
         //doors
         openDoors = new ArrayList<OpenDoor>();
         closedDoors = new ArrayList<ClosedDoor>();
         ClosedDoor d;
         Point[] doorPoints = new Point[]{
-                new Point(5910, 135)
+                new Point(5955, 195)
         };
         for (Point point : doorPoints) {
             d = new ClosedDoor(tileMap);
