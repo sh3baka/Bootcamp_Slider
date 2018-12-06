@@ -35,8 +35,6 @@ public class Level1State extends GameState {
         initEnemyArrayLists();
         populateThings0();
 
-        goldCoins = new ArrayList<Collectible>();
-
         bg = new Background("/Backgrounds/bg_lvl1.png", 0.1);
 
         player = new Player(tileMap);
@@ -394,6 +392,20 @@ public class Level1State extends GameState {
         //set background
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
+        //update flies
+        updateFlies(flys);
+        //update slimes
+        updateFlies(slimes);
+        //update slugs
+        updateSlugs();
+        //update shells
+        updateShells();
+        //update goldCoins
+        updateGoldCoins();
+        //update doors
+        updateDoors();
+        //update level
+
         //attack slugs
         player.checkAttack(slugs);
 
@@ -409,23 +421,7 @@ public class Level1State extends GameState {
         //attack spikes
         player.checkSpikes(spikes);
 
-        //update spikes
-        for (Enemy e : spikes) {
-            e.update();
-        }
-        //update flies
-        updateFlies(flys);
-        //update slimes
-        updateFlies(slimes);
-        //update slugs
-        updateSlugs();
-        //update shells
-        updateShells();
-        //update goldCoins
-        updateGoldCoins();
-        //update doors
-        updateDoors();
-        //update level
+
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
             bgMusic.stop();
             gsm.setState(GameStateManager.LEVEL2STATE);
