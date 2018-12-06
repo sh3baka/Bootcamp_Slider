@@ -28,6 +28,10 @@ public class Player extends MapObject {
             16, 6, 1, 2
     };
     private HashMap<String, AudioPlayer> sfx;
+    private HashMap<String, AudioPlayer> sfx2;
+    private HashMap<String, AudioPlayer> sfx3;
+    private HashMap<String, AudioPlayer> sfx4;
+    private HashMap<String, AudioPlayer> sfx5;
     //player stuff
     private int health;
     private int maxHealth;
@@ -103,7 +107,19 @@ public class Player extends MapObject {
         animation.setDelay(50);
 
         sfx = new HashMap<String, AudioPlayer>();
-        sfx.put("jump", new AudioPlayer("/SFX/jumpland44100.mp3"));
+        sfx.put("jump", new AudioPlayer("/SFX/jump.mp3"));
+
+        sfx2 = new HashMap<String, AudioPlayer>();
+        sfx2.put("damaged", new AudioPlayer("/SFX/enemy_hit.mp3"));
+
+        sfx3 = new HashMap<String, AudioPlayer>();
+        sfx3.put("coin", new AudioPlayer("/SFX/coin.mp3"));
+
+        sfx4 = new HashMap<String, AudioPlayer>();
+        sfx4.put("key", new AudioPlayer("/SFX/key.mp3"));
+
+        sfx5 = new HashMap<String, AudioPlayer>();
+        sfx5.put("damage", new AudioPlayer("/SFX/damage.mp3"));
 
     }
 
@@ -183,7 +199,7 @@ public class Player extends MapObject {
             // check enemy collision
 
             if (intersects(e) && this.dy > 0) {
-
+                sfx2.get("damaged").play();
                 dy = jumpStart;
                 e.health--;
                 setScore(getScore() + e.getWorth());
@@ -212,14 +228,15 @@ public class Player extends MapObject {
 
     public void checkKeys(YellowKey key) {
         if (intersects(key)) {
+            sfx4.get("key").play();
             setKey(true);
             key.dead = true;
         }
     }
 
     void hit(int damage) {
-
         if (flinching) return;
+        sfx5.get("damage").play();
         health -= damage;
         if (health < 0) health = 0;
         if (health == 0) dead = true;
@@ -341,6 +358,7 @@ public class Player extends MapObject {
 
             // check enemy collision
             if (intersects(c)) {
+                sfx3.get("coin").play();
                 c.pickUp();
                 c.dead = true;
                 coins++;

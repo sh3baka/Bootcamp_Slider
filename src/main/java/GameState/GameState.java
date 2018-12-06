@@ -36,6 +36,7 @@ public abstract class GameState {
     ArrayList<ClosedDoor> closedDoors;
     ArrayList<OpenDoor> openDoors;
     AudioPlayer bgMusic;
+    AudioPlayer gameOverMusic;
     int stage;
 
     public void init() {

@@ -383,6 +383,11 @@ public class Level3State extends GameState {
         //update doors
         updateDoors();
 
+        // death for player if out of bounds except top of the screen
+        if (player.gety() > 300 || player.getx() < 0 || player.getx() > 200*30) {
+            player.isDead();
+        }
+
         //update player death
         if (player.isDead()) {
             bgMusic.stop();

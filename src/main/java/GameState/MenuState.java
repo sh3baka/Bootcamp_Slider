@@ -5,6 +5,7 @@ import TileMap.Background;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+
 public class MenuState extends GameState {
 
     private Background bg;
@@ -33,6 +34,7 @@ public class MenuState extends GameState {
         }
 
     }
+
 
     public void init() {
     }
