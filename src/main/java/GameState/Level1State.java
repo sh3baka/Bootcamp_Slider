@@ -502,22 +502,22 @@ public class Level1State extends GameState {
             stage++;
         }
         //trigger 1
-       if (player.getx() > 300 && stage == 1) {
+       if (player.getx() > 240 && stage == 1) {
            populateThings1();
            stage++;
         }
        //trigger 2
-        if (player.getx() > 1500 && stage == 2) {
+        if (player.getx() > 1440 && stage == 2) {
             populateThings2();
             stage++;
         }
         //trigger 3
-        if (player.getx() > 2180 && stage == 3) {
+        if (player.getx() > 2150 && stage == 3) {
             populateThings3();
             stage++;
         }
         //trigger 4
-        if (player.getx() >2700 && stage == 4) {
+        if (player.getx() >2690 && stage == 4) {
             populateThings4();
             stage++;
         }
