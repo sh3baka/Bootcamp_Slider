@@ -152,7 +152,11 @@ public class Level2State extends GameState {
         Point[] coinPoints = new Point[]{
                 new Point(240, 100),
                 new Point(260, 100),
-                new Point(280, 100)
+                new Point(280, 100),
+                new Point(1800,100),
+                new Point(1820,100),
+                new Point(1840,100),
+                new Point(1860,100)
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
