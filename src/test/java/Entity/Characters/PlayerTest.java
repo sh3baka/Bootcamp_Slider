@@ -113,13 +113,13 @@ public class PlayerTest {
     @Test
     public void checkAttack() {
         enemies = new ArrayList<Enemy>();
-        enemies.add(new Slugger(tm));
-        player.falling = true;
+        enemies.add(new Fly(tm));
+        player.dy = 1;
 
         player.checkAttack(enemies);
 
 
-        assertEquals(1, enemies.get(0).health );
+        assertEquals(0, enemies.get(0).health );
     }
 
     @Test
