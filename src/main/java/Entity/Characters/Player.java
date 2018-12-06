@@ -318,6 +318,9 @@ public class Player extends MapObject {
                 width = 30;
             }
         }
+        if (y > 220) {
+            setHealth(0);
+        }
         animation.update();
 
         //set direction
