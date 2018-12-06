@@ -343,12 +343,6 @@ public class Level1State extends GameState {
         }
     }
 
-    private void updateEnemies(ArrayList<Enemy> enemies) {
-        for (Enemy e : enemies) {
-            e.update();
-        }
-    }
-
     public void update() {
 
         player.update();
