@@ -110,9 +110,63 @@ public class Level1State extends GameState {
         goldCoins = new ArrayList<Collectible>();
         GoldCoin c;
         Point[] coinPoints = new Point[]{
-                new Point(140, 100),
-                new Point(160, 100),
-                new Point(180, 100)
+                new Point(260, 100),
+                new Point(280, 100),
+                new Point(300, 100),
+                new Point(320, 100),
+                new Point(340, 100),
+                new Point(400, 80),
+                new Point(420, 80),
+                new Point(440, 80),
+                new Point(620, 140),
+                new Point(670, 140),
+                new Point(720, 140),
+                new Point(770, 140),
+                new Point(820, 140),
+                new Point(1005, 140),
+                new Point(1050, 140),
+                new Point(1125, 170),
+                new Point(1305, 110),
+                new Point(1365, 80),
+                new Point(1580, 80),
+                new Point(1600, 80),
+                new Point(1620, 80),
+                new Point(1725, 110),
+                new Point(1845 , 140),
+                new Point(2100 , 200),
+                new Point(2075, 140),
+                new Point(2125, 140),
+                new Point(2050, 80),
+                new Point(2100, 80),
+                new Point(2150, 80),
+                new Point(2325, 80),
+                new Point(2375, 80),
+                new Point(2275, 80),
+                new Point(2420, 200),
+                new Point(2440, 200),
+                new Point(2460, 200),
+                new Point(2480, 200),
+                new Point(2655, 170),
+                new Point(2625, 170),
+                new Point(2685, 170),
+                new Point(2855, 170),
+                new Point(2885, 170),
+                new Point(2825, 170),
+                new Point(2985, 140),
+                new Point(3045, 110),
+                new Point(3345, 110),
+                new Point(3825, 110),
+                new Point(3855, 110),
+                new Point(3975, 140),
+                new Point(4125, 200),
+                new Point(4320, 80),
+                new Point(4340, 80),
+                new Point(4360, 80),
+                new Point(4380, 80),
+                new Point(4915, 200),
+                new Point(5640, 170),
+                new Point(5730, 140),
+                new Point(5820, 110)
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -290,15 +344,15 @@ public class Level1State extends GameState {
                 GamePanel.HEIGHT / 2 - player.gety()
         );
         //trigger 0
-        if (player.getx() > 200 && stage == 0) {
+        if (player.gety() > 50 && stage == 0) {
             populateThings0();
             stage++;
         }
         //trigger 1
-        if (player.getx() > 300 && stage == 1) {
-            populateThings1();
-            stage++;
-        }
+//        if (player.getx() > 300 && stage == 1) {
+//            populateThings1();
+//            stage++;
+//        }
         //coin collect
         player.checkCollect(goldCoins);
         //keys
