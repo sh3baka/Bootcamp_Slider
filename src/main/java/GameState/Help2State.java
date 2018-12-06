@@ -51,11 +51,13 @@ public class Help2State extends GameState {
         g.setColor(Color.WHITE);
         g.setFont(font);
 
-        g.drawString("Collect", 12, 90);
-        g.drawString("to get SCORE and COINS", 80, 90);
+        g.drawString("Collect", 30, 90);
+        g.drawString("to get SCORE and COINS", 120, 90);
 
-        g.drawString("Collect", 12, 135);
-        g.drawString("to open", 80, 135);
+        g.drawString("Collect", 30, 135);
+        g.drawString("to open", 120, 135);
+        g.drawString("and", 240, 135);
+        g.drawString("proceed to the next LEVEL", 30, 160);
 
     }
 

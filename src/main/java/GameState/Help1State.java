@@ -50,14 +50,14 @@ public class Help1State extends GameState {
         g.drawImage(card, 10, 10, null);
         g.setColor(Color.WHITE);
         g.setFont(font);
-        g.drawString("Press", 12, 90);
-        g.drawString("key to move RIGHT", 80, 90);
+        g.drawString("Press", 60, 90);
+        g.drawString("key to move RIGHT", 160, 90);
 
-        g.drawString("Press", 12, 135);
-        g.drawString("key to move LEFT", 80, 135);
+        g.drawString("Press", 60, 132);
+        g.drawString("key to move LEFT", 160, 132);
 
-        g.drawString("Press", 12, 180);
-        g.drawString("key to JUMP", 120, 180);
+        g.drawString("Press", 60, 175);
+        g.drawString("key to JUMP", 195, 175);
 
     }
 
