@@ -45,7 +45,16 @@ public abstract class GameState {
 
     }
 
-    public abstract void update();
+    public void update(){
+        //update player death
+        if (player.checkDead(player)) {
+            bgMusic.stop();
+            gameOverMusic.play();
+            player.setScore(0);
+            player.setCoins(0);
+            gsm.setState(GameStateManager.LEVEL1STATE);
+        }
+    }
 
     public abstract void draw(Graphics2D g);
 
@@ -195,5 +204,69 @@ public abstract class GameState {
         for (Collectible c : things) {
             c.draw(g);
         }
+    }
+
+    public void updateCollisions(){
+        //coin collect
+        player.checkCollect(goldCoins);
+        //keys
+        player.checkKeys(yKey);
+        //set background
+        bg.setPosition(tileMap.getx(), tileMap.gety());
+
+        //attack slugs
+        player.checkAttack(slugs);
+
+        //attack shells
+        player.checkAttack(shells);
+
+        //attack flies
+        player.checkAttack(flys);
+
+        //attack slimes
+        player.checkAttack(slimes);
+
+        //attack spikes
+        player.checkSpikes(spikes);
+
+        //update flies
+        updateFlies(flys);
+        //update slimes
+        updateFlies(slimes);
+        //update slugs
+        updateSlugs();
+        //update shells
+        updateShells();
+        //update goldCoins
+        updateGoldCoins();
+        //update doors
+        updateDoors();
+    }
+
+    public void drawPrettyMap(Graphics2D g){
+        //background and map
+        bg.draw(g);
+        tileMap.draw(g);
+        //doors
+        for (ClosedDoor door : closedDoors) {
+            door.draw(g);
+        }
+        for (OpenDoor door : openDoors) {
+            door.draw(g);
+        }
+        //player
+        player.draw(g);
+        hud.draw(g);
+        //key
+        if (!yKey.isDead()) {
+            yKey.draw(g);
+        }
+        //draw stuff
+        drawEnemies(g, slugs);
+        drawEnemies(g, shells);
+        drawEnemies(g, flys);
+        drawEnemies(g, slimes);
+        drawEnemies(g, spikes);
+        drawThings(g, goldCoins);
     }
 }

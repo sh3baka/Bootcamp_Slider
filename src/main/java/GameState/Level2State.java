@@ -189,30 +189,7 @@ public class Level2State extends GameState {
     }
 
     public void draw(Graphics2D g) {
-
-        //background and map
-        bg.draw(g);
-        tileMap.draw(g);
-        //doors
-        for (ClosedDoor door : closedDoors) {
-            door.draw(g);
-        }
-        for (OpenDoor door : openDoors) {
-            door.draw(g);
-        }
-        //player
-        player.draw(g);
-        hud.draw(g);
-        //key
-        if (!yKey.isDead()) {
-            yKey.draw(g);
-        }
-        //draw stuff
-        drawEnemies(g, slugs);
-        drawEnemies(g, shells);
-        drawEnemies(g, flys);
-        drawEnemies(g, slimes);
-        drawThings(g, goldCoins);
+    drawPrettyMap(g);
     }
 
     public void drawEnemies(Graphics2D g, ArrayList<Enemy> enemies) {
@@ -266,42 +243,7 @@ public class Level2State extends GameState {
             populateThings5();
             stage++;
         }
-
-
-        //coin collect
-        player.checkCollect(goldCoins);
-        //keys
-        player.checkKeys(yKey);
-        //set background
-        bg.setPosition(tileMap.getx(), tileMap.gety());
-
-        //update flies
-        updateFlies(flys);
-        //update slimes
-        updateFlies(slimes);
-        //update slugs
-        updateSlugs();
-        //update shells
-        updateShells();
-        //update goldCoins
-        updateGoldCoins();
-        //update doors
-        updateDoors();
-
-        //attack slugs
-        player.checkAttack(slugs);
-
-        //attack shells
-        player.checkAttack(shells);
-
-        //attack flies
-        player.checkAttack(flys);
-
-        //attack slimes
-        player.checkAttack(slimes);
-
-        //attack spikes
-        player.checkSpikes(spikes);
+        updateCollisions();
 
         //
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
@@ -309,13 +251,6 @@ public class Level2State extends GameState {
             gsm.setState(GameStateManager.LEVEL3STATE);
             stage = 0;
         }
-        //update player death
-        if (player.checkDead(player)) {
-            bgMusic.stop();
-            gameOverMusic.play();
-            player.setScore(0);
-            player.setCoins(0);
-            gsm.setState(GameStateManager.LEVEL1STATE);
-        }
+
     }
 }
