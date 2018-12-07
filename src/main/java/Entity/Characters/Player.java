@@ -107,10 +107,10 @@ public class Player extends MapObject {
         animation.setDelay(50);
 
         sfx = new HashMap<String, AudioPlayer>();
-        sfx.put("jump", new AudioPlayer("/SFX/jump.mp3"));
+        sfx.put("jump", new AudioPlayer("/SFX/Boing-sound.mp3"));
 
         sfx2 = new HashMap<String, AudioPlayer>();
-        sfx2.put("damaged", new AudioPlayer("/SFX/enemy_hit.mp3"));
+        sfx2.put("damaged", new AudioPlayer("/SFX/Boing-sound-effect.mp3"));
 
         sfx3 = new HashMap<String, AudioPlayer>();
 
@@ -336,7 +336,7 @@ public class Player extends MapObject {
                 width = 30;
             }
         }
-        if (y > 220) {
+        if (y > 260) {
             setHealth(0);
         }
         animation.update();
