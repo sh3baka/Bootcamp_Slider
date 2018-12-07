@@ -82,7 +82,9 @@ public class Level3State extends GameState {
         //coins
         goldCoins = new ArrayList<Collectible>();
         Point[] coinPoints = new Point[]{
-
+                new Point(240, 100),
+                new Point(260, 100),
+                new Point(280, 100),
                 new Point(160, 100),
                 new Point(180, 100),
                 new Point(680, 100),
@@ -141,9 +143,6 @@ public class Level3State extends GameState {
         //coins
         goldCoins = new ArrayList<Collectible>();
         Point[] coinPoints = new Point[]{
-                new Point(240, 100),
-                new Point(260, 100),
-                new Point(280, 100),
                 new Point(1240, 100),
                 new Point(1260, 100),
                 new Point(1280, 100),
