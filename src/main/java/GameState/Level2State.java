@@ -112,7 +112,7 @@ public class Level2State extends GameState {
         LinkedList<Point> spikePoints = new LinkedList<Point>();
 
         spikePoints.clear();
-        spikePoints.add(new Point(5810, 110));
+        spikePoints.add(new Point(5810, 100));
 
         for (Point point : spikePoints) {
             spike = new Spike(tileMap);
@@ -120,13 +120,6 @@ public class Level2State extends GameState {
             spikes.add(spike);
         }
 
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
-        sluggerPoints.add(new Point(370, 80));
-        for (Point point : sluggerPoints) {
-            slugger = new Slugger(tileMap);
-            slugger.setPosition(point.x, point.y);
-            slugs.add(slugger);
-        }
 
         LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(280, 80));
@@ -377,35 +370,35 @@ public class Level2State extends GameState {
                 (float) GamePanel.WIDTH / 2 - player.getx(),
                 (float) GamePanel.HEIGHT / 2 - player.gety()
         );
+        //trigger 0
+        if (player.getx() > 420 && stage == 0) {
+            populateThings0();
+            stage++;
+        }
         //trigger 1
-        if (player.getx() > 420 && stage == 1) {
+        if (player.getx() > 500 && stage == 1) {
             populateThings1();
             stage++;
         }
         //trigger 2
-        if (player.getx() > 600 && stage == 2) {
+        if (player.getx() > 700 && stage == 2) {
             populateThings2();
             stage++;
         }
         //trigger 3
-        if (player.getx() > 990 && stage == 3) {
+        if (player.getx() > 1200 && stage == 3) {
             populateThings3();
             stage++;
         }
-        //trigger 4
-        if (player.getx() > 1600 && stage == 4) {
-            populateThings4();
-            stage++;
-        }
 
+        //trigger 4
+       // if (player.getx() > 2100 && stage == 4) {
+         //   populateThings4();
+           // stage++;
+        //}
         //trigger 5
-        if (player.getx() > 2100 && stage == 5) {
+        if (player.getx() > 2800 && stage == 5) {
             populateThings5();
-            stage++;
-        }
-        //trigger 6
-        if (player.getx() > 2800 && stage == 6) {
-            populateThings6();
             stage++;
         }
 
