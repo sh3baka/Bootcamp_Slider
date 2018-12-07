@@ -248,14 +248,8 @@ public class Level3State extends GameState {
             bgMusic.stop();
             gsm.setState(GameStateManager.MENUSTATE);
             stage = 0;
-        }//update player death
-        if (player.checkDead(player)) {
-            gameOverMusic.play();
-            bgMusic.stop();
-            player.setScore(0);
-            player.setCoins(0);
-            gsm.setState(GameStateManager.LEVEL1STATE);
         }
+        updateDeath();
     }
 
 }

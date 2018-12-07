@@ -116,6 +116,7 @@ public abstract class GameState {
     }
 
 
+
     public void updateDoors() {
         for (int i = 0; i < closedDoors.size(); i++) {
             ClosedDoor d = closedDoors.get(i);
@@ -214,6 +215,16 @@ public abstract class GameState {
     public void drawThings(Graphics2D g, ArrayList<Collectible> things) {
         for (Collectible c : things) {
             c.draw(g);
+        }
+    }
+
+    public void updateDeath() {
+        if (player.checkDead(player)) {
+            gameOverMusic.play();
+            bgMusic.stop();
+            player.setScore(0);
+            player.setCoins(0);
+            gsm.setState(GameStateManager.LEVEL1STATE);
         }
     }
 
