@@ -50,7 +50,6 @@ public class Level1State extends GameState {
 
     private void populateThings0() {
         sluggerPoints.add(new Point(300, 140));
-        sluggerPoints.add(new Point(1580, 80));
         addSluggersToList(sluggerPoints);
 
         flyPoints.add(new Point(180, 100));
@@ -58,7 +57,6 @@ public class Level1State extends GameState {
         addFlysToList(flyPoints);
 
         slimePoints.add(new Point(220, 100));
-        slimePoints.add(new Point(1600, 200));
         addSlimesToList(slimePoints);
 
         goldCoins = new ArrayList<Collectible>();
