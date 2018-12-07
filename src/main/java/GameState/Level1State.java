@@ -368,6 +368,21 @@ public class Level1State extends GameState {
         //set background
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
+        //attack slugs
+        player.checkAttack(slugs);
+
+        //attack shells
+        player.checkAttack(shells);
+
+        //attack flies
+        player.checkAttack(flys);
+
+        //attack slimes
+        player.checkAttack(slimes);
+
+        //attack spikes
+        player.checkSpikes(spikes);
+
         //update flies
         updateFlies(flys);
         //update slimes
@@ -396,12 +411,6 @@ public class Level1State extends GameState {
 
         //attack spikes
         player.checkSpikes(spikes);
-
-        // death for player if out of bounds except top of the screen
-        if (player.gety() > 300 || player.getx() < 0 || player.getx() > 200*30) {
-            bgMusic.stop();
-            player.isDead();
-        }
 
         //
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
