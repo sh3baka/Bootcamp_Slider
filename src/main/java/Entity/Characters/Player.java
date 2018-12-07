@@ -20,7 +20,7 @@ public class Player extends MapObject {
     private static final int JUMPING = 2;
     private static final int FALLING = 3;
     public static int score = 0;
-    static int coins;
+    static int coins = 0;
     private static double X;
     private static double Y;
     private static double dY;
@@ -57,11 +57,9 @@ public class Player extends MapObject {
         stopSpeed = 0.4;
         fallSpeed = 0.15;
         jumpStart = -4.8;
-        killJumpStart = -5.2;
         stopJumpSpeed = 0.3;
         maxFallSpeed = 4.0;
 
-        coins = 0;
         hasKey = false;
 
         facingRight = true;
@@ -121,10 +119,6 @@ public class Player extends MapObject {
         sfx5 = new HashMap<String, AudioPlayer>();
         sfx5.put("damage", new AudioPlayer("/SFX/damage.mp3"));
 
-    }
-
-    public static double getdY() {
-        return dY;
     }
 
     public static double getX() {

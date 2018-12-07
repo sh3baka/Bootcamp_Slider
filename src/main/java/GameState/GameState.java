@@ -27,12 +27,16 @@ public abstract class GameState {
     ArrayList<Enemy> flys;
     ArrayList<Enemy> slimes;
     ArrayList<Enemy> spikes;
+    ArrayList<Collectible> goldCoins;
+    LinkedList<Point> spikePoints;
+    LinkedList<Point> sluggerPoints;
+    LinkedList<Point> flyPoints;
+    LinkedList<Point> slimePoints;
     Slugger slugger;
     Fly fly;
     Slime slime;
     Spike spike;
     GoldCoin c;
-    ArrayList<Collectible> goldCoins;
     YellowKey yKey;
     ArrayList<ClosedDoor> closedDoors;
     ArrayList<OpenDoor> openDoors;
@@ -100,7 +104,17 @@ public abstract class GameState {
         flys = new ArrayList<Enemy>();
         slimes = new ArrayList<Enemy>();
         spikes = new ArrayList<Enemy>();
+
+        openDoors = new ArrayList<OpenDoor>();
+        closedDoors = new ArrayList<ClosedDoor>();
     }
+    void initPointLists() {
+        sluggerPoints = new LinkedList<Point>();
+        flyPoints = new LinkedList<Point>();
+        slimePoints = new LinkedList<Point>();
+        spikePoints = new LinkedList<Point>();
+    }
+
 
     public void updateDoors() {
         for (int i = 0; i < closedDoors.size(); i++) {
@@ -158,8 +172,6 @@ public abstract class GameState {
         }
     }
 
-
-
     public void addSlimesToList(LinkedList<Point> slimePoints) {
         for (Point point : slimePoints) {
             slime = new Slime(tileMap);
@@ -192,7 +204,6 @@ public abstract class GameState {
             spikes.add(spike);
         }
     }
-
 
     public void drawEnemies(Graphics2D g, ArrayList<Enemy> enemies) {
         for (Enemy e : enemies) {

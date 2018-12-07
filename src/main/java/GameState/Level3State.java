@@ -32,6 +32,7 @@ public class Level3State extends GameState {
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.06);
 
+        initPointLists();
         initEnemyArrayLists();
         populateThings0();
 
@@ -51,16 +52,12 @@ public class Level3State extends GameState {
 
     private void populateThings0() {
 
-
-        LinkedList<Point> spikePoints = new LinkedList<Point>();
         spikePoints.add(new Point(110, 200));
         addSpikesToList(spikePoints);
 
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(160, 180));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(180, 100));
         addFlysToList(flyPoints);
 
@@ -99,15 +96,12 @@ public class Level3State extends GameState {
 
     private void populateThings1() {
 
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(661, 140));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(661, 65));
         addFlysToList(flyPoints);
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(875, 110));
         addSlimesToList(slimePoints);
 
@@ -134,16 +128,12 @@ public class Level3State extends GameState {
 
     private void populateThings2() {
 
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(1175, 80));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(1185, 40));
         addFlysToList(flyPoints);
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(1210, 110));
         addSlimesToList(slimePoints);
 
@@ -172,16 +162,12 @@ public class Level3State extends GameState {
 
     private void populateThings3() {
 
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(4130, 180));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(4060, 170));
         addFlysToList(flyPoints);
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(220, 100));
         addSlimesToList(slimePoints);
 
@@ -222,7 +208,7 @@ public class Level3State extends GameState {
     }
 
     public void draw(Graphics2D g) {
-    drawPrettyMap(g);
+        drawPrettyMap(g);
     }
 
     public void drawEnemies(Graphics2D g, ArrayList<Enemy> enemies) {
@@ -234,12 +220,6 @@ public class Level3State extends GameState {
     public void drawThings(Graphics2D g, ArrayList<Collectible> things) {
         for (Collectible c : things) {
             c.draw(g);
-        }
-    }
-
-    private void updateEnemies(ArrayList<Enemy> enemies) {
-        for (Enemy e : enemies) {
-            e.update();
         }
     }
 
@@ -268,6 +248,14 @@ public class Level3State extends GameState {
             bgMusic.stop();
             gsm.setState(GameStateManager.MENUSTATE);
             stage = 0;
+        }//update player death
+        if (player.checkDead(player)) {
+            gameOverMusic.play();
+            bgMusic.stop();
+            player.setScore(0);
+            player.setCoins(0);
+            gsm.setState(GameStateManager.LEVEL1STATE);
         }
     }
+
 }

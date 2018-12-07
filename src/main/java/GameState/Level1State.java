@@ -33,6 +33,7 @@ public class Level1State extends GameState {
         tileMap.setPosition(0, 0);
         tileMap.setTween(0.06);
 
+        initPointLists();
         initEnemyArrayLists();
         populateThings0();
 
@@ -55,15 +56,12 @@ public class Level1State extends GameState {
 
     private void populateThings0() {
 
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(300, 140));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(180, 100));
         addFlysToList(flyPoints);
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(220, 100));
         addSlimesToList(slimePoints);
 
@@ -136,31 +134,24 @@ public class Level1State extends GameState {
 
     private void populateThings1() {
 
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(1580, 80));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(1640, 80));
         addFlysToList(flyPoints);
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(1600, 200));
         addSlimesToList(slimePoints);
     }
 
     private void populateThings2() {
 
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(2350, 110));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(2280, 90));
         addFlysToList(flyPoints);
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(2290, 110));
         addSlimesToList(slimePoints);
 
@@ -168,16 +159,12 @@ public class Level1State extends GameState {
 
     private void populateThings3() {
 
-
-        LinkedList<Point> spikePoints = new LinkedList<Point>();
         spikePoints.add(new Point(2800, 168));
         addSpikesToList(spikePoints);
 
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(2800, 170));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(2820, 90));
         addFlysToList(flyPoints);
 
@@ -185,20 +172,15 @@ public class Level1State extends GameState {
 
     private void populateThings4() {
 
-
-        LinkedList<Point> spikePoints = new LinkedList<Point>();
         spikePoints.add(new Point(4575, 168));
         addSpikesToList(spikePoints);
 
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(4600, 50));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> flyPoints = new LinkedList<Point>();
         flyPoints.add(new Point(4660, 100));
         addFlysToList(flyPoints);
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(4740, 200));
         addSlimesToList(slimePoints);
 
@@ -206,12 +188,9 @@ public class Level1State extends GameState {
 
     private void populateThings5() {
 
-
-        LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(5100, 50));
         addSluggersToList(sluggerPoints);
 
-        LinkedList<Point> slimePoints = new LinkedList<Point>();
         slimePoints.add(new Point(5148, 800));
         addSlimesToList(slimePoints);
 
@@ -224,8 +203,6 @@ public class Level1State extends GameState {
         yKey = new YellowKey(tileMap);
         yKey.setPosition(1780, 35);
         //doors
-        openDoors = new ArrayList<OpenDoor>();
-        closedDoors = new ArrayList<ClosedDoor>();
         ClosedDoor d;
         Point[] doorPoints = new Point[]{
                 new Point(5910, 135)
@@ -238,7 +215,7 @@ public class Level1State extends GameState {
     }
 
     public void draw(Graphics2D g) {
-    drawPrettyMap(g);
+        drawPrettyMap(g);
     }
 
     public void update() {
@@ -251,12 +228,12 @@ public class Level1State extends GameState {
         );
 
         //trigger 1
-        if (player.getx() > 1340 && stage == 1) {
+        if (player.getx() > 200 && stage == 1) {
             populateThings1();
             stage++;
         }
         //trigger 2
-        if (player.getx() > 200 && stage == 2) {
+        if (player.getx() > 1340 && stage == 2) {
             populateThings2();
             stage++;
         }

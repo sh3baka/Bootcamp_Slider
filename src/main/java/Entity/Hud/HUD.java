@@ -78,7 +78,6 @@ public class HUD {
         g.drawString("Score: " + Player.getScore(), 20, 50);
         g.drawString("X " + Player.getCoins(), 260, 30);
         // Test data
-        //        g.drawString("dY " + Player.getdY(), 260, 70);
                 g.drawString("X " + Player.getX(), 260, 100);
                 g.drawString("Y " + Player.getY(), 260, 130);
     }
