@@ -23,29 +23,24 @@ public class HUD {
             heart = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/HUD/hud_heartFull.png"
-
                     )
             );
             heartEmpty = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/HUD/hud_heartEmpty.png"
-
                     )
             );
             coin = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/HUD/hud_coins.png"
-
                     )
             );
             key = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/Items/keyYellow.png"
-
                     )
             );
             font = new Font("Arial", Font.PLAIN, 14);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,14 +52,11 @@ public class HUD {
         int offsetMax = 0;
 
         for (int i = 0; i < player.getMaxHealth(); i++) {
-
             g.drawImage(heartEmpty, 0 + offsetMax, 0, null);
             offsetMax += 20;
-
         }
 
         for (int i = 0; i < player.getHealth(); i++) {
-
             g.drawImage(heart, 0 + offset, 0, null);
             offset += 20;
 
@@ -78,7 +70,7 @@ public class HUD {
         g.drawString("Score: " + Player.getScore(), 20, 50);
         g.drawString("X " + Player.getCoins(), 260, 30);
         // Test data
-                g.drawString("X " + Player.getX(), 260, 100);
-                g.drawString("Y " + Player.getY(), 260, 130);
+        g.drawString("X " + Player.getX(), 260, 100);
+        g.drawString("Y " + Player.getY(), 260, 130);
     }
 }

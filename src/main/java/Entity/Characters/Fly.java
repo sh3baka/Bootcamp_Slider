@@ -6,6 +6,7 @@ import TileMap.TileMap;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
 public class Fly extends Enemy {
 
     private BufferedImage[] sprites;
@@ -29,7 +30,6 @@ public class Fly extends Enemy {
 
         //load sprites
         try {
-
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/Enemies/flyFly1.png"
@@ -47,14 +47,12 @@ public class Fly extends Enemy {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         animation = new Animation();
         animation.setFrames(sprites);
         animation.setDelay(75);
 
         right = true;
         facingRight = false;
-
     }
 
     private void getNextPosition() {
@@ -74,7 +72,6 @@ public class Fly extends Enemy {
         //falling
         if (falling) {
             dy += fallSpeed;
-
         }
     }
 
@@ -110,12 +107,8 @@ public class Fly extends Enemy {
     }
 
     public void draw(Graphics2D g) {
-
-        //if(!notOnScreen()) return;
-
         setMapPosition();
         super.draw(g);
-
     }
 }
 

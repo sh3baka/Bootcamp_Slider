@@ -20,7 +20,6 @@ public class YellowKey extends Collectible {
         cheight = 10;
 
         try {
-
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/Items/keyYellow.png"
@@ -45,12 +44,7 @@ public class YellowKey extends Collectible {
     }
 
     public void draw(Graphics2D g) {
-
-        //if(!notOnScreen()) return;
-
         setMapPosition();
         super.draw(g);
-
     }
-
 }

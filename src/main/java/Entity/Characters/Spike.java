@@ -25,7 +25,6 @@ public class Spike extends Enemy {
         damage = 1;
 
         try {
-
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/Items/spikes.png"
@@ -47,16 +46,10 @@ public class Spike extends Enemy {
         animation = new Animation();
         animation.setFrames(sprites);
         animation.setDelay(30);
-
     }
 
     public void draw(Graphics2D g) {
-
-        //if(!notOnScreen()) return;
-
         setMapPosition();
         super.draw(g);
-
     }
-
 }

@@ -34,7 +34,6 @@ public class Help1State extends GameState {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void init() {
@@ -45,7 +44,6 @@ public class Help1State extends GameState {
     }
 
     public void draw(Graphics2D g) {
-        //draw bg
         bg.draw(g);
         g.drawImage(card, 10, 10, null);
         g.setColor(Color.WHITE);
@@ -58,7 +56,6 @@ public class Help1State extends GameState {
 
         g.drawString("Press", 60, 175);
         g.drawString("key to JUMP", 195, 175);
-
     }
 
     public void keyPressed(int k) {
@@ -72,5 +69,4 @@ public class Help1State extends GameState {
 
     public void keyReleased(int k) {
     }
-
 }

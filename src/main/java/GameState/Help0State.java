@@ -19,7 +19,6 @@ public class Help0State extends GameState {
         this.gsm = gsm;
 
         try {
-
             bg = new Background("/mainMenuArt.png", 1);
             bg.setVector(0, 0);
 
@@ -34,7 +33,6 @@ public class Help0State extends GameState {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void init() {
@@ -45,13 +43,8 @@ public class Help0State extends GameState {
     }
 
     public void draw(Graphics2D g) {
-        //draw bg
         bg.draw(g);
         g.drawImage(card, 10, 10, null);
-//        g.setColor(Color.RED);
-//        g.setFont(font);
-//        g.drawString("intro", 60, 40);
-
     }
 
     public void keyPressed(int k) {
@@ -65,5 +58,4 @@ public class Help0State extends GameState {
 
     public void keyReleased(int k) {
     }
-
 }

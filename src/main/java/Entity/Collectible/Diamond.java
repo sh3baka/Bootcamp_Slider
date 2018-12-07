@@ -24,7 +24,6 @@ public class Diamond extends Collectible {
         score = 500;
 
         try {
-
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/Items/coinGold.png"

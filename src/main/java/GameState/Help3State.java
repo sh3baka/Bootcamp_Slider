@@ -34,7 +34,6 @@ public class Help3State extends GameState {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void init() {
@@ -45,7 +44,6 @@ public class Help3State extends GameState {
     }
 
     public void draw(Graphics2D g) {
-        //draw bg
         bg.draw(g);
         g.drawImage(card, 10, 10, null);
         g.setColor(Color.WHITE);
@@ -53,7 +51,6 @@ public class Help3State extends GameState {
 
         g.drawString("You can and should KILL or AVOID ", 30, 100);
         g.drawString("Definitely AVOID SPIKES and GAPS", 30, 145);
-
     }
 
     public void keyPressed(int k) {
@@ -70,5 +67,4 @@ public class Help3State extends GameState {
 
     public void keyReleased(int k) {
     }
-
 }

@@ -1,7 +1,8 @@
 package GameState;
 
-import TileMap.Background;
 import Audio.AudioPlayer;
+import TileMap.Background;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -9,7 +10,6 @@ import java.awt.event.KeyEvent;
 public class MenuState extends GameState {
 
     private Background bg;
-
 
     private int currentChoice = 0;
     private String[] options = {
@@ -26,7 +26,6 @@ public class MenuState extends GameState {
         this.gsm = gsm;
 
         try {
-
             bg = new Background("/mainMenuArt.png", 1);
             bg.setVector(0, 0);
 
@@ -35,13 +34,9 @@ public class MenuState extends GameState {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-
     public void init() {
-
-
     }
 
     public void update() {
@@ -49,7 +44,6 @@ public class MenuState extends GameState {
     }
 
     public void draw(Graphics2D g) {
-        //draw bg
         bg.draw(g);
 
         //draw menu options
@@ -83,6 +77,7 @@ public class MenuState extends GameState {
             sfx.play();
             select();
         }
+
         if (k == KeyEvent.VK_UP) {
             AudioPlayer sfx = new AudioPlayer("/SFX/enemy_hit.mp3");
             sfx.play();
@@ -91,6 +86,7 @@ public class MenuState extends GameState {
                 currentChoice = options.length - 1;
             }
         }
+
         if (k == KeyEvent.VK_DOWN) {
             AudioPlayer sfx = new AudioPlayer("/SFX/enemy_hit.mp3");
             sfx.play();
@@ -109,5 +105,4 @@ public class MenuState extends GameState {
 
     public void keyReleased(int k) {
     }
-
 }

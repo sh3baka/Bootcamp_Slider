@@ -12,7 +12,6 @@ public class AudioPlayer {
     public AudioPlayer(String s) {
 
         try {
-
             AudioInputStream ais =
                     AudioSystem.getAudioInputStream(
                             getClass().getResourceAsStream(
@@ -45,8 +44,6 @@ public class AudioPlayer {
         stop();
         clip.setFramePosition(0);
         clip.start();
-
-
     }
 
     public void stop() {

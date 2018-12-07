@@ -1,7 +1,8 @@
 package GameState;
 
 import Audio.AudioPlayer;
-import Entity.Characters.*;
+import Entity.Characters.Enemy;
+import Entity.Characters.Player;
 import Entity.Collectible.Collectible;
 import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
@@ -14,7 +15,6 @@ import TileMap.TileMap;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Level3State extends GameState {
 
@@ -36,7 +36,7 @@ public class Level3State extends GameState {
         initEnemyArrayLists();
         populateThings0();
 
-        bg = new Background("/Backgrounds/bg_lvl3.png", 0.1);
+        background = new Background("/Backgrounds/bg_lvl3.png", 0.1);
 
         player = new Player(tileMap);
         player.setPosition(190, 0);
@@ -89,6 +89,30 @@ public class Level3State extends GameState {
                 new Point(1150, 200),
                 new Point(1170, 200),
                 new Point(1190, 200),
+                new Point(1335, 200),
+                new Point(2290, 110),
+                new Point(2310, 110),
+                new Point(2330, 110)
+        };
+        for (Point point : coinPoints) {
+            c = new GoldCoin(tileMap);
+            c.setPosition(point.x, point.y);
+            goldCoins.add(c);
+        }
+    }
+
+    private void populateThings1() {
+        sluggerPoints.add(new Point(661, 140));
+        addSluggersToList(sluggerPoints);
+
+        flyPoints.add(new Point(661, 65));
+        addFlysToList(flyPoints);
+
+        slimePoints.add(new Point(875, 110));
+        addSlimesToList(slimePoints);
+
+        goldCoins = new ArrayList<Collectible>();
+        Point[] coinPoints = new Point[]{
                 new Point(1240, 100),
                 new Point(1260, 100),
                 new Point(1280, 100),
@@ -108,8 +132,7 @@ public class Level3State extends GameState {
         }
     }
 
-    private void populateThings1() {
-
+    private void populateThings2() {
         sluggerPoints.add(new Point(1175, 80));
         addSluggersToList(sluggerPoints);
 
@@ -142,8 +165,7 @@ public class Level3State extends GameState {
         }
     }
 
-    private void populateThings2() {
-
+    private void populateThings3() {
         sluggerPoints.add(new Point(4130, 180));
         addSluggersToList(sluggerPoints);
 
@@ -171,7 +193,6 @@ public class Level3State extends GameState {
 
 
     private void drawDoors() {
-
         //key
         yKey = new YellowKey(tileMap);
         yKey.setPosition(3945, 65);
@@ -206,7 +227,6 @@ public class Level3State extends GameState {
     }
 
     public void update() {
-
         player.update();
 
         tileMap.setPosition(
@@ -224,8 +244,9 @@ public class Level3State extends GameState {
             populateThings2();
             stage++;
         }
+
         updateCollisions();
-        //
+
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
             bgMusic.stop();
             gsm.setState(GameStateManager.MENUSTATE);
@@ -233,5 +254,4 @@ public class Level3State extends GameState {
         }
         updateDeath();
     }
-
 }

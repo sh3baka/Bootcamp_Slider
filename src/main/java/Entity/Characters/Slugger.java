@@ -56,11 +56,9 @@ public class Slugger extends Enemy {
 
         right = true;
         facingRight = false;
-
     }
 
     private void getNextPosition() {
-
         //movement
         if (left) {
             dx -= moveSpeed;
@@ -77,18 +75,14 @@ public class Slugger extends Enemy {
         if (falling) {
             dy += fallSpeed;
         }
-
     }
 
     public void draw(Graphics2D g) {
-
         setMapPosition();
         super.draw(g);
-
     }
 
     public void update() {
-
         //update position
         getNextPosition();
         checkTileMapCollision();
@@ -105,8 +99,6 @@ public class Slugger extends Enemy {
             left = false;
             facingRight = false;
         }
-
-        //update animation
         animation.update();
     }
 }

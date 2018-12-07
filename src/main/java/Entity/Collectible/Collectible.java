@@ -17,16 +17,12 @@ public class Collectible extends Enemy {
     public Collectible(TileMap tm) {
         super(tm);
 
-//        fallSpeed = 0.2;
-//        maxFallSpeed = 10.0;
-
         width = 30;
         height = 30;
         cwidth = 10;
         cheight = 10;
 
         try {
-
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/Items/coinGold.png"
@@ -59,13 +55,10 @@ public class Collectible extends Enemy {
     }
 
     public void pickUp() {
-
         Player.score += getScore();
-
     }
 
     private void getNextPosition() {
-
         //falling
         if (falling) {
             dy += fallSpeed;
@@ -86,11 +79,7 @@ public class Collectible extends Enemy {
     }
 
     public void draw(Graphics2D g) {
-
-        //if(notOnScreen()) return;
-
         setMapPosition();
         super.draw(g);
-
     }
 }

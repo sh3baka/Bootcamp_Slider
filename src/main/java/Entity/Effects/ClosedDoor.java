@@ -20,7 +20,6 @@ public class ClosedDoor extends MapObject {
         cheight = 30;
 
         try {
-
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/Tiles/door_closed.png"
@@ -45,9 +44,6 @@ public class ClosedDoor extends MapObject {
     }
 
     public void draw(Graphics2D g) {
-
-        //if(!notOnScreen()) return;
-
         setMapPosition();
         super.draw(g);
     }

@@ -3,7 +3,6 @@ package TileMap;
 import java.awt.image.BufferedImage;
 
 public class Tile {
-
     //tile types
     public static final int NORMAL = 0;
     public static final int BLOCKED = 1;
@@ -22,5 +21,4 @@ public class Tile {
     public int getType() {
         return type;
     }
-
 }

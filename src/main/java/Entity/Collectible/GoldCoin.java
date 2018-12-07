@@ -13,9 +13,6 @@ public class GoldCoin extends Collectible {
     public GoldCoin(TileMap tm) {
         super(tm);
 
-//        fallSpeed = 0.2;
-//        maxFallSpeed = 10.0;
-
         width = 30;
         height = 30;
         cwidth = 10;
@@ -24,7 +21,6 @@ public class GoldCoin extends Collectible {
         score = 100;
 
         try {
-
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/Items/coinGold.png"

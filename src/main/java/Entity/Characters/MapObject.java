@@ -124,6 +124,7 @@ public abstract class MapObject {
                 ytemp += dy;
             }
         }
+
         if (dy > 0) {
             if (bottomLeft || bottomRight) {
                 dy = 0;
@@ -228,7 +229,6 @@ public abstract class MapObject {
     }
 
     public void draw(java.awt.Graphics2D g) {
-
         if (facingRight) {
             g.drawImage(animation.getImage(),
                     (int) (x + xmap - width / 2),
@@ -243,9 +243,7 @@ public abstract class MapObject {
                     -width,
                     height,
                     null
-
             );
         }
     }
-
 }

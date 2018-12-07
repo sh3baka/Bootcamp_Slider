@@ -17,14 +17,6 @@ public class MapObjectTest {
         assertTrue(player.intersects(slugger));
     }
 
-//    @Test
-//    public void calculateCorners() {
-//    }
-//
-//    @Test
-//    public void checkTileMapCollision() {
-//    }
-
     @Test
     public void notOnScreen() {
         Player player = new Player(tileMap);
@@ -32,8 +24,4 @@ public class MapObjectTest {
 
         assertTrue(player.notOnScreen());
     }
-
-//    @Test
-//    public void draw() {
-//    }
 }

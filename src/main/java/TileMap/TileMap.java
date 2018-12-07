@@ -10,8 +10,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class TileMap {
-
-
     //position
     private double x;
     private double y;
@@ -61,7 +59,6 @@ public class TileMap {
     public void loadTiles(String s) {
 
         try {
-
             tileset = ImageIO.read(
                     getClass().getResourceAsStream(s)
             );
@@ -85,16 +82,13 @@ public class TileMap {
                 );
                 tiles[1][col] = new Tile(subimage, Tile.BLOCKED); //resources
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void loadMap(String s) { //resources
-
         try {
-
             InputStream in = getClass().getResourceAsStream(s);
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(in)
@@ -123,7 +117,6 @@ public class TileMap {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public int getTileSize() {
@@ -151,7 +144,6 @@ public class TileMap {
         int r = rc / numTilesAcross;
         int c = rc % numTilesAcross;
         return tiles[r][c].getType();
-
     }
 
     public void setTween(double d) {
@@ -159,10 +151,6 @@ public class TileMap {
     }
 
     public void setPosition(double x, double y) {
-
-//        System.out.println(this.x);
-//        System.out.println((x - this.x) * tween);
-
         this.x += (x - this.x) * tween;
         this.y += (y - this.y) * tween;
 
@@ -172,7 +160,6 @@ public class TileMap {
 
         colOffset = (int) -this.x / tileSize;
         rowOffset = (int) -this.y / tileSize;
-
     }
 
     private void fixBounds() {
@@ -183,7 +170,6 @@ public class TileMap {
     }
 
     public void draw(Graphics2D g) {
-
         for (
                 int row = rowOffset;
                 row < rowOffset + numRowsToDraw;
@@ -211,10 +197,6 @@ public class TileMap {
                         null
                 );
             }
-
-
         }
-
     }
-
 }

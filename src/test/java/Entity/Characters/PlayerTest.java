@@ -14,12 +14,10 @@ public class PlayerTest {
 
     private static final double DELTA = 1e-15;
 
-
     ArrayList<Enemy> enemies;
 
     TileMap tm = new TileMap(30);
     Player player = new Player(tm);
-
 
     @Test
     public void getX() {
@@ -115,7 +113,6 @@ public class PlayerTest {
         player.dy = 1;
 
         player.checkAttack(enemies);
-
 
         assertEquals(0, enemies.get(0).health);
     }

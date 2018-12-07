@@ -1,7 +1,8 @@
 package GameState;
 
 import Audio.AudioPlayer;
-import Entity.Characters.*;
+import Entity.Characters.Enemy;
+import Entity.Characters.Player;
 import Entity.Collectible.Collectible;
 import Entity.Collectible.GoldCoin;
 import Entity.Collectible.YellowKey;
@@ -14,7 +15,6 @@ import TileMap.TileMap;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Level2State extends GameState {
 
@@ -36,7 +36,7 @@ public class Level2State extends GameState {
         initEnemyArrayLists();
         populateThings0();
 
-        bg = new Background("/Backgrounds/bg_lvl2.png", 0.1);
+        background = new Background("/Backgrounds/bg_lvl2.png", 0.1);
 
         player = new Player(tileMap);
         player.setPosition(190, 0);
@@ -49,7 +49,6 @@ public class Level2State extends GameState {
 
 
     private void populateThings0() {
-
         spikePoints.add(new Point(110, 200));
         spikePoints.add(new Point(5810, 110));
         addSpikesToList(spikePoints);
@@ -75,7 +74,6 @@ public class Level2State extends GameState {
                 new Point(3490, 200),
                 new Point(3410, 200),
                 new Point(3520, 80)
-
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -85,17 +83,25 @@ public class Level2State extends GameState {
     }
 
     private void populateThings1() {
+        spikePoints.add(new Point(5810, 110));
+        addSpikesToList(spikePoints);
 
+        sluggerPoints.add(new Point(370, 80));
+        addSluggersToList(sluggerPoints);
+
+        flyPoints.add(new Point(280, 80));
+        addFlysToList(flyPoints);
+    }
+
+    private void populateThings2() {
         sluggerPoints.add(new Point(900, 50));
         addSluggersToList(sluggerPoints);
 
         flyPoints.add(new Point(950, 50));
         addFlysToList(flyPoints);
-
     }
 
-    private void populateThings2() {
-
+    private void populateThings3() {
         sluggerPoints.add(new Point(1340, 200));
         addSluggersToList(sluggerPoints);
 
@@ -106,28 +112,23 @@ public class Level2State extends GameState {
         addSlimesToList(slimePoints);
     }
 
-    private void populateThings3() {
-
+    private void populateThings4() {
         sluggerPoints.add(new Point(1980, 170));
         addSluggersToList(sluggerPoints);
 
         flyPoints.add(new Point(2000, 130));
         addFlysToList(flyPoints);
-
     }
 
-    private void populateThings4() {
-
+    private void populateThings5() {
         sluggerPoints.add(new Point(2465, 140));
         addSluggersToList(sluggerPoints);
 
         flyPoints.add(new Point(2750, 100));
         addFlysToList(flyPoints);
-
     }
 
-    private void populateThings5() {
-
+    private void populateThings6() {
         flyPoints.add(new Point(3210, 120));
         addFlysToList(flyPoints);
 
@@ -136,7 +137,6 @@ public class Level2State extends GameState {
     }
 
     private void drawDoors() {
-
         //key
         yKey = new YellowKey(tileMap);
         yKey.setPosition(3970, 200);
@@ -171,7 +171,6 @@ public class Level2State extends GameState {
     }
 
     public void update() {
-
         player.update();
 
         tileMap.setPosition(
@@ -204,9 +203,9 @@ public class Level2State extends GameState {
             populateThings5();
             stage++;
         }
+
         updateCollisions();
 
-        //
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
             bgMusic.stop();
             gsm.setState(GameStateManager.LEVEL3STATE);

@@ -22,8 +22,6 @@ public class GameStateManager {
 
         currentState = MENUSTATE;
         loadState(currentState);
-
-
     }
 
     private void loadState(int state) {
@@ -43,11 +41,9 @@ public class GameStateManager {
             gameStates[state] = new Level2State(this);
         if (state == LEVEL3STATE)
             gameStates[state] = new Level3State(this);
-
     }
 
     private void unloadState(int state) {
-
         gameStates[state] = null;
     }
 
@@ -79,5 +75,4 @@ public class GameStateManager {
     public void keyReleased(int k) {
         gameStates[currentState].keyReleased(k);
     }
-
 }

@@ -17,10 +17,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public abstract class GameState {
+    static AudioPlayer bgMusic;
+    static AudioPlayer menuBgMusic;
     protected GameStateManager gsm;
     Player player;
     TileMap tileMap;
-    Background bg;
+    Background background;
     HUD hud;
     ArrayList<Enemy> slugs;
     ArrayList<Enemy> shells;
@@ -40,17 +42,14 @@ public abstract class GameState {
     YellowKey yKey;
     ArrayList<ClosedDoor> closedDoors;
     ArrayList<OpenDoor> openDoors;
-    static AudioPlayer bgMusic;
     AudioPlayer gameOverMusic;
-    static AudioPlayer menuBgMusic;
     int stage;
 
     public void init() {
 
     }
 
-    public void update(){
-        //update player death
+    public void update() {
         if (player.checkDead(player)) {
             bgMusic.stop();
             gameOverMusic.play();
@@ -74,7 +73,7 @@ public abstract class GameState {
         if (k == KeyEvent.VK_D) player.setRight(true);
         if (k == KeyEvent.VK_W) player.setUp(true);
         if (k == KeyEvent.VK_S) player.setDown(true);
-        //
+
         if (k == KeyEvent.VK_SPACE) player.setJumping(true);
         if (k == KeyEvent.VK_ESCAPE) {
             gsm.setState(GameStateManager.MENUSTATE);
@@ -94,7 +93,7 @@ public abstract class GameState {
         if (k == KeyEvent.VK_D) player.setRight(false);
         if (k == KeyEvent.VK_W) player.setUp(false);
         if (k == KeyEvent.VK_S) player.setDown(false);
-        //
+
         if (k == KeyEvent.VK_SPACE) player.setJumping(false);
     }
 
@@ -108,14 +107,13 @@ public abstract class GameState {
         openDoors = new ArrayList<OpenDoor>();
         closedDoors = new ArrayList<ClosedDoor>();
     }
+
     void initPointLists() {
         sluggerPoints = new LinkedList<Point>();
         flyPoints = new LinkedList<Point>();
         slimePoints = new LinkedList<Point>();
         spikePoints = new LinkedList<Point>();
     }
-
-
 
     public void updateDoors() {
         for (int i = 0; i < closedDoors.size(); i++) {
@@ -228,62 +226,44 @@ public abstract class GameState {
         }
     }
 
-    public void updateCollisions(){
-        //coin collect
+    public void updateCollisions() {
         player.checkCollect(goldCoins);
-        //keys
         player.checkKeys(yKey);
-        //set background
-        bg.setPosition(tileMap.getx(), tileMap.gety());
 
-        //attack slugs
+        background.setPosition(tileMap.getx(), tileMap.gety());
+
         player.checkAttack(slugs);
-
-        //attack shells
         player.checkAttack(shells);
-
-        //attack flies
         player.checkAttack(flys);
-
-        //attack slimes
         player.checkAttack(slimes);
-
-        //attack spikes
         player.checkSpikes(spikes);
 
-        //update flies
         updateFlies(flys);
-        //update slimes
         updateFlies(slimes);
-        //update slugs
         updateSlugs();
-        //update shells
         updateShells();
-        //update goldCoins
         updateGoldCoins();
-        //update doors
         updateDoors();
     }
 
-    public void drawPrettyMap(Graphics2D g){
-        //background and map
-        bg.draw(g);
+    public void drawPrettyMap(Graphics2D g) {
+        background.draw(g);
         tileMap.draw(g);
-        //doors
+
         for (ClosedDoor door : closedDoors) {
             door.draw(g);
         }
         for (OpenDoor door : openDoors) {
             door.draw(g);
         }
-        //player
+
         player.draw(g);
         hud.draw(g);
-        //key
+
         if (!yKey.isDead()) {
             yKey.draw(g);
         }
-        //draw stuff
+
         drawEnemies(g, slugs);
         drawEnemies(g, shells);
         drawEnemies(g, flys);

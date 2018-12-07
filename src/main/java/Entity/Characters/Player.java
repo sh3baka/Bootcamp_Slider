@@ -42,7 +42,6 @@ public class Player extends MapObject {
     // animations
     private ArrayList<BufferedImage[]> sprites;
 
-
     public Player(TileMap tm) {
 
         super(tm);
@@ -83,7 +82,6 @@ public class Player extends MapObject {
 
                 for (int j = 0; j < numFrames[i]; j++) {
 
-
                     bi[j] = spritesheet.getSubimage( //res
                             j * width,
                             i * height,
@@ -91,14 +89,11 @@ public class Player extends MapObject {
                             height
                     );
                 }
-
                 sprites.add(bi);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         animation = new Animation();
         currentAction = IDLE;
         animation.setFrames(sprites.get(IDLE));
@@ -118,7 +113,6 @@ public class Player extends MapObject {
 
         sfx5 = new HashMap<String, AudioPlayer>();
         sfx5.put("damage", new AudioPlayer("/SFX/damage.mp3"));
-
     }
 
     public static double getX() {
@@ -191,7 +185,6 @@ public class Player extends MapObject {
         for (Enemy e : enemies) {
 
             // check enemy collision
-
             if (intersects(e) && this.dy > 0) {
                 sfx2.get("damaged").play();
                 dy = jumpStart;
@@ -219,7 +212,6 @@ public class Player extends MapObject {
         }
     }
 
-
     public void checkKeys(YellowKey key) {
         if (intersects(key)) {
             sfx4.get("key").play();
@@ -236,7 +228,6 @@ public class Player extends MapObject {
         if (health == 0) dead = true;
         flinching = true;
         flinchTimer = System.nanoTime();
-
     }
 
     private void getNextPosition() {
@@ -265,12 +256,14 @@ public class Player extends MapObject {
                 }
             }
         }
+
         //jumping
         if (jumping && !falling) {
             sfx.get("jump").play();
             dy = jumpStart;
             falling = true;
         }
+
         //falling
         if (falling) {
 
@@ -279,7 +272,6 @@ public class Player extends MapObject {
             if (dy > 0) jumping = false;
             if (dy < 0 && !jumping) dy += stopJumpSpeed;
             if (dy > maxFallSpeed) dy = maxFallSpeed;
-
         }
     }
 
@@ -300,7 +292,6 @@ public class Player extends MapObject {
         }
 
         //set animation
-
         if (dy > 0) {
             if (currentAction != FALLING) {
                 currentAction = FALLING;
@@ -344,7 +335,6 @@ public class Player extends MapObject {
         dY = dy;
     }
 
-
     public void checkCollect(ArrayList<Collectible> goldCoins) {
 
         // loop through enemies
@@ -359,12 +349,9 @@ public class Player extends MapObject {
                 coins++;
             }
         }
-
-
     }
 
     public void draw(Graphics2D g) {
-
         setMapPosition();
 
         if (flinching) {

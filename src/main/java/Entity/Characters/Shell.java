@@ -27,7 +27,6 @@ public class Shell extends Enemy {
         worth = 5;
 
         try {
-
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
                             "/Enemies/snailShell.png"
@@ -49,16 +48,10 @@ public class Shell extends Enemy {
         animation = new Animation();
         animation.setFrames(sprites);
         animation.setDelay(30);
-
     }
 
     public void draw(Graphics2D g) {
-
-        //if(!notOnScreen()) return;
-
         setMapPosition();
         super.draw(g);
-
     }
-
 }
