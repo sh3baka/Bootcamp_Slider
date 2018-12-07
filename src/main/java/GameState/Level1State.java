@@ -420,8 +420,8 @@ public class Level1State extends GameState {
 
         //
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
-            gsm.setState(GameStateManager.LEVEL2STATE);
             bgMusic.stop();
+            gsm.setState(GameStateManager.LEVEL2STATE);
             stage = 0;
         }
         //update player death
