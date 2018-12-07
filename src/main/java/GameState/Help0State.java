@@ -20,12 +20,12 @@ public class Help0State extends GameState {
 
         try {
 
-            bg = new Background("/sample.png", 1);
+            bg = new Background("/mainMenuArt.png", 1);
             bg.setVector(0, 0);
 
             card = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Backgrounds/helpMenu1.png"
+                            "/Backgrounds/helpMenu0.png"
                     )
             );
 
@@ -48,9 +48,9 @@ public class Help0State extends GameState {
         //draw bg
         bg.draw(g);
         g.drawImage(card, 10, 10, null);
-        g.setColor(Color.RED);
-        g.setFont(font);
-        g.drawString("intro", 60, 40);
+//        g.setColor(Color.RED);
+//        g.setFont(font);
+//        g.drawString("intro", 60, 40);
 
     }
 

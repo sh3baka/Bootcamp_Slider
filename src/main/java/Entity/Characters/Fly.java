@@ -6,7 +6,6 @@ import TileMap.TileMap;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
 public class Fly extends Enemy {
 
     private BufferedImage[] sprites;
@@ -14,7 +13,6 @@ public class Fly extends Enemy {
     public Fly(TileMap tm) {
 
         super(tm);
-
         moveSpeed = 1;
         maxSpeed = 1;
         fallSpeed = 0;
@@ -23,7 +21,7 @@ public class Fly extends Enemy {
         width = 33;
         height = 20;
         cwidth = 20;
-        cheight = 10;
+        cheight = 20;
 
         health = maxHealth = 1;
         damage = 1;

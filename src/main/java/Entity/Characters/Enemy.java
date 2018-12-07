@@ -9,7 +9,6 @@ public class Enemy extends MapObject {
     protected boolean dead;
     protected int damage;
     protected int worth;
-
     protected boolean flinching;
     protected long flinchTimer;
 

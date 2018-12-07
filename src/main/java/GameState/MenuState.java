@@ -1,13 +1,15 @@
 package GameState;
 
 import TileMap.Background;
-
+import Audio.AudioPlayer;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+
 
 public class MenuState extends GameState {
 
     private Background bg;
+
 
     private int currentChoice = 0;
     private String[] options = {
@@ -18,12 +20,14 @@ public class MenuState extends GameState {
     private Font font;
 
     public MenuState(GameStateManager gsm) {
-
+        init();
+        menuBgMusic = new AudioPlayer("/Music/menu.mp3");
+        menuBgMusic.play();
         this.gsm = gsm;
 
         try {
 
-            bg = new Background("/sample.png", 1);
+            bg = new Background("/mainMenuArt.png", 1);
             bg.setVector(0, 0);
 
             font = new Font("Arial", Font.PLAIN, 12);
@@ -34,7 +38,10 @@ public class MenuState extends GameState {
 
     }
 
+
     public void init() {
+
+
     }
 
     public void update() {
@@ -59,6 +66,7 @@ public class MenuState extends GameState {
 
     private void select() {
         if (currentChoice == 0) {
+            menuBgMusic.stop();
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
         if (currentChoice == 1) {
@@ -71,15 +79,21 @@ public class MenuState extends GameState {
 
     public void keyPressed(int k) {
         if (k == KeyEvent.VK_ENTER) {
+            AudioPlayer sfx = new AudioPlayer("/SFX/enemy_hit.mp3");
+            sfx.play();
             select();
         }
         if (k == KeyEvent.VK_UP) {
+            AudioPlayer sfx = new AudioPlayer("/SFX/enemy_hit.mp3");
+            sfx.play();
             currentChoice--;
             if (currentChoice == -1) {
                 currentChoice = options.length - 1;
             }
         }
         if (k == KeyEvent.VK_DOWN) {
+            AudioPlayer sfx = new AudioPlayer("/SFX/enemy_hit.mp3");
+            sfx.play();
             currentChoice++;
             if (currentChoice == options.length) {
                 currentChoice = 0;
@@ -87,6 +101,8 @@ public class MenuState extends GameState {
         }
 
         if (k == KeyEvent.VK_ESCAPE) {
+            AudioPlayer sfx = new AudioPlayer("/SFX/enemy_hit.mp3");
+            sfx.play();
             System.exit(0);
         }
     }

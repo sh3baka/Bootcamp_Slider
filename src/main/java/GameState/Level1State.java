@@ -21,6 +21,7 @@ public class Level1State extends GameState {
 
     Level1State(GameStateManager gsm) {
         this.gsm = gsm;
+        bgMusic = new AudioPlayer("/Music/level1.mp3");
         init();
 
     }
@@ -46,19 +47,13 @@ public class Level1State extends GameState {
 
         hud = new HUD(player);
 
-        bgMusic = new AudioPlayer("/Music/yoshi_song.mp3");
+
+        gameOverMusic = new AudioPlayer("/Music/gameOver.mp3");
         bgMusic.play();
 
     }
 
     private void populateThings0() {
-
-
-        LinkedList<Point> spikePoints = new LinkedList<Point>();
-
-        spikePoints.add(new Point(110, 200));
-
-        addSpikesToList(spikePoints);
 
         LinkedList<Point> sluggerPoints = new LinkedList<Point>();
         sluggerPoints.add(new Point(300, 140));
@@ -206,7 +201,7 @@ public class Level1State extends GameState {
 
 
         LinkedList<Point> spikePoints = new LinkedList<Point>();
-        spikePoints.add(new Point(2800, 170));
+        spikePoints.add(new Point(2800, 168));
 
         addSpikesToList(spikePoints);
 
@@ -220,26 +215,13 @@ public class Level1State extends GameState {
 
         addFlysToList(flyPoints);
 
-        //coins
-        goldCoins = new ArrayList<Collectible>();
-        Point[] coinPoints = new Point[]{
-                new Point(2980, 140),
-                new Point(3040, 110),
-                new Point(3060, 110)
-
-        };
-        for (Point point : coinPoints) {
-            c = new GoldCoin(tileMap);
-            c.setPosition(point.x, point.y);
-            goldCoins.add(c);
-        }
     }
 
     private void populateThings4() {
 
 
         LinkedList<Point> spikePoints = new LinkedList<Point>();
-        spikePoints.add(new Point(4570, 170));
+        spikePoints.add(new Point(4575, 168));
 
         addSpikesToList(spikePoints);
 
@@ -430,14 +412,21 @@ public class Level1State extends GameState {
         //attack spikes
         player.checkSpikes(spikes);
 
-
-        if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
+        // death for player if out of bounds except top of the screen
+        if (player.gety() > 300 || player.getx() < 0 || player.getx() > 200*30) {
             bgMusic.stop();
+            player.isDead();
+        }
+
+        //
+        if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
             gsm.setState(GameStateManager.LEVEL2STATE);
+            bgMusic.stop();
             stage = 0;
         }
         //update player death
         if (player.checkDead(player)) {
+            gameOverMusic.play();
             bgMusic.stop();
             player.setScore(0);
             player.setCoins(0);

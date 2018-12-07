@@ -35,7 +35,9 @@ public abstract class GameState {
     YellowKey yKey;
     ArrayList<ClosedDoor> closedDoors;
     ArrayList<OpenDoor> openDoors;
-    AudioPlayer bgMusic;
+    static AudioPlayer bgMusic;
+    AudioPlayer gameOverMusic;
+    static AudioPlayer menuBgMusic;
     int stage;
 
     public void init() {
@@ -60,7 +62,12 @@ public abstract class GameState {
         if (k == KeyEvent.VK_S) player.setDown(true);
         //
         if (k == KeyEvent.VK_SPACE) player.setJumping(true);
-        if (k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
+        if (k == KeyEvent.VK_ESCAPE) {
+            gsm.setState(GameStateManager.MENUSTATE);
+            Level1State.bgMusic.stop();
+            Level2State.bgMusic.stop();
+            Level3State.bgMusic.stop();
+        }
     }
 
     public void keyReleased(int k) {

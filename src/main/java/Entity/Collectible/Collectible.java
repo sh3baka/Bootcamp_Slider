@@ -17,8 +17,8 @@ public class Collectible extends Enemy {
     public Collectible(TileMap tm) {
         super(tm);
 
-        fallSpeed = 0.2;
-        maxFallSpeed = 10.0;
+//        fallSpeed = 0.2;
+//        maxFallSpeed = 10.0;
 
         width = 30;
         height = 30;

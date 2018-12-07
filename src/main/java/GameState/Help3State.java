@@ -20,7 +20,7 @@ public class Help3State extends GameState {
 
         try {
 
-            bg = new Background("/sample.png", 1);
+            bg = new Background("/mainMenuArt.png", 1);
             bg.setVector(0, 0);
 
             card = ImageIO.read(
