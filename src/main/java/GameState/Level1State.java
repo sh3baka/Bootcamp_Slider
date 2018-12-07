@@ -57,12 +57,15 @@ public class Level1State extends GameState {
     private void populateThings0() {
 
         sluggerPoints.add(new Point(300, 140));
+        sluggerPoints.add(new Point(1580, 80));
         addSluggersToList(sluggerPoints);
 
         flyPoints.add(new Point(180, 100));
+        flyPoints.add(new Point(1640, 80));
         addFlysToList(flyPoints);
 
         slimePoints.add(new Point(220, 100));
+        slimePoints.add(new Point(1600, 200));
         addSlimesToList(slimePoints);
 
         goldCoins = new ArrayList<Collectible>();
@@ -134,18 +137,6 @@ public class Level1State extends GameState {
 
     private void populateThings1() {
 
-        sluggerPoints.add(new Point(1580, 80));
-        addSluggersToList(sluggerPoints);
-
-        flyPoints.add(new Point(1640, 80));
-        addFlysToList(flyPoints);
-
-        slimePoints.add(new Point(1600, 200));
-        addSlimesToList(slimePoints);
-    }
-
-    private void populateThings2() {
-
         sluggerPoints.add(new Point(2350, 110));
         addSluggersToList(sluggerPoints);
 
@@ -157,7 +148,7 @@ public class Level1State extends GameState {
 
     }
 
-    private void populateThings3() {
+    private void populateThings2() {
 
         spikePoints.add(new Point(2800, 168));
         addSpikesToList(spikePoints);
@@ -170,7 +161,7 @@ public class Level1State extends GameState {
 
     }
 
-    private void populateThings4() {
+    private void populateThings3() {
 
         spikePoints.add(new Point(4575, 168));
         addSpikesToList(spikePoints);
@@ -186,7 +177,7 @@ public class Level1State extends GameState {
 
     }
 
-    private void populateThings5() {
+    private void populateThings4() {
 
         sluggerPoints.add(new Point(5100, 50));
         addSluggersToList(sluggerPoints);
@@ -228,7 +219,7 @@ public class Level1State extends GameState {
         );
 
         //trigger 1
-        if (player.getx() > 200 && stage == 1) {
+        if (player.getx() > 600 && stage == 1) {
             populateThings1();
             stage++;
         }
@@ -246,11 +237,6 @@ public class Level1State extends GameState {
         //trigger 4
         if (player.getx() > 4240 && stage == 4) {
             populateThings4();
-            stage++;
-        }
-        //trigger 5
-        if (player.getx() > 4600 && stage == 5) {
-            populateThings5();
             stage++;
         }
 

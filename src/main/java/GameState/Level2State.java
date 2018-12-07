@@ -51,12 +51,15 @@ public class Level2State extends GameState {
     private void populateThings0() {
 
         spikePoints.add(new Point(110, 200));
+        spikePoints.add(new Point(5810, 110));
         addSpikesToList(spikePoints);
 
         sluggerPoints.add(new Point(160, 200));
+        sluggerPoints.add(new Point(370, 80));
         addSluggersToList(sluggerPoints);
 
         flyPoints.add(new Point(180, 120));
+        flyPoints.add(new Point(280, 80));
         addFlysToList(flyPoints);
 
         slimePoints.add(new Point(220, 170));
@@ -83,19 +86,6 @@ public class Level2State extends GameState {
 
     private void populateThings1() {
 
-            spikePoints.add(new Point(5810, 110));
-            addSpikesToList(spikePoints);
-
-            sluggerPoints.add(new Point(370, 80));
-            addSluggersToList(sluggerPoints);
-
-            flyPoints.add(new Point(280, 80));
-            addFlysToList(flyPoints);
-        }
-
-
-    private void populateThings2() {
-
         sluggerPoints.add(new Point(900, 50));
         addSluggersToList(sluggerPoints);
 
@@ -104,7 +94,7 @@ public class Level2State extends GameState {
 
     }
 
-    private void populateThings3() {
+    private void populateThings2() {
 
         sluggerPoints.add(new Point(1340, 200));
         addSluggersToList(sluggerPoints);
@@ -116,7 +106,7 @@ public class Level2State extends GameState {
         addSlimesToList(slimePoints);
     }
 
-    private void populateThings4() {
+    private void populateThings3() {
 
         sluggerPoints.add(new Point(1980, 170));
         addSluggersToList(sluggerPoints);
@@ -126,7 +116,7 @@ public class Level2State extends GameState {
 
     }
 
-    private void populateThings5() {
+    private void populateThings4() {
 
         sluggerPoints.add(new Point(2465, 140));
         addSluggersToList(sluggerPoints);
@@ -136,7 +126,7 @@ public class Level2State extends GameState {
 
     }
 
-    private void populateThings6() {
+    private void populateThings5() {
 
         flyPoints.add(new Point(3210, 120));
         addFlysToList(flyPoints);
@@ -188,11 +178,6 @@ public class Level2State extends GameState {
                 (float) GamePanel.WIDTH / 2 - player.getx(),
                 (float) GamePanel.HEIGHT / 2 - player.gety()
         );
-        //trigger 0
-        if (player.getx() > 420 && stage == 0) {
-            populateThings0();
-            stage++;
-        }
         //trigger 1
         if (player.getx() > 500 && stage == 1) {
             populateThings1();

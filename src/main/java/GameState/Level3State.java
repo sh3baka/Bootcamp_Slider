@@ -52,13 +52,18 @@ public class Level3State extends GameState {
 
     private void populateThings0() {
 
+        slimePoints.add(new Point(875, 110));
+        addSlimesToList(slimePoints);
+
         spikePoints.add(new Point(110, 200));
         addSpikesToList(spikePoints);
 
         sluggerPoints.add(new Point(160, 180));
+        sluggerPoints.add(new Point(661, 140));
         addSluggersToList(sluggerPoints);
 
         flyPoints.add(new Point(180, 100));
+        flyPoints.add(new Point(661, 65));
         addFlysToList(flyPoints);
 
         //coins
@@ -72,6 +77,8 @@ public class Level3State extends GameState {
                 new Point(680, 100),
                 new Point(700, 100),
                 new Point(720, 100),
+                new Point(690, 140),
+                new Point(710, 140),
                 new Point(1150, 200),
                 new Point(1170, 200),
                 new Point(1190, 200),
@@ -82,10 +89,17 @@ public class Level3State extends GameState {
                 new Point(1150, 200),
                 new Point(1170, 200),
                 new Point(1190, 200),
+                new Point(1240, 100),
+                new Point(1260, 100),
+                new Point(1280, 100),
                 new Point(1335, 200),
+                new Point(1610, 200),
+                new Point(2260, 100),
+                new Point(2260, 110),
                 new Point(2290, 110),
                 new Point(2310, 110),
-                new Point(2330, 110)
+                new Point(2330, 110),
+                new Point(2740, 60)
         };
         for (Point point : coinPoints) {
             c = new GoldCoin(tileMap);
@@ -95,38 +109,6 @@ public class Level3State extends GameState {
     }
 
     private void populateThings1() {
-
-        sluggerPoints.add(new Point(661, 140));
-        addSluggersToList(sluggerPoints);
-
-        flyPoints.add(new Point(661, 65));
-        addFlysToList(flyPoints);
-
-        slimePoints.add(new Point(875, 110));
-        addSlimesToList(slimePoints);
-
-        goldCoins = new ArrayList<Collectible>();
-        Point[] coinPoints = new Point[]{
-                new Point(1240, 100),
-                new Point(1260, 100),
-                new Point(1280, 100),
-                new Point(1610, 200),
-                new Point(2260, 100),
-                new Point(2260, 110),
-                new Point(2740, 60),
-                new Point(690, 140),
-                new Point(710, 140),
-                new Point(730, 140)
-
-        };
-        for (Point point : coinPoints) {
-            c = new GoldCoin(tileMap);
-            c.setPosition(point.x, point.y);
-            goldCoins.add(c);
-        }
-    }
-
-    private void populateThings2() {
 
         sluggerPoints.add(new Point(1175, 80));
         addSluggersToList(sluggerPoints);
@@ -160,7 +142,7 @@ public class Level3State extends GameState {
         }
     }
 
-    private void populateThings3() {
+    private void populateThings2() {
 
         sluggerPoints.add(new Point(4130, 180));
         addSluggersToList(sluggerPoints);
