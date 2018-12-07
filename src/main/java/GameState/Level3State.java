@@ -52,13 +52,9 @@ public class Level3State extends GameState {
 
     private void populateThings0() {
 
-        slimePoints.add(new Point(875, 110));
-        addSlimesToList(slimePoints);
-
         spikePoints.add(new Point(110, 200));
         addSpikesToList(spikePoints);
 
-        sluggerPoints.add(new Point(160, 180));
         sluggerPoints.add(new Point(661, 140));
         addSluggersToList(sluggerPoints);
 

@@ -53,8 +53,8 @@ public class Level2State extends GameState {
         spikePoints.add(new Point(5810, 110));
         addSpikesToList(spikePoints);
 
-        sluggerPoints.add(new Point(160, 200));
-        sluggerPoints.add(new Point(370, 80));
+        sluggerPoints.add(new Point(120, 80));
+        sluggerPoints.add(new Point(600, 200));
         addSluggersToList(sluggerPoints);
 
         flyPoints.add(new Point(180, 120));
@@ -99,6 +99,7 @@ public class Level2State extends GameState {
 
         flyPoints.add(new Point(950, 50));
         addFlysToList(flyPoints);
+
     }
 
     private void populateThings3() {
@@ -113,7 +114,7 @@ public class Level2State extends GameState {
     }
 
     private void populateThings4() {
-        sluggerPoints.add(new Point(1980, 170));
+        sluggerPoints.add(new Point(1780, 170));
         addSluggersToList(sluggerPoints);
 
         flyPoints.add(new Point(2000, 130));
@@ -206,6 +207,7 @@ public class Level2State extends GameState {
 
         updateCollisions();
 
+        //
         if (player.getKey() && player.getx() == openDoors.get(0).getx() && (player.gety() <= openDoors.get(0).gety() + 5) && (player.gety() >= openDoors.get(0).gety() - 5)) {
             bgMusic.stop();
             gsm.setState(GameStateManager.LEVEL3STATE);

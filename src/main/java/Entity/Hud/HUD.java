@@ -72,5 +72,6 @@ public class HUD {
         // Test data
         g.drawString("X " + Player.getX(), 260, 100);
         g.drawString("Y " + Player.getY(), 260, 130);
+
     }
 }
