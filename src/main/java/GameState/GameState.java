@@ -14,6 +14,7 @@ import TileMap.TileMap;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public abstract class GameState {
     protected GameStateManager gsm;
@@ -145,6 +146,54 @@ public abstract class GameState {
                 flys.remove(i);
                 i--;
             }
+        }
+    }
+
+
+
+    public void addSlimesToList(LinkedList<Point> slimePoints) {
+        for (Point point : slimePoints) {
+            slime = new Slime(tileMap);
+            slime.setPosition(point.x, point.y);
+            slimes.add(slime);
+        }
+    }
+
+
+    public void addFlysToList(LinkedList<Point> flyPoints) {
+        for (Point point : flyPoints) {
+            fly = new Fly(tileMap);
+            fly.setPosition(point.x, point.y);
+            flys.add(fly);
+        }
+    }
+
+    public void addSluggersToList(LinkedList<Point> sluggerPoints) {
+        for (Point point : sluggerPoints) {
+            slugger = new Slugger(tileMap);
+            slugger.setPosition(point.x, point.y);
+            slugs.add(slugger);
+        }
+    }
+
+    public void addSpikesToList(LinkedList<Point> spikePoints) {
+        for (Point point : spikePoints) {
+            spike = new Spike(tileMap);
+            spike.setPosition(point.x, point.y);
+            spikes.add(spike);
+        }
+    }
+
+
+    public void drawEnemies(Graphics2D g, ArrayList<Enemy> enemies) {
+        for (Enemy e : enemies) {
+            e.draw(g);
+        }
+    }
+
+    public void drawThings(Graphics2D g, ArrayList<Collectible> things) {
+        for (Collectible c : things) {
+            c.draw(g);
         }
     }
 }
